@@ -1,0 +1,2605 @@
+
+body {
+  color: #333333;
+  background: white; }
+
+html, body, div, p, a, label, * {
+  font-family: OpenSans, sans-serif; }
+
+a {
+  font-weight: 400;
+  color: #1b5695;
+  text-decoration: none !important; }
+
+a.consoleLinkEnabled {
+  text-decoration: none; }
+
+a:hover {
+  color: #102d4f;
+  text-decoration: underline !important; }
+
+a.consoleLinkDisabled {
+  color: #a0a0a0; }
+  a.consoleLinkDisabled:hover {
+    color: #a0a0a0;
+    text-decoration: none !important; }
+
+.itemListPrimaryLink {
+  font-weight: 600; }
+
+.chvronTextOnTheRightSpan {
+  color: #1b55ab; }
+
+td, th {
+  font-size: 12px; }
+
+.pageBaseHeaderCssClass {
+  background: white; }
+
+/*end text*/
+/* Flyouts */
+/* 
+    rebranding the flyouts in the menu bar
+    adds arrow pointers
+*/
+/* Base flyout styles */
+.quickNavFlyout, .userGreetingFlyout, .historyFlyout, .alertFlyout {
+  top: 18px;
+  position: relative;
+  background: white;
+  border: 1px solid #c1c1c1;
+  margin-top: 10px;
+  -ms-border-radius: 3px;
+  border-radius: 3px;
+  box-shadow: 0 6px 10px 0 #acacac; }
+
+.quickNavFlyout:after, .userGreetingFlyout:after, .historyFlyout:after, .alertFlyout:after, .quickNavFlyout:before, .userGreetingFlyout:before, .historyFlyout:before, .alertFlyout:before {
+  bottom: 100%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(0, 0, 0, 0); }
+
+.quickNavFlyout:after, .userGreetingFlyout:after, .historyFlyout:after, .alertFlyout:after {
+  border-bottom-color: white;
+  border-width: 10px;
+  margin-right: -10px; }
+
+.quickNavFlyout:before, .userGreetingFlyout:before, .historyFlyout:before, .alertFlyout:before {
+  border-bottom-color: #c1c1c1;
+  border-width: 11px;
+  margin-right: -11px; }
+
+/* Reposition flyouts */
+.userGreetingFlyout {
+  margin-right: -8px !important; }
+
+.historyFlyout {
+  margin-right: 140px !important; }
+
+/* Align arrows */
+.quickNavFlyout:after, .quickNavFlyout:before {
+  right: 4%; }
+
+.userGreetingFlyout:after, .userGreetingFlyout:before {
+  right: 14px; }
+
+.alertFlyout:after, .alertFlyout:before {
+  right: 18px; }
+
+.historyFlyout:after, .historyFlyout:before {
+  right: 26px; }
+
+/* Flyout labels */
+span[class$="_favoriteGroup_Header"], span[class$="_historyGroup_Header"], .quickNavResultGroup {
+  color: #8695a6 !important;
+  text-transform: uppercase;
+  font-weight: 400 !important;
+  margin-bottom: 0; }
+  span[class$="_favoriteGroup_Header"]:not(:first-child), span[class$="_historyGroup_Header"]:not(:first-child), .quickNavResultGroup:not(:first-child) {
+    margin-top: 10px; }
+
+/* Flyout menu items / links */
+.buttermilk-flyout-menu-item, .userGreetingFlyout a, .historyRowItem a, .quickNavResultItem a {
+  color: #1b5695 !important;
+  border-width: 1px 0 1px 0 !important;
+  border-style: solid;
+  border-color: white; }
+  .buttermilk-flyout-menu-item:hover, .userGreetingFlyout a:hover, .historyRowItem a:hover, .quickNavResultItem a:hover, .buttermilk-flyout-menu-item:focus, .userGreetingFlyout a:focus, .historyRowItem a:focus, .quickNavResultItem a:focus {
+    text-decoration: underline !important; }
+  .buttermilk-flyout-menu-item:focus, .userGreetingFlyout a:focus, .historyRowItem a:focus, .quickNavResultItem a:focus {
+    outline: none; }
+
+.userGreetingFlyout a:hover, .userGreetingFlyout a:focus, .historyRowItem a:hover, .historyRowItem a:focus {
+  color: #102d4f;
+  background-color: #dfebf8;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  border-left: 0; }
+
+.quickNavResultItem.ui-menu-item {
+  float: none; }
+
+.quickNavAutoCompleteMenu br {
+  display: none; }
+
+.quickNavFlyout .ui-state-hover, .quickNavFlyout .ui-widget-content .ui-state-hover, .quickNavFlyout .ui-widget-header .ui-state-hover, .quickNavFlyout .ui-state-focus, .quickNavFlyout .ui-widget-content .ui-state-focus, .quickNavFlyout .ui-widget-header .ui-state-focus {
+  color: #102d4f;
+  background-color: #dfebf8;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  border-left: 0; }
+
+.userGreetingFlyout hr, .quickNavFlyout hr {
+  background-color: #c1c1c1;
+  color: #c1c1c1;
+  border-width: 0;
+  height: 1px; }
+
+/* Alert flyout */
+.alertFlyout {
+  color: #010000; }
+  .alertFlyout a {
+    color: #1b5695; }
+    .alertFlyout a:hover {
+      color: #102d4f;
+      background-color: rgba(0, 0, 0, 0);
+      text-decoration: underline; }
+
+.RelativityHeaderAlert {
+  text-decoration: none;
+  color: #da1a17;
+  font-weight: 700; }
+  .RelativityHeaderAlert:after {
+    content: "S"; }
+
+/* QuickNav flyout */
+.quickNavAutoCompleteMenu {
+  background: none !important; }
+
+.quickNavTextbox {
+  border: 1px solid #c1c1c1;
+  -ms-border-radius: 3px;
+  border-radius: 3px;
+  color: #102d4f; }
+
+.visibilityFlyout {
+  width: 411px;
+  background: white; }
+
+/* Card Layout */
+/*
+    Used on the details layouts
+    replaces old table based forms
+	Note: these are new classes. The HTML had to be modified to obtain this new look
+*/
+.cardSectionHeader, .fieldblock .sectionHeader, .custom-filter-table > tbody > tr > td, #_main #_editTemplate__kCuraScrollingDiv h2, #_main #_view__wizardTemplate__kCuraScrollingDiv h2, #_main #_edit__wizardTemplate__kCuraScrollingDiv h2, #_main #_viewTemplate__kCuraScrollingDiv h2, #_main #_dynamicTemplate__kCuraScrollingDiv h2, #_main #_kCuraScrollingDiv h2, #_main #_licenseInfoContainer td h2, #_main .documentProfileTemplateContainer h2, #_main .viewTable .viewSectionTitle, #_main .viewTable .editSectionTitle, #_main .viewTable .editCategory, #_main .editTable .viewSectionTitle, #_main .editTable .editSectionTitle, #_main .editTable .editCategory, #_main .cardContainer .cardSection .editSectionTitle, .fieldblock, #_headerFooterDiv, #_main .cardContainer .cardSection .viewSectionTitle, .fieldblock, #_headerFooterDiv, #_main .cardContainer .cardSection h2, .fieldblock, #_headerFooterDiv, .objectsPickerActionBar, .objectsPickerListTitle {
+  color: #3471b7;
+  font-weight: 600;
+  font-size: 13px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-left: 15px; }
+
+.editTableColumn .editSectionTitle, .viewTableColumn .viewSectionTitle {
+  padding-left: 0 !important; }
+
+.cardSection > table.viewTable > tbody > tr > td.viewTableColumn > div.viewSectionTitle, .cardSection > table.viewTable > tbody > tr > td.viewTableColumn > .fieldblock, .cardSection > table.viewTable > tbody > tr > td.viewTableColumn > #_headerFooterDiv, .cardSection > table.editTable > tbody > tr > td.editTableColumn > div.editSectionTitle, .cardSection > table.editTable > tbody > tr > td.editTableColumn > .fieldblock, .cardSection > table.editTable > tbody > tr > td.editTableColumn > #_headerFooterDiv {
+  padding-left: 15px !important; }
+
+#_main .editTable .EditTableColumn .viewSectionTitle {
+  padding-left: 9px; }
+
+.cardLabel, .cardRequiredLabel, td .editFieldNameRequired, td .dynamicEditFieldNameRequired, td .dynamicFieldRequired, td .editFieldNameRequiredProfile, .editFieldNameRequired, .dynamicEditFieldNameRequired, .editFieldNameRequiredProfile, .dynamicFieldRequired, .cardNotRequiredLabel, td .editFieldName, td .dynamicEditFieldName, td .dynamicField, td.editFieldNameNarrow, td .editFieldNameProfile, .editFieldName, .dynamicEditFieldName, .editFieldNameNarrow, .editFieldNameProfile, .dynamicField, td.viewFieldName[id^="_editTemplate"], .fieldblock .fieldheader, .custom-filter-table .custom-filter-hr-table > tbody > tr > td:first-child, #_main #_licenseInfoContainer .viewTableColumn .fieldTable > tbody > tr > td .viewFieldName, td.viewFieldName, td.editFieldName, td.viewFieldNameProfile, td.editFieldNameProfile, td.editFieldNameRequired, td.dynamicViewFieldName, td.dynamicEditFieldName, td.dynamicEditFieldNameRequired, td.dynamicField, td.dynamicFieldRequired, .dynamicField, .editFieldNameRequired, .dynamicEditFieldNameRequired, .editFieldNameRequiredProfile, .dynamicFieldRequired, .twoListSelectBoxTitle {
+  color: #404040;
+  background-color: transparent;
+  font-size: 12px;
+  font-weight: normal;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border: none; }
+
+.cardValue, .fieldblock .fieldcontrol, td.editFieldValue, td.editFieldValueProfile {
+  background-color: #f7f7f7;
+  border-bottom-style: none;
+  border-left-style: none;
+  padding-left: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  font-size: 12px;
+  font-weight: normal; }
+
+.cardViewValue, td.viewFieldValue, td.viewFieldValueProfile, td.dynamicViewFieldValue, td.dynamicViewFieldValueProfile {
+  background-color: #f7f7f7;
+  color: #102d4f;
+  border-bottom-style: solid !important;
+  border-bottom-width: 1px !important;
+  border-bottom-color: #cccccc !important;
+  border-left-style: none;
+  padding-left: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  font-size: 12px;
+  font-weight: normal; }
+
+.cardRequiredLabel, td .editFieldNameRequired, td .dynamicEditFieldNameRequired, td .dynamicFieldRequired, td .editFieldNameRequiredProfile, .editFieldNameRequired, .dynamicEditFieldNameRequired, .editFieldNameRequiredProfile, .dynamicFieldRequired {
+  border-style: none solid none none !important;
+  border-width: medium !important;
+  border-top-color: transparent;
+  border-right-color: #f59c1f !important;
+  border-bottom-color: transparent;
+  border-left-color: transparent; }
+
+.cardNotRequiredLabel, td .editFieldName, td .dynamicEditFieldName, td .dynamicField, td.editFieldNameNarrow, td .editFieldNameProfile, .editFieldName, .dynamicEditFieldName, .editFieldNameNarrow, .editFieldNameProfile, .dynamicField, td.viewFieldName[id^="_editTemplate"] {
+  border-style: none solid none none !important;
+  border-width: medium;
+  border-top-color: transparent;
+  border-right-color: transparent !important;
+  border-bottom-color: transparent;
+  border-left-color: transparent; }
+
+.cardTable, .right-nav-container, #_licenseInfoContainer .rightNavActionBar, .custom-filter-table, #_main #_editTemplate__kCuraScrollingDiv .viewTable, #_main #_editTemplate__kCuraScrollingDiv .editTable, #_main #_editTemplate__kCuraScrollingDiv .editTable > table, #_main #_view__wizardTemplate__kCuraScrollingDiv .viewTable, #_main #_view__wizardTemplate__kCuraScrollingDiv .editTable, #_main #_view__wizardTemplate__kCuraScrollingDiv .editTable > table, #_main #_edit__wizardTemplate__kCuraScrollingDiv .viewTable, #_main #_edit__wizardTemplate__kCuraScrollingDiv .editTable, #_main #_edit__wizardTemplate__kCuraScrollingDiv .editTable > table, #_main #_viewTemplate__kCuraScrollingDiv .viewTable, #_main #_viewTemplate__kCuraScrollingDiv .editTable, #_main #_viewTemplate__kCuraScrollingDiv .editTable > table, #_main #_dynamicTemplate__kCuraScrollingDiv .viewTable, #_main #_dynamicTemplate__kCuraScrollingDiv .editTable, #_main #_dynamicTemplate__kCuraScrollingDiv .editTable > table, #_main #_kCuraScrollingDiv .viewTable, #_main #_kCuraScrollingDiv .editTable, #_main #_kCuraScrollingDiv .editTable > table, #_main #_licenseInfoContainer td .viewTable, #_main #_licenseInfoContainer td .editTable, #_main #_licenseInfoContainer td .editTable > table, #_main .documentProfileTemplateContainer .viewTable, #_main .documentProfileTemplateContainer .editTable, #_main .documentProfileTemplateContainer .editTable > table, #_main .childViewTable > tbody > tr > td > div.associative-list, #_main #_documentProfileEditor__kCuraScrollingDiv .childViewTable > tbody > tr > td > div.associative-list, #_main #_licenseInfoContainer .viewTableColumn, #_main .cardContainer .cardSection, .fieldblock, #_headerFooterDiv, .css-tbl .css-tbl-col.cardContainer .cardSection, .fieldblock, #_headerFooterDiv, .cardContainer .viewTable, .massEditMain .massEditTable, .genericMessageBarAlert, .genericMessageBarSuccess, .genericMessageBarError {
+  background-color: #f7f7f7;
+  border: thin solid #c1c1c1;
+  -webkit-box-shadow: 2px 2px 1px #d0d0d0;
+  -ms-box-shadow: 2px 2px 1px #d0d0d0;
+  box-shadow: 3px 3px 2px #d0d0d0;
+  -ms-border-radius: 3px;
+  border-radius: 3px; }
+
+.cardRelativityControl {
+  margin-left: 20px; }
+
+.right-nav-container, #_licenseInfoContainer .rightNavActionBar {
+  border: thin solid #c1c1c1 !important; }
+  .right-nav-container > table, #_licenseInfoContainer .rightNavActionBar > table {
+    border: none !important;
+    box-shadow: none !important; }
+    .right-nav-container > table > tbody > tr > td, #_licenseInfoContainer .rightNavActionBar > table > tbody > tr > td {
+      border: none !important;
+      box-shadow: none !important; }
+
+.rightNavActionBar .consoleControlTitle {
+  border: none !important;
+  box-shadow: none !important; }
+
+.cardContainerTemplate, .formdiv, #_main .cardContainer {
+  background: white;
+  padding: 10px;
+  text-align: left; }
+
+/* This makes dtsearch view page look better but sadly removes tha margins in other pages (like ocr profiles)
+#_dynamicTemplate__kCuraScrollingDiv .cardContainer{
+	padding:0 !important;
+}
+*/
+.fieldblock .sectionHeader {
+  background: transparent;
+  border: none; }
+.fieldblock .fieldheader {
+  background: #f7f7f7;
+  border: none; }
+.fieldblock .fieldcontrol label {
+  color: #333333; }
+
+.fieldblocktable {
+  background: transparent; }
+
+.custom-filter-table {
+  width: 97% !important;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px; }
+  .custom-filter-table input[type="text"], .custom-filter-table input[type="submit"] {
+    height: 24px !important; }
+  .custom-filter-table td.custom-filter-hr {
+    display: none; }
+  .custom-filter-table .custom-filter-hr-table > tbody > tr > td:first-child {
+    text-transform: capitalize; }
+
+#_main #_editTemplate__kCuraScrollingDiv, #_main #_view__wizardTemplate__kCuraScrollingDiv, #_main #_edit__wizardTemplate__kCuraScrollingDiv, #_main #_viewTemplate__kCuraScrollingDiv, #_main #_dynamicTemplate__kCuraScrollingDiv, #_main #_kCuraScrollingDiv, #_main #_licenseInfoContainer td, #_main .documentProfileTemplateContainer {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto; }
+  #_main #_editTemplate__kCuraScrollingDiv table, #_main #_view__wizardTemplate__kCuraScrollingDiv table, #_main #_edit__wizardTemplate__kCuraScrollingDiv table, #_main #_viewTemplate__kCuraScrollingDiv table, #_main #_dynamicTemplate__kCuraScrollingDiv table, #_main #_kCuraScrollingDiv table, #_main #_licenseInfoContainer td table, #_main .documentProfileTemplateContainer table {
+    width: 100%; }
+    #_main #_editTemplate__kCuraScrollingDiv table.fieldTable, #_main #_view__wizardTemplate__kCuraScrollingDiv table.fieldTable, #_main #_edit__wizardTemplate__kCuraScrollingDiv table.fieldTable, #_main #_viewTemplate__kCuraScrollingDiv table.fieldTable, #_main #_dynamicTemplate__kCuraScrollingDiv table.fieldTable, #_main #_kCuraScrollingDiv table.fieldTable, #_main #_licenseInfoContainer td table.fieldTable, #_main .documentProfileTemplateContainer table.fieldTable {
+      width: inherit; }
+  #_main #_editTemplate__kCuraScrollingDiv .buttermilkTwoListSelect, #_main #_view__wizardTemplate__kCuraScrollingDiv .buttermilkTwoListSelect, #_main #_edit__wizardTemplate__kCuraScrollingDiv .buttermilkTwoListSelect, #_main #_viewTemplate__kCuraScrollingDiv .buttermilkTwoListSelect, #_main #_dynamicTemplate__kCuraScrollingDiv .buttermilkTwoListSelect, #_main #_kCuraScrollingDiv .buttermilkTwoListSelect, #_main #_licenseInfoContainer td .buttermilkTwoListSelect, #_main .documentProfileTemplateContainer .buttermilkTwoListSelect {
+    width: auto; }
+    #_main #_editTemplate__kCuraScrollingDiv .buttermilkTwoListSelect table, #_main #_view__wizardTemplate__kCuraScrollingDiv .buttermilkTwoListSelect table, #_main #_edit__wizardTemplate__kCuraScrollingDiv .buttermilkTwoListSelect table, #_main #_viewTemplate__kCuraScrollingDiv .buttermilkTwoListSelect table, #_main #_dynamicTemplate__kCuraScrollingDiv .buttermilkTwoListSelect table, #_main #_kCuraScrollingDiv .buttermilkTwoListSelect table, #_main #_licenseInfoContainer td .buttermilkTwoListSelect table, #_main .documentProfileTemplateContainer .buttermilkTwoListSelect table {
+      width: auto; }
+    #_main #_editTemplate__kCuraScrollingDiv .buttermilkTwoListSelect .centered, #_main #_view__wizardTemplate__kCuraScrollingDiv .buttermilkTwoListSelect .centered, #_main #_edit__wizardTemplate__kCuraScrollingDiv .buttermilkTwoListSelect .centered, #_main #_viewTemplate__kCuraScrollingDiv .buttermilkTwoListSelect .centered, #_main #_dynamicTemplate__kCuraScrollingDiv .buttermilkTwoListSelect .centered, #_main #_kCuraScrollingDiv .buttermilkTwoListSelect .centered, #_main #_licenseInfoContainer td .buttermilkTwoListSelect .centered, #_main .documentProfileTemplateContainer .buttermilkTwoListSelect .centered {
+      margin: inherit; }
+  #_main #_editTemplate__kCuraScrollingDiv .viewTable .viewTableColumn, #_main #_editTemplate__kCuraScrollingDiv .editTable .viewTableColumn, #_main #_editTemplate__kCuraScrollingDiv .editTable > table .viewTableColumn, #_main #_view__wizardTemplate__kCuraScrollingDiv .viewTable .viewTableColumn, #_main #_view__wizardTemplate__kCuraScrollingDiv .editTable .viewTableColumn, #_main #_view__wizardTemplate__kCuraScrollingDiv .editTable > table .viewTableColumn, #_main #_edit__wizardTemplate__kCuraScrollingDiv .viewTable .viewTableColumn, #_main #_edit__wizardTemplate__kCuraScrollingDiv .editTable .viewTableColumn, #_main #_edit__wizardTemplate__kCuraScrollingDiv .editTable > table .viewTableColumn, #_main #_viewTemplate__kCuraScrollingDiv .viewTable .viewTableColumn, #_main #_viewTemplate__kCuraScrollingDiv .editTable .viewTableColumn, #_main #_viewTemplate__kCuraScrollingDiv .editTable > table .viewTableColumn, #_main #_dynamicTemplate__kCuraScrollingDiv .viewTable .viewTableColumn, #_main #_dynamicTemplate__kCuraScrollingDiv .editTable .viewTableColumn, #_main #_dynamicTemplate__kCuraScrollingDiv .editTable > table .viewTableColumn, #_main #_kCuraScrollingDiv .viewTable .viewTableColumn, #_main #_kCuraScrollingDiv .editTable .viewTableColumn, #_main #_kCuraScrollingDiv .editTable > table .viewTableColumn, #_main #_licenseInfoContainer td .viewTable .viewTableColumn, #_main #_licenseInfoContainer td .editTable .viewTableColumn, #_main #_licenseInfoContainer td .editTable > table .viewTableColumn, #_main .documentProfileTemplateContainer .viewTable .viewTableColumn, #_main .documentProfileTemplateContainer .editTable .viewTableColumn, #_main .documentProfileTemplateContainer .editTable > table .viewTableColumn {
+    border: none; }
+  #_main #_editTemplate__kCuraScrollingDiv .viewSectionTitle, #_main #_editTemplate__kCuraScrollingDiv .editSectionTitle, #_main #_view__wizardTemplate__kCuraScrollingDiv .viewSectionTitle, #_main #_view__wizardTemplate__kCuraScrollingDiv .editSectionTitle, #_main #_edit__wizardTemplate__kCuraScrollingDiv .viewSectionTitle, #_main #_edit__wizardTemplate__kCuraScrollingDiv .editSectionTitle, #_main #_viewTemplate__kCuraScrollingDiv .viewSectionTitle, #_main #_viewTemplate__kCuraScrollingDiv .editSectionTitle, #_main #_dynamicTemplate__kCuraScrollingDiv .viewSectionTitle, #_main #_dynamicTemplate__kCuraScrollingDiv .editSectionTitle, #_main #_kCuraScrollingDiv .viewSectionTitle, #_main #_kCuraScrollingDiv .editSectionTitle, #_main #_licenseInfoContainer td .viewSectionTitle, #_main #_licenseInfoContainer td .editSectionTitle, #_main .documentProfileTemplateContainer .viewSectionTitle, #_main .documentProfileTemplateContainer .editSectionTitle {
+    background-color: transparent; }
+  #_main #_editTemplate__kCuraScrollingDiv #_dynamicTemplate__dynamicViewFieldRenderer_templateContainer, #_main #_view__wizardTemplate__kCuraScrollingDiv #_dynamicTemplate__dynamicViewFieldRenderer_templateContainer, #_main #_edit__wizardTemplate__kCuraScrollingDiv #_dynamicTemplate__dynamicViewFieldRenderer_templateContainer, #_main #_viewTemplate__kCuraScrollingDiv #_dynamicTemplate__dynamicViewFieldRenderer_templateContainer, #_main #_dynamicTemplate__kCuraScrollingDiv #_dynamicTemplate__dynamicViewFieldRenderer_templateContainer, #_main #_kCuraScrollingDiv #_dynamicTemplate__dynamicViewFieldRenderer_templateContainer, #_main #_licenseInfoContainer td #_dynamicTemplate__dynamicViewFieldRenderer_templateContainer, #_main .documentProfileTemplateContainer #_dynamicTemplate__dynamicViewFieldRenderer_templateContainer {
+    margin: 5px;
+    border: none; }
+  #_main #_editTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable, #_main #_view__wizardTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable, #_main #_edit__wizardTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable, #_main #_viewTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable, #_main #_dynamicTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable, #_main #_kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable, #_main #_licenseInfoContainer td #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable, #_main .documentProfileTemplateContainer #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable {
+    padding-bottom: 0;
+    background: white;
+    border: none;
+    box-shadow: none;
+    border-spacing: 15px; }
+    #_main #_editTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable tbody > tr > td > table, #_main #_view__wizardTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable tbody > tr > td > table, #_main #_edit__wizardTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable tbody > tr > td > table, #_main #_viewTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable tbody > tr > td > table, #_main #_dynamicTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable tbody > tr > td > table, #_main #_kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable tbody > tr > td > table, #_main #_licenseInfoContainer td #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable tbody > tr > td > table, #_main .documentProfileTemplateContainer #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable tbody > tr > td > table {
+      padding-bottom: 10px; }
+    #_main #_editTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable tbody > tr > td > table, #_main #_editTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable, #_main #_editTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .fieldblock, #_main #_editTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection #_headerFooterDiv, #_main #_view__wizardTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable tbody > tr > td > table, #_main #_view__wizardTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable, #_main #_view__wizardTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .fieldblock, #_main #_view__wizardTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection #_headerFooterDiv, #_main #_edit__wizardTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable tbody > tr > td > table, #_main #_edit__wizardTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable, #_main #_edit__wizardTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .fieldblock, #_main #_edit__wizardTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection #_headerFooterDiv, #_main #_viewTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable tbody > tr > td > table, #_main #_viewTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable, #_main #_viewTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .fieldblock, #_main #_viewTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection #_headerFooterDiv, #_main #_dynamicTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable tbody > tr > td > table, #_main #_dynamicTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable, #_main #_dynamicTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .fieldblock, #_main #_dynamicTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection #_headerFooterDiv, #_main #_kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable tbody > tr > td > table, #_main #_kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable, #_main #_kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .fieldblock, #_main #_kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection #_headerFooterDiv, #_main #_licenseInfoContainer td #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable tbody > tr > td > table, #_main #_licenseInfoContainer td #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable, #_main #_licenseInfoContainer td #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .fieldblock, #_main #_licenseInfoContainer td #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection #_headerFooterDiv, #_main .documentProfileTemplateContainer #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable tbody > tr > td > table, #_main .documentProfileTemplateContainer #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable, #_main .documentProfileTemplateContainer #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .fieldblock, #_main .documentProfileTemplateContainer #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection #_headerFooterDiv {
+      background-color: #f7f7f7 !important;
+      border: thin solid #c1c1c1;
+      -webkit-box-shadow: 2px 2px 1px #d0d0d0;
+      -ms-box-shadow: 2px 2px 1px #d0d0d0;
+      box-shadow: 2px 2px 1px #d0d0d0;
+      -ms-border-radius: 3px;
+      border-radius: 3px;
+      max-width: 100%; }
+      #_main #_editTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable tbody > tr > td > table > tbody > tr > td > table, #_main #_editTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable > tbody > tr > td > table, #_main #_editTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable > tbody > tr > td > .fieldblock, #_main #_editTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable > tbody > tr > td > #_headerFooterDiv, #_main #_view__wizardTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable tbody > tr > td > table > tbody > tr > td > table, #_main #_view__wizardTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable > tbody > tr > td > table, #_main #_view__wizardTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable > tbody > tr > td > .fieldblock, #_main #_view__wizardTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable > tbody > tr > td > #_headerFooterDiv, #_main #_edit__wizardTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable tbody > tr > td > table > tbody > tr > td > table, #_main #_edit__wizardTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable > tbody > tr > td > table, #_main #_edit__wizardTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable > tbody > tr > td > .fieldblock, #_main #_edit__wizardTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable > tbody > tr > td > #_headerFooterDiv, #_main #_viewTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable tbody > tr > td > table > tbody > tr > td > table, #_main #_viewTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable > tbody > tr > td > table, #_main #_viewTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable > tbody > tr > td > .fieldblock, #_main #_viewTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable > tbody > tr > td > #_headerFooterDiv, #_main #_dynamicTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable tbody > tr > td > table > tbody > tr > td > table, #_main #_dynamicTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable > tbody > tr > td > table, #_main #_dynamicTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable > tbody > tr > td > .fieldblock, #_main #_dynamicTemplate__kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable > tbody > tr > td > #_headerFooterDiv, #_main #_kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable tbody > tr > td > table > tbody > tr > td > table, #_main #_kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable > tbody > tr > td > table, #_main #_kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable > tbody > tr > td > .fieldblock, #_main #_kCuraScrollingDiv #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable > tbody > tr > td > #_headerFooterDiv, #_main #_licenseInfoContainer td #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable tbody > tr > td > table > tbody > tr > td > table, #_main #_licenseInfoContainer td #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable > tbody > tr > td > table, #_main #_licenseInfoContainer td #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable > tbody > tr > td > .fieldblock, #_main #_licenseInfoContainer td #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable > tbody > tr > td > #_headerFooterDiv, #_main .documentProfileTemplateContainer #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable tbody > tr > td > table > tbody > tr > td > table, #_main .documentProfileTemplateContainer #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable > tbody > tr > td > table, #_main .documentProfileTemplateContainer #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable > tbody > tr > td > .fieldblock, #_main .documentProfileTemplateContainer #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .editTable .cardSection .editTable > tbody > tr > td > #_headerFooterDiv {
+        border: none !important;
+        box-shadow: none !important; }
+#_main .cssChildListTable {
+  max-width: 100%; }
+#_main .viewTable, #_main .editTable {
+  padding: 5px 5px 10px;
+  border-collapse: separate;
+  width: 100%;
+  max-width: 100%;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto; }
+  #_main .viewTable table, #_main .editTable table {
+    width: 100%; }
+  #_main .viewTable .viewTableColumn, #_main .viewTable .editTableColumn, #_main .editTable .viewTableColumn, #_main .editTable .editTableColumn {
+    width: 50%;
+    padding-right: 10px;
+    padding-left: 10px;
+    vertical-align: top; }
+  #_main .viewTable .cardDiv, #_main .editTable .cardDiv {
+    padding-right: 30px; }
+#_main .childViewTable > tbody > tr > td > div.associative-list {
+  margin-right: 5px;
+  margin-left: 5px;
+  /*margin-right:230px;
+		margin-left:15px;*/ }
+#_main #_documentProfileEditor__kCuraScrollingDiv .childViewTable > tbody > tr > td > div.associative-list {
+  margin-right: 5px;
+  margin-left: 5px; }
+#_main #_documentProfileEditor__kCuraScrollingDiv .associative-list-fixedwidth {
+  min-width: 340px !important; }
+#_main #_documentProfileEditor__kCuraScrollingDiv .documentProfileTemplateContainer {
+  min-width: 340px !important;
+  margin-left: 11px;
+  margin-right: 11px; }
+  #_main #_documentProfileEditor__kCuraScrollingDiv .documentProfileTemplateContainer .editTable {
+    width: 100% !important; }
+#_main .childViewTable {
+  margin-top: 0; }
+#_main .dtSearchProgressFieldValue {
+  padding-right: 10px; }
+#_main #_licenseInfoContainer .viewTableColumn .viewSectionTitle {
+  background: transparent; }
+#_main .cardContainer .cardSection, #_main .cardContainer .fieldblock, #_main .cardContainer #_headerFooterDiv {
+  padding-top: 5px;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  width: 100%;
+  max-width: 100%;
+  margin-right: auto; }
+  #_main .cardContainer .cardSection .build-progress-bar, #_main .cardContainer .cardSection .fieldblock, #_main .cardContainer .cardSection #_headerFooterDiv {
+    background: #f7f7f7;
+    border: none; }
+  #_main .cardContainer .cardSection table, #_main .cardContainer .cardSection .fieldblock, #_main .cardContainer .cardSection #_headerFooterDiv {
+    width: 100%; }
+  #_main .cardContainer .cardSection .cardColumn, #_main .cardContainer .cardSection .fieldblock, #_main .cardContainer .cardSection #_headerFooterDiv {
+    width: 50%;
+    padding-right: 30px;
+    vertical-align: top; }
+  #_main .cardContainer .cardSection .cardDiv, #_main .cardContainer .cardSection .fieldblock, #_main .cardContainer .cardSection #_headerFooterDiv {
+    padding-right: 30px; }
+  #_main .cardContainer .cardSection .viewTable, #_main .cardContainer .cardSection .fieldblock, #_main .cardContainer .cardSection #_headerFooterDiv, #_main .cardContainer .cardSection .editTable, #_main .cardContainer .cardSection .fieldblock, #_main .cardContainer .cardSection #_headerFooterDiv {
+    padding: 0;
+    border: thin none transparent;
+    box-shadow: none; }
+    #_main .cardContainer .cardSection .viewTable .viewTableColumn, #_main .cardContainer .cardSection .viewTable .fieldblock, #_main .cardContainer .cardSection .viewTable #_headerFooterDiv, #_main .cardContainer .cardSection .viewTable .editTableColumn, #_main .cardContainer .cardSection .viewTable .fieldblock, #_main .cardContainer .cardSection .viewTable #_headerFooterDiv, #_main .cardContainer .cardSection .editTable .viewTableColumn, #_main .cardContainer .cardSection .editTable .fieldblock, #_main .cardContainer .cardSection .editTable #_headerFooterDiv, #_main .cardContainer .cardSection .editTable .editTableColumn, #_main .cardContainer .cardSection .editTable .fieldblock, #_main .cardContainer .cardSection .editTable #_headerFooterDiv {
+      padding: 0;
+      border: thin none transparent; }
+  #_main .cardContainer .cardSection .viewSectionTitle, #_main .cardContainer .cardSection .fieldblock, #_main .cardContainer .cardSection #_headerFooterDiv, #_main .cardContainer .cardSection .editSectionTitle, #_main .cardContainer .cardSection .fieldblock, #_main .cardContainer .cardSection #_headerFooterDiv, #_main .cardContainer .cardSection .dynamicEditFieldValue, #_main .cardContainer .cardSection .fieldblock, #_main .cardContainer .cardSection #_headerFooterDiv {
+    background-color: transparent; }
+  #_main .cardContainer .cardSection .scrollingReadOnlyTexBox, #_main .cardContainer .cardSection .fieldblock, #_main .cardContainer .cardSection #_headerFooterDiv {
+    padding: 5px;
+    margin-left: 15px;
+    margin-right: 15px;
+    width: auto !important;
+    color: #333333;
+    font-weight: normal; }
+#_main .cardContainer .viewTable, #_main .cardContainer .editTable {
+  padding: 5px 5px 10px;
+  margin-bottom: 15px;
+  background-color: #f7f7f7;
+  -ms-border-radius: 3px;
+  border-radius: 3px;
+  border-spacing: 0;
+  width: 100%;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto; }
+  #_main .cardContainer .viewTable .viewSectionTitle, #_main .cardContainer .viewTable .editSectionTitle, #_main .cardContainer .editTable .viewSectionTitle, #_main .cardContainer .editTable .editSectionTitle {
+    background: transparent;
+    color: #3471b7;
+    font-weight: 600;
+    font-size: 13px;
+    margin-top: 5px;
+    margin-bottom: 5px; }
+  #_main .cardContainer .viewTable table, #_main .cardContainer .editTable table {
+    width: 100%; }
+  #_main .cardContainer .viewTable .viewTableColumn, #_main .cardContainer .viewTable .editTableColumn, #_main .cardContainer .editTable .viewTableColumn, #_main .cardContainer .editTable .editTableColumn {
+    width: 50%;
+    padding-right: 30px;
+    vertical-align: top; }
+  #_main .cardContainer .viewTable .cardDiv, #_main .cardContainer .editTable .cardDiv {
+    padding-right: 30px; }
+
+.popupArtifactActionBar .dynamicViewFieldValue, .popupArtifactActionBar .dynamicViewFieldName {
+  background: transparent;
+  border-style: none; }
+
+.errorMessageLightBlueBackGroundCentered {
+  background: #f7f7f7; }
+
+.documentListExport table {
+  border-right-color: transparent !important; }
+
+#_artifacts_itemList_topActionRow .actionCellContainer {
+  padding-right: 20px; }
+
+#_main #_licenseInfoContainer {
+  border-spacing: 5px;
+  border-collapse: separate; }
+  #_main #_licenseInfoContainer td > div {
+    background: #f7f7f7 !important;
+    border: none !important;
+    color: #333333 !important; }
+  #_main #_licenseInfoContainer .viewTableColumn .fieldTable > tbody > tr > td .viewFieldName {
+    width: 180px;
+    min-width: 180px; }
+  #_main #_licenseInfoContainer .viewTableColumn .fieldTable > tbody > tr > td .viewFieldValue {
+    width: auto; }
+
+td .cardFieldLeft {
+  border-right: dashed 1px #cccccc; }
+td.viewFieldName, td.editFieldName, td.viewFieldNameProfile, td.editFieldNameProfile, td.editFieldNameRequired, td.dynamicViewFieldName, td.dynamicEditFieldName, td.dynamicEditFieldNameRequired, td.dynamicField, td.dynamicFieldRequired {
+  width: 180px;
+  min-width: 180px; }
+
+.dynamicFieldRequired {
+  border-right: 3px !important; }
+
+td.viewFieldName[id^="_editTemplate"] + td.viewFieldValue {
+  border-left: 4px solid #f7f7f7; }
+
+#_documentProfileEditor__kCuraScrollingDiv_dynamicViewRenderer_templateContainer .editTable {
+  width: 97% !important; }
+
+.dynamicEditFieldValue {
+  background: transparent; }
+
+#_kCuraScrollingDiv__editFields_templateContainer .editTable {
+  padding: 0 !important;
+  padding-right: 0;
+  min-width: 300px;
+  border-collapse: collapse; }
+  #_kCuraScrollingDiv__editFields_templateContainer .editTable td.editTableColumn {
+    padding: 0 !important; }
+    #_kCuraScrollingDiv__editFields_templateContainer .editTable td.editTableColumn div.dynamicFieldRequired {
+      margin-left: 5px;
+      margin-top: 2px;
+      border-right-color: transparent !important;
+      border-right-width: 0;
+      border-left-color: #f59c1f !important;
+      border-left-style: solid !important; }
+      #_kCuraScrollingDiv__editFields_templateContainer .editTable td.editTableColumn div.dynamicFieldRequired > table > tbody > tr > td:first-child {
+        height: auto; }
+        #_kCuraScrollingDiv__editFields_templateContainer .editTable td.editTableColumn div.dynamicFieldRequired > table > tbody > tr > td:first-child .editCategory, #_kCuraScrollingDiv__editFields_templateContainer .editTable td.editTableColumn div.dynamicFieldRequired > table > tbody > tr > td:first-child .rowOrderMarker {
+          font-size: 12px; }
+      #_kCuraScrollingDiv__editFields_templateContainer .editTable td.editTableColumn div.dynamicFieldRequired > table > tbody > tr > td:last-child {
+        text-align: right;
+        width: 60px; }
+    #_kCuraScrollingDiv__editFields_templateContainer .editTable td.editTableColumn div {
+      height: auto; }
+    #_kCuraScrollingDiv__editFields_templateContainer .editTable td.editTableColumn div.dynamicField {
+      margin-left: 5px;
+      margin-top: 2px;
+      border-left-style: solid !important;
+      border-left-color: transparent; }
+      #_kCuraScrollingDiv__editFields_templateContainer .editTable td.editTableColumn div.dynamicField > table > tbody > tr > td:first-child {
+        height: auto; }
+        #_kCuraScrollingDiv__editFields_templateContainer .editTable td.editTableColumn div.dynamicField > table > tbody > tr > td:first-child .editCategory, #_kCuraScrollingDiv__editFields_templateContainer .editTable td.editTableColumn div.dynamicField > table > tbody > tr > td:first-child .rowOrderMarker {
+          font-size: 12px; }
+      #_kCuraScrollingDiv__editFields_templateContainer .editTable td.editTableColumn div.dynamicField > table > tbody > tr > td:last-child {
+        text-align: right;
+        width: 60px; }
+    #_kCuraScrollingDiv__editFields_templateContainer .editTable td.editTableColumn .editSectionTitle {
+      background: #cdcccb !important;
+      margin: 0;
+      padding-bottom: 5px;
+      color: #345495;
+      font-weight: 600; }
+      #_kCuraScrollingDiv__editFields_templateContainer .editTable td.editTableColumn .editSectionTitle a.editCategory {
+        color: #345495;
+        font-weight: 600; }
+    #_kCuraScrollingDiv__editFields_templateContainer .editTable td.editTableColumn .editSectionTitle .editCategory {
+      font-size: 13px; }
+  #_kCuraScrollingDiv__editFields_templateContainer .editTable .fieldRendererHeaderButton {
+    padding: 2px; }
+
+.viewFieldValue, .editFieldValue, .viewFieldValueProfile, .editFieldValueProfile, .editFieldValueNoPadding {
+  background-color: #f7f7f7;
+  padding-right: 30px; }
+
+.fieldTable {
+  border-color: transparent;
+  border-spacing: 2px;
+  border-collapse: separate;
+  width: 100% !important;
+  max-width: 525px; }
+
+/* I'm not sure what I was trying to fix here but it breaks the field pick popup(when adding field to layout)*/
+.fieldTable .editFieldValue select[id$='dropDownList'][id^='_editTemplate'] {
+  max-width: 325px; }
+
+#errorTable .fieldTable {
+  max-width: 100%; }
+
+.inlineTaggingPopUp .editTableColumn, .edit-view-from-layout .editTableColumn, .documentProfileEditorPanel .documentEditTableColumn, .documentProfileTemplateContainer .documentEditTableColumn {
+  padding-left: 10px; }
+  .inlineTaggingPopUp .editTableColumn > table > tbody > tr > td, .edit-view-from-layout .editTableColumn > table > tbody > tr > td, .documentProfileEditorPanel .documentEditTableColumn > table > tbody > tr > td, .documentProfileTemplateContainer .documentEditTableColumn > table > tbody > tr > td {
+    border-top: none;
+    border-bottom: none;
+    border-left: none; }
+
+.itemListAssociativeTitleCell {
+  background: #f7f7f7;
+  border: none; }
+
+.iFrameItemList .itemListAssociativeTitleCell {
+  color: #3471b7;
+  font-weight: 600;
+  font-size: 13px;
+  margin-top: 5px;
+  margin-bottom: 5px; }
+  .iFrameItemList .itemListAssociativeTitleCell .itemListActionCell {
+    font-size: 13px; }
+
+.criteriaFieldsHeader {
+  background: transparent;
+  border: none !important; }
+
+.criteriaFields {
+  background: white;
+  border: none !important;
+  padding: 3px !important;
+  vertical-align: middle; }
+
+.css-tbl {
+  display: table;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box; }
+
+.css-tbl .css-tbl-col {
+  display: table-cell;
+  height: 100%; }
+
+.consoleWrapper {
+  width: 250px;
+  background-color: #f7f7f7 !important;
+  border: thin solid #c1c1c1; }
+
+.css-tbl .css-tbl-col .cardContainer {
+  background: blue;
+  padding: 100px; }
+
+.viewTable {
+  width: 100%;
+  padding: 50px; }
+
+.cardContainer .cardSection h2, .cardContainer .cardSection .fieldblock, .cardContainer .cardSection #_headerFooterDiv {
+  color: #3471b7;
+  font-weight: 600;
+  font-size: 13px;
+  margin-top: 5px;
+  margin-bottom: 5px; }
+
+.editFieldValueProfile, .editFieldValue, .dynamicEditFieldValue, .editFieldValueProfile {
+  /*& select{
+		height:inherit;
+	}*/ }
+  .editFieldValueProfile span[id*='_editTemplate__kCuraScrollingDiv'], .editFieldValueProfile textarea, .editFieldValue span[id*='_editTemplate__kCuraScrollingDiv'], .editFieldValue textarea, .dynamicEditFieldValue span[id*='_editTemplate__kCuraScrollingDiv'], .dynamicEditFieldValue textarea, .editFieldValueProfile span[id*='_editTemplate__kCuraScrollingDiv'], .editFieldValueProfile textarea {
+    margin: 0; }
+    .editFieldValueProfile span[id*='_editTemplate__kCuraScrollingDiv'].keyboardShortcutFieldTopRow, .editFieldValueProfile span[id*='_editTemplate__kCuraScrollingDiv'].keyboardShortcutFieldBottomRow, .editFieldValueProfile span[id*='_editTemplate__kCuraScrollingDiv'].radioButtonListlabelText, .editFieldValueProfile textarea.keyboardShortcutFieldTopRow, .editFieldValueProfile textarea.keyboardShortcutFieldBottomRow, .editFieldValueProfile textarea.radioButtonListlabelText, .editFieldValue span[id*='_editTemplate__kCuraScrollingDiv'].keyboardShortcutFieldTopRow, .editFieldValue span[id*='_editTemplate__kCuraScrollingDiv'].keyboardShortcutFieldBottomRow, .editFieldValue span[id*='_editTemplate__kCuraScrollingDiv'].radioButtonListlabelText, .editFieldValue textarea.keyboardShortcutFieldTopRow, .editFieldValue textarea.keyboardShortcutFieldBottomRow, .editFieldValue textarea.radioButtonListlabelText, .dynamicEditFieldValue span[id*='_editTemplate__kCuraScrollingDiv'].keyboardShortcutFieldTopRow, .dynamicEditFieldValue span[id*='_editTemplate__kCuraScrollingDiv'].keyboardShortcutFieldBottomRow, .dynamicEditFieldValue span[id*='_editTemplate__kCuraScrollingDiv'].radioButtonListlabelText, .dynamicEditFieldValue textarea.keyboardShortcutFieldTopRow, .dynamicEditFieldValue textarea.keyboardShortcutFieldBottomRow, .dynamicEditFieldValue textarea.radioButtonListlabelText, .editFieldValueProfile span[id*='_editTemplate__kCuraScrollingDiv'].keyboardShortcutFieldTopRow, .editFieldValueProfile span[id*='_editTemplate__kCuraScrollingDiv'].keyboardShortcutFieldBottomRow, .editFieldValueProfile span[id*='_editTemplate__kCuraScrollingDiv'].radioButtonListlabelText, .editFieldValueProfile textarea.keyboardShortcutFieldTopRow, .editFieldValueProfile textarea.keyboardShortcutFieldBottomRow, .editFieldValueProfile textarea.radioButtonListlabelText {
+      border: none; }
+  .editFieldValueProfile span[id*='_editTemplate__kCuraScrollingDiv'], .editFieldValue span[id*='_editTemplate__kCuraScrollingDiv'], .dynamicEditFieldValue span[id*='_editTemplate__kCuraScrollingDiv'], .editFieldValueProfile span[id*='_editTemplate__kCuraScrollingDiv'] {
+    padding-bottom: 0 !important;
+    padding-top: 0 !important; }
+
+#_advancedSearchProviderCell table {
+  border: none; }
+
+table.RadioButtonListRelativePosition {
+  width: inherit !important; }
+  table.RadioButtonListRelativePosition > tbody > tr > td > span {
+    background: transparent !important; }
+
+.modify-terms .dictionary {
+  line-height: 100%; }
+
+.fieldTable input[type="text"] {
+  max-width: 190px; }
+
+.childViewTable hr {
+  display: none; }
+
+.cardSection hr, .cardSection .fieldblock, .cardSection #_headerFooterDiv {
+  background-color: #c1c1c1;
+  color: #c1c1c1;
+  border-width: 0;
+  height: 1px; }
+
+.scrollingReadOnlyTexBox {
+  border: 1px solid #c1c1c1;
+  border-radius: 3px; }
+
+.fieldTable .editFieldValueNoPadding {
+  border-left: 0;
+  padding-left: 5px; }
+
+.editTableColumn > table:not([class=""]) tr .dynamicEditFieldValue {
+  padding-left: 6px; }
+
+.containerBorder, span[id$="valid_Span"], span[id$="dateTimeValidator"], span[id$="requiredFieldValidator"], span[id$="regExValidator"], span[id$="passwordIsRequiredValidator"], span[id$="int32Validator"], span[id$="passwordValidator"], span[id$="requiredValidator"] {
+  border: 0 !important; }
+
+.editTableColumn .fieldTable {
+  margin-bottom: 4px; }
+
+.editTableColumn > table:not([class=""]) tr {
+  border-bottom: 4px #f7f7f7 solid; }
+
+table.editTextBoxFieldDisabled {
+  background-color: #f7f7f7; }
+
+td.dynamicEditFieldValue, td.dynamicViewFieldValue, td.viewFieldValue, td.editFieldValue {
+  border-left: none; }
+
+.editTable table, .editTableColumn table {
+  border-collapse: separate; }
+
+.cardContainerWidthAuto {
+  width: auto !important; }
+
+.poupEditDiv .editTable {
+  border-spacing: 2px; }
+
+.cardSection.editTable .editTableColumn table, .cardSection.editTable .editTableColumn .editTable.fieldblock, .cardSection.editTable .editTableColumn .editTable#_headerFooterDiv {
+  border-collapse: separate !important;
+  max-width: 525px !important; }
+
+.procSetScrollingDiv .cardSection.editTable table:first-child .editTableColumn table, .procSetScrollingDiv .cardSection.editTable table:first-child .editTableColumn .editTable.fieldblock, .procSetScrollingDiv .cardSection.editTable table:first-child .editTableColumn .editTable#_headerFooterDiv {
+  border-collapse: separate !important;
+  max-width: 100% !important; }
+
+.editTableColumn table {
+  max-width: 525px; }
+
+.editTableColumn {
+  padding-right: 30px; }
+
+.inlineTaggingPopUp .editTableColumn table, .edit-view-from-layout .editTable table, .documentProfileEditorPanel .editTable table, .massEditMain .editTable table {
+  border-collapse: collapse !important; }
+
+#_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .cardSection, #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .fieldblock, #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer #_headerFooterDiv {
+  border-collapse: separate !important; }
+
+#_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .cardSection.editTable .cardSection.editTable, #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .cardSection.editTable .editTable.fieldblock, #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .cardSection.editTable .editTable#_headerFooterDiv, #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .cardSection.editTable .editTable.fieldblock, #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .cardSection.editTable .editTable#_headerFooterDiv, #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .cardSection.editTable table:not(.itemTable), #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .cardSection.editTable .editTable.fieldblock, #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .cardSection.editTable .editTable#_headerFooterDiv {
+  border-collapse: separate !important;
+  border-spacing: 2px !important; }
+
+#_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .cardSection.editTable table:not(.itemTable) div[id$="itemList_tableDiv"], #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .cardSection.editTable table:not(.itemTable) .editTable.fieldblock, #_dynamicTemplate__kCuraScrollingDiv__dynamicViewFieldRenderer_templateContainer .cardSection.editTable table:not(.itemTable) .editTable#_headerFooterDiv {
+  border: solid thin #c1c1c1;
+  border-top: 0; }
+
+.layoutViewTable {
+  height: auto;
+  border: 0;
+  margin: 0; }
+  .layoutViewTable .dynamicField {
+    border: thin solid #c1c1c1;
+    margin-bottom: 8px;
+    background-color: #cdcccb;
+    box-shadow: 2px 2px 1px #d0d0d0; }
+    .layoutViewTable .dynamicField .layoutViewData, .layoutViewTable .dynamicField .layoutViewName {
+      color: #5d9adf; }
+    .layoutViewTable .dynamicField td:last-child {
+      text-align: right; }
+      .layoutViewTable .dynamicField td:last-child a {
+        padding: 2px 3px; }
+
+.progressPane .fieldValue {
+  text-align: left; }
+
+table.layoutViewTable > tbody > tr[id^="_kCuraScrollingDiv__layoutViewRenderer"] > td > div.dynamicField > table > tbody > tr > td span.layoutViewData, table.layoutViewTable > tbody > tr[id^="_kCuraScrollingDiv__layoutViewRenderer"] > td > div.dynamicField > table > tbody > tr > td a.layoutViewName {
+  color: #345495;
+  font-weight: 600; }
+
+#_kCuraScrollingDiv__editFields_templateContainer .editTable td.editTableColumn div.dynamicField > table > tbody > tr > td:first-child .editCategory, #_kCuraScrollingDiv__editFields_templateContainer .editTable td.editTableColumn div.dynamicFieldRequired > table > tbody > tr > td:first-child .editCategory {
+  margin-left: -5px !important; }
+
+#_main #_editTemplate__kCuraScrollingDiv h2, #_main #_viewTemplate__kCuraScrollingDiv h2 {
+  padding-left: 15px;
+  padding-top: 2px; }
+
+.itemListActionCell {
+  margin-left: 10px; }
+
+.itemListTopPaginationControls {
+  color: #102d4f; }
+
+.cardSection .fieldTable > tbody > tr > td.viewFieldName, .cardSection .fieldTable > tbody > tr > .fieldblock, .cardSection .fieldTable > tbody > tr > #_headerFooterDiv {
+  width: 191px; }
+
+.iFrameItemList > tbody > tr > td {
+  padding: 0; }
+
+.popupBody .cardContainer .massProcessTranscriptCard {
+  background: #f7f7f7;
+  border: 1px solid #c1c1c1;
+  margin: 4px 4px 0 4px;
+  -webkit-box-shadow: 2px 2px 1px #d0d0d0;
+  -ms-box-shadow: 2px 2px 1px #d0d0d0;
+  box-shadow: 2px 2px 1px #d0d0d0;
+  -ms-border-radius: 3px;
+  border-radius: 3px; }
+
+.viewFieldValue span[id$="textBox_readOnlyValue"] {
+  word-break: break-all; }
+
+.adminDetails {
+  background: white !important; }
+  .adminDetails .layout {
+    background: #f7f7f7;
+    border: 1px solid #c1c1c1;
+    -webkit-box-shadow: 2px 2px 1px #d0d0d0;
+    -ms-box-shadow: 2px 2px 1px #d0d0d0;
+    box-shadow: 2px 2px 1px #d0d0d0;
+    -ms-border-radius: 3px;
+    border-radius: 3px; }
+    .adminDetails .layout label {
+      border-color: #f7f7f7; }
+    .adminDetails .layout .actionBar .header {
+      color: #3471b7;
+      font-weight: 600;
+      font-size: 13px;
+      margin-top: 5px;
+      margin-bottom: 5px; }
+    .adminDetails .layout .category {
+      font-size: 13px;
+      background: #f7f7f7; }
+      .adminDetails .layout .category .header {
+        color: #010000;
+        font-weight: 600;
+        font-size: 10pt; }
+      .adminDetails .layout .category a {
+        text-decoration: none !important; }
+        .adminDetails .layout .category a:hover {
+          text-decoration: underline !important; }
+
+.motdOuter {
+  border: 1px solid #c1c1c1;
+  -ms-border-radius: 3px;
+  border-radius: 3px; }
+
+.childViewSectionTitleText {
+  font-weight: 600; }
+
+.errorPage .fieldTable {
+  max-width: 100%;
+  padding-right: 30px; }
+
+.layoutBuilder .editSectionTitle {
+  padding-left: 10px !important; }
+
+.layoutBuilder .editTableColumn table {
+  max-width: 100%; }
+
+.editFieldValue.buttermilkTwoListSelect table.centered {
+  margin-left: 7px !important; }
+
+/* This breaks the field labels on the Assisted Review page by causing them to be too narrow and tall
+.editTableColumn td.dynamicEditFieldValue{
+	width: 100%;
+}*/
+/* End Card Layout */
+/* Grid */
+.itemListRow, .itemListRowAlt {
+  background-color: white !important; }
+  .itemListRow td, .itemListRowAlt td {
+    background-color: white !important; }
+
+tr.itemListYellow td.itemListRowNum {
+  background-color: #cfcfcf !important; }
+
+.itemTable .itemListRowSelected, .itemListRowSelected {
+  background-color: #dfebf9 !important; }
+  .itemTable .itemListRowSelected td, .itemTable .itemListRowSelected td.itemListRowNum, .itemTable .itemListRowSelected .itemListRowNum, .itemListRowSelected td, .itemListRowSelected td.itemListRowNum, .itemListRowSelected .itemListRowNum {
+    background-color: #dfebf9 !important; }
+  .itemTable .itemListRowSelected .itemTable .lock-header, .itemListRowSelected .itemTable .lock-header {
+    padding-top: 180px !important; }
+
+table tbody td.itemListRowNum {
+  background-color: white !important;
+  color: #010000; }
+table thead td.itemListRowNum {
+  background-color: #f7f7f7;
+  color: #333333; }
+
+.itemTable {
+  border-spacing: 0;
+  border-collapse: collapse;
+  table-layout: fixed; }
+  .itemTable td, .itemTable td.itemListHead {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #c1c1c1;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: #c1c1c1;
+    border-spacing: 0;
+    border-collapse: collapse;
+    border-right: none; }
+  .itemTable th, .itemTable td {
+    padding: 5px !important; }
+  .itemTable th > a > img, .itemTable td > a > img {
+    padding-left: 5px;
+    padding-top: 2px; }
+  .itemTable > tbody > tr > td:first-child, .itemTable > tbody > tr > th:first-child {
+    border-left: solid thin white; }
+  .itemTable > tbody > tr > td:last-child, .itemTable > tbody > tr > th:last-child {
+    border-right: solid thin white; }
+  .itemTable > tbody > tr.itemListRowSelected > td:first-child, .itemTable > tbody > tr.itemListRowSelected > th:first-child {
+    border-left: solid thin #dfebf9; }
+  .itemTable > tbody > tr.itemListRowSelected > td:last-child, .itemTable > tbody > tr.itemListRowSelected > th:last-child {
+    border-right: solid thin #dfebf9; }
+  .itemTable > tbody > tr.itemListYellow > td:first-child, .itemTable > tbody > tr.itemListYellow > th:first-child {
+    border-left: solid thin #cfcfcf; }
+  .itemTable > tbody > tr.itemListYellow > td:last-child, .itemTable > tbody > tr.itemListYellow > th:last-child {
+    border-right: solid thin #cfcfcf; }
+  .itemTable > tbody > tr.itemListYellow:first-child:not(:hover) > td {
+    border-top-color: #cfcfcf; }
+  .itemTable > tbody > tr:first-child:not(:hover) > td {
+    border-top-color: white; }
+  .itemTable > tbody > tr.itemListRowSelected:first-child:not(:hover) > td {
+    border-top-color: #dfebf9; }
+  .itemTable > tbody > tr:hover > td, .itemTable > tbody > tr:hover > th {
+    border-bottom: solid thin #5899fb;
+    border-top: double thin #5899fb; }
+  .itemTable > tbody > tr:hover > td:first-child, .itemTable > tbody > tr:hover > th:first-child {
+    border-left: solid thin #5899fb; }
+  .itemTable > tbody > tr:hover > td:last-child, .itemTable > tbody > tr:hover > th:last-child {
+    border-right: solid thin #5899fb; }
+
+.buttermilkGridHeader, .lock-header thead th, .lock-header thead td, .lock-header thead th.itemListHeadFilterSet, .itemListHeadLocked th, .itemListHeadLocked td, .itemTable thead thead, .itemTable thead .itemListHead, .itemTable thead .itemListHeadFilterSet, .itemTable thead th.itemListHead, .itemTable thead td.itemListhead, .lock-header thead, .lock-header .itemListHead, .lock-header .itemListHeadFilterSet, .lock-header th.itemListHead, .lock-header td.itemListhead, .locked-header.clone thead, .locked-header.clone .itemListHead, .locked-header.clone .itemListHeadFilterSet, .locked-header.clone th.itemListHead, .locked-header.clone td.itemListhead, .itemTable thead th.itemListHead, .itemTable thead td.itemListHead, .lock-header th.itemListHead, .lock-header td.itemListHead, .itemTable thead th, .itemTable thead td, #ctl00_ctl00_itemList_itemListHead > td.itemListHead, td.itemListHead.itemListRowNum, #ctl06_Container_ctl00_itemList_itemListHead > td.itemListHead, td.itemListHead.itemListRowNum, .locked-header.clone td.itemListHead, .locked-header.clone th.itemListHead, .locked-header.clone td.itemListRowNum, .locked-header.clone th.itemListHeadFilterSet {
+  background: #f7f7f7 !important;
+  color: #4771b0;
+  font-weight: 700;
+  text-align: left;
+  padding: 5px; }
+
+.itemListHeadFilterSet img, .itemListHead img {
+  background: #f7f7f7; }
+
+.itemTable thead thead, .itemTable thead .itemListHead, .itemTable thead .itemListHeadFilterSet, .itemTable thead th.itemListHead, .itemTable thead td.itemListhead, .lock-header thead, .lock-header .itemListHead, .lock-header .itemListHeadFilterSet, .lock-header th.itemListHead, .lock-header td.itemListhead, .locked-header.clone thead, .locked-header.clone .itemListHead, .locked-header.clone .itemListHeadFilterSet, .locked-header.clone th.itemListHead, .locked-header.clone td.itemListhead {
+  border: 1px solid #c1c1c1; }
+
+.itemTable .itemListRowNum {
+  border-right: none !important; }
+
+#ctl00_ctl00_itemList_FiltersRow > td, #ctl00_ctl00_itemList_FiltersRow > td.itemListRowNum, #ctl00_ctl00_itemList_FiltersRow .itemListRowNum td, #ctl00_viewRenderer_itemList_FiltersRow > td {
+  background: white !important;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #c1c1c1;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #c1c1c1;
+  border-spacing: 0;
+  border-collapse: collapse;
+  background: #dbdbdb;
+  /* Old browsers */
+  background: linear-gradient(#e2e2e2, #f1f2f2, #f1f2f2) !important; }
+  #ctl00_ctl00_itemList_FiltersRow > td.itemListRowNum, #ctl00_ctl00_itemList_FiltersRow > td.itemListRowNum.itemListRowNum, #ctl00_ctl00_itemList_FiltersRow .itemListRowNum td.itemListRowNum, #ctl00_viewRenderer_itemList_FiltersRow > td.itemListRowNum {
+    background: white;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #c1c1c1;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: #c1c1c1;
+    border-spacing: 0;
+    border-collapse: collapse;
+    border-right: none; }
+  #ctl00_ctl00_itemList_FiltersRow > td > table > tbody > tr > td, #ctl00_ctl00_itemList_FiltersRow > td.itemListRowNum > table > tbody > tr > td, #ctl00_ctl00_itemList_FiltersRow .itemListRowNum td > table > tbody > tr > td, #ctl00_viewRenderer_itemList_FiltersRow > td > table > tbody > tr > td {
+    background: transparent !important;
+    border: none; }
+
+.itemTable tbody th, .itemTable tbody td {
+  padding: 5px; }
+
+.locked-header.clone table {
+  border-collapse: separate;
+  border-spacing: 0; }
+
+.itemTable.lock-header .filters-row td, .itemTable.lock-header .filters-row th {
+  padding: 2px !important; }
+
+.itemListHeadSortable {
+  text-decoration: none; }
+
+.stickyArtifactActionBarAlignLeft, .showHideSearchBrowserCell, .listFooter {
+  background: #f7f7f7; }
+
+.itemTable td.itemListRowNum {
+  background: white !important; }
+
+.itemTable.lock-header .filters-row td.itemListRowNum {
+  background: #f7f7f7 !important; }
+
+.locked-header.clone {
+  background: #c1c1c1 !important;
+  z-index: 1; }
+
+.cloneHeader {
+  background: transparent; }
+
+#ctl00_ctl00_itemList_FiltersRow {
+  background: white !important;
+  border-spacing: 0; }
+
+.editTable table, .editTableColumn table, .itemTable table, .viewTableColumn table, .ViewTableColumn table, .viewTable table, .ViewTable table, .childViewTable table, .documentEditTableColumn table, .fieldTable table {
+  border-spacing: 0; }
+
+.panes-collection .paneTable {
+  background: #f7f7f7; }
+
+.actionCellContainer.rightAligned > .itemListActionCell {
+  padding-top: 7px; }
+
+.actionCellContainer.rightAligned > .itemListActionCell:nth-child(2) {
+  margin: 1px 0 0 0;
+  padding: 5px 4px 0 0; }
+
+.actionCellContainer.rightAligned > .itemListActionCell:nth-child(2) > span:first-child {
+  border-left: solid 1px #c1c1c1;
+  margin-left: 8px;
+  padding-left: 10px;
+  padding-top: 3px; }
+
+.actionCellContainer.rightAligned > .itemListActionCell:nth-child(2) > span:first-child span:first-child + input {
+  margin-top: -2px; }
+
+.stickyArtifactActionBarAlignLeft {
+  border-top: 1px solid #c1c1c1; }
+
+.stickyArtifactActionBarAlignLeft .ListTemplateFooterText {
+  top: 2px; }
+
+.itemListRowNum {
+  text-align: center !important; }
+
+td.itemListHead {
+  text-align: center !important;
+  border-right: none !important;
+  border-left: none !important; }
+
+td.itemListHead:nth-child(1) {
+  border-left: 1px solid #c1c1c1 !important; }
+
+td.itemListHead + th {
+  border-left: none !important;
+  border-right: none !important; }
+
+td.itemListHead + th.col-resizable {
+  border-right: 1px solid #c1c1c1 !important; }
+
+td.itemListHead + th:not(.col-resizable) + th {
+  border-left: none !important; }
+
+.itemListTable, .itemListTableTopBorder, .stickyArtifactActionBarAlignLeft#ctl00_BottomActionBar {
+  border-top-color: #c1c1c1; }
+
+a[title="Not available for System Administrators"] {
+  text-decoration: none; }
+
+.visibilityAnchor {
+  padding-left: 10px; }
+
+.samplingIcon {
+  padding-right: 17px !important; }
+
+div#ctl00_samplingmessagebar + div#ctl00_ctl00__kCuraScrollingDiv .actionCellContainer.leftAligned {
+  margin-left: 1px; }
+
+div#ctl00_samplingmessagebar + div#ctl00_ctl00__kCuraScrollingDiv .actionCellContainer.rightAligned {
+  margin-right: 11px; }
+
+div#ctl00_samplingmessagebar + div + div.stickyArtifactActionBarAlignLeft .checkedItemsAction {
+  margin-left: 6px; }
+
+div#ctl00_samplingmessagebar + div + div.stickyArtifactActionBarAlignLeft .pageSizeSelector {
+  margin-right: 20px; }
+
+#ListTemplateFrame {
+  border-left: none !important; }
+
+.itemListYellow {
+  background-color: #cfcfcf; }
+
+div#ctl00_ctl00_itemList_tableDiv > .itemTable > thead .filters-row > td > table > tbody > tr > td {
+  border-top-width: 0;
+  border-bottom-width: 0;
+  padding: 0 !important; }
+
+.itemListYellow {
+  background-color: #cfcfcf; }
+
+div[id$="_itemList_tableDiv"] > .itemTable > thead .filters-row > td > table > tbody > tr > td {
+  border-top-width: 0;
+  border-bottom-width: 0;
+  padding: 0 !important; }
+
+.multiListFilter {
+  border: 1px solid #c1c1c1;
+  color: #333333;
+  box-shadow: 0 6px 10px 0 #acacac;
+  font-weight: 500; }
+
+.rightDynamicTemplateCell .reviewactionbutton {
+  margin-right: 3px; }
+
+.panes-collection #_paneCollection_iconCell table {
+  margin-top: 2px; }
+
+.ArtifactsViewTemplateHeader {
+  padding: 3px 0 3px 0; }
+
+.ArtifactsViewTemplateHeader a img {
+  margin-top: 3px; }
+
+.imagingSetErrorPopup .itemListTable {
+  border-collapse: separate;
+  border-spacing: 0; }
+
+.itemListTable .ItemlistThreadingGroupIndicator {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  background: #1b55ab;
+  height: 2px;
+  border: none; }
+  .itemListTable .ItemlistThreadingGroupIndicator:hover {
+    border: none !important; }
+
+.indentationAnchorFirst, .indentationAnchor {
+  color: #1b55ab;
+  font-weight: 700; }
+  .indentationAnchorFirst:hover, .indentationAnchor:hover {
+    text-decoration: none !important; }
+
+/* End Grid */
+/* pivot */
+.pivotActionBar {
+  padding: 5px 10px 18px 5px;
+  border-bottom: black 1px solid;
+  background-color: white; }
+
+.pivotChartContainer {
+  background: #f7f7f7; }
+
+.pivot-button-container {
+  position: relative;
+  top: 9px;
+  width: 210px; }
+
+.chartOptionFlyout {
+  left: 35px !important;
+  top: 3px;
+  background-color: #f7f7f7;
+  border: 1px solid #c1c1c1;
+  box-shadow: 0 6px 10px 0 #acacac; }
+
+.chartOptionFlyout:after, .chartOptionFlyout:before {
+  top: 3px;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  left: -15px !important;
+  border-width: 7px;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(0, 0, 0, 0); }
+
+.chartOptionFlyout:before {
+  border-right-color: #c1c1c1; }
+
+.chartOptionFlyout:after {
+  border-right-color: #f7f7f7;
+  left: -13px !important; }
+
+#pivotOptionsCentralCell {
+  border-right: 1px dotted #949494 !important;
+  border-left: 1px dotted #949494 !important; }
+
+.chart-actionbar .chartOptionFlyout table td {
+  padding: 0 15px;
+  text-align: left; }
+
+.chartOptionFlyout > table {
+  margin-top: 8px;
+  margin-bottom: 8px; }
+
+.chartOptionFlyout .switch-series + span {
+  position: absolute;
+  bottom: 14px;
+  right: 15px; }
+
+.chartOptionFlyout .switch-series + span a {
+  padding: 2px 17px; }
+
+.chartOptionFlyout label:not([class]) {
+  padding-left: 4px; }
+
+#pivotOptionsRightCell td {
+  padding-bottom: 6px;
+  padding-right: 25px; }
+
+#pivotOptionsLeftCell .ListTemplateHeaderText {
+  width: 65px;
+  text-align: right; }
+
+.pivotpager {
+  margin-top: -5px; }
+
+.pivotActionBar > div {
+  padding: 0 !important; }
+
+#pivotOptionsLeftCell select {
+  height: 20px !important;
+  padding: 0 !important;
+  line-height: 20px !important;
+  margin-bottom: 2px;
+  margin-top: 2px;
+  width: 100px; }
+
+.pivotActionBar select {
+  height: 23px !important;
+  padding: 0 !important;
+  line-height: 23px !important;
+  margin-bottom: 1px;
+  margin-top: 2px;
+  width: 160px; }
+
+.pivotActionBar > span:nth-child(1) a:nth-child(1) {
+  width: 24px;
+  padding: 2px 25px;
+  margin: 0;
+  margin-right: 4px; }
+
+.pivotActionBar > span:nth-child(1) a:nth-child(2) {
+  width: 40px;
+  padding: 2px 19px;
+  margin: 0; }
+
+.pivotActionBar > span:nth-child(2) a {
+  padding: 2px 8px;
+  height: 18px !important;
+  line-height: 18px !important; }
+
+.pivotActionBar > span:nth-child(2) {
+  margin-top: 1px;
+  margin-left: 2px;
+  margin-right: 10px; }
+
+.pivotActionBar > span:nth-child(3) select {
+  margin-top: 0;
+  margin-bottom: 2px;
+  width: 120px; }
+
+.pivotActionBar > span:nth-child(3) td:nth-child(2) select {
+  width: 80px; }
+
+.chart-actionbar .option-choices td {
+  padding: 3px 6px !important; }
+
+.chart-actionbar {
+  margin: 0;
+  height: 100%;
+  width: 26px;
+  background-color: #eaeaea; }
+
+.chart-actionbar > span {
+  padding: 5px 5px 0 5px; }
+
+.chart-actionbar > input {
+  padding: 0 5px;
+  margin: 0 !important; }
+
+.pivotChartContainer {
+  position: relative; }
+
+.pivotChartContainer span:nth-child(2) img {
+  box-sizing: border-box; }
+
+.pivotActionBar span {
+  border-left: none !important;
+  border-right: none !important; }
+
+.PivotMassActionBar, .pivotActionBar, .pivotpager, .ArtifactsViewTemplateHeader.pivotcontainer, .errorMessageLightBlueBackGround.pivotErrorMessage {
+  background-color: #f7f7f7;
+  border-color: #c1c1c1 !important; }
+
+.pivotActionBar > div {
+  padding-left: 200px !important;
+  padding-right: 300px !important;
+  box-sizing: border-box; }
+
+.pivotpager .rightAligned input {
+  padding-right: 3px; }
+
+.pivotmessagebar[id$="_pivotmessagebar"] {
+  background-color: #f7b558;
+  color: black !important; }
+
+.pivotpager a[disabled]:hover {
+  color: #a0a0a0; }
+
+.PivotMassActionBar > span:first-child {
+  margin-right: 20px; }
+
+.PivotMassActionBar > span:nth-child(2) {
+  margin-left: 2px; }
+
+.pivotpager .rightAligned {
+  margin-right: 18px; }
+
+.pivotpager > span:nth-child(2) {
+  margin-left: 6px; }
+
+.pivot-button-container input {
+  padding-right: 10px;
+  outline: 0; }
+
+/*pivot end */
+/*browser*/
+.paneTable {
+  background: white;
+  border-bottom-color: #c1c1c1 !important; }
+
+.treeViewContainer, .iconRowTable, .FoldersTable {
+  background: #f7f7f7; }
+
+.documentFolderPanelHeader {
+  background: #f7f7f7; }
+
+.showHideSearchBrowserCell {
+  display: none; }
+
+
+.RadTreeView .rtIn {
+  margin-left: 3px !important; }
+
+.RadTreeView_Default .rtIn {
+  color: #102d4f !important;
+  font-weight: 500; }
+
+.RadTreeView_Default .rtIn:hover {
+  background-image: none !important;
+  background: none !important;
+  border: 1px solid #5d9adf !important; }
+
+.RadTreeView_Default .rtSelected .rtIn {
+  margin-left: 3px;
+  background-image: none !important;
+  border-color: #dfebf8 !important;
+  background-color: #dfebf8 !important;
+  font-weight: 600; }
+
+.RadTreeView_Default .rtIn input {
+  position: relative;
+  background-image: none !important;
+  background-color: #dfebf8 !important; }
+
+.paneTable {
+  height: 31px; }
+
+.paneTable td {
+  padding-top: 4px; }
+
+.paneTable td.collapseExpandCell {
+  padding-left: 5px; }
+
+.paneTable td.paneText {
+  padding-top: 3px;
+  text-transform: uppercase;
+  color: #102d4f !important; }
+
+
+.RadTreeView_Default input[type="checkbox"] + label + img {
+  margin-left: 5px; }
+
+.iconRowTable {
+  border-top-color: #c1c1c1; }
+
+.hiddenForAnimation {
+  display: none; }
+
+.visuallyHiddenForAnimation {
+  opacity: 0; }
+
+#_moveableFolderCell {
+  transition: all 0.4s linear; }
+
+#expandHandle {
+  border-right: 1px solid #c1c1c1; }
+
+#_folders_TreeView:focus, #_codes_TreeView:focus, #_searchContainers_TreeView:focus, #_clusters_TreeView:focus {
+  outline: none; }
+
+/* end browser*/
+/* console */
+.consoleContainer, #_licenseInfoContainer td.rightNavActionBar {
+  overflow: hidden;
+  min-width: 200px;
+  right: 0;
+  height: 100%;
+  width: 200px;
+  background-color: #f7f7f7 !important;
+  border: thin solid #c1c1c1;
+  vertical-align: top; }
+
+.consoleContainer {
+  border-top-width: 0; }
+
+.ConsoleControlTitle {
+  text-align: left;
+  font-weight: bold;
+  font-size: 10pt;
+  text-transform: uppercase;
+  border-style: solid solid none solid;
+  border-width: 1px;
+  border-color: silver;
+  background: #f7f7f7;
+  color: #3471b7;
+  margin: 0;
+  padding-left: 10px; }
+  .rightNavActionBar .ConsoleControlTitle, .consoleContainer .ConsoleControlTitle {
+    border-style: none none solid none !important;
+    box-shadow: none;
+    margin: 0; }
+
+.ConsoleControl {
+  text-align: left;
+  font-weight: 400;
+  font-size: 10pt;
+  border-style: solid;
+  border-width: 1px;
+  border-color: silver;
+  background: #f7f7f7;
+  margin: 0;
+  padding: 0; }
+  .rightNavActionBar .ConsoleControl, .consoleContainer .ConsoleControl {
+    border: none;
+    box-shadow: none; }
+  .ConsoleControl hr {
+    background-color: #c1c1c1;
+    color: #c1c1c1;
+    border-width: 0;
+    height: 1px; }
+
+.consoleHeader {
+  text-align: left;
+  font-weight: 600;
+  font-size: 10pt;
+  background: #f7f7f7;
+  color: #010000;
+  margin-left: 10px; }
+
+hr.consoleSeparator {
+  width: 100%;
+  background-color: #c1c1c1;
+  color: #c1c1c1;
+  border-width: 0;
+  height: 1px; }
+
+.consoleLinkEnabled, .consoleLinkDisabled {
+  margin-left: 0; }
+
+.ConsoleControlTitle {
+  margin-top: 9px !important;
+  border-bottom: 0;
+  font-size: 14px; }
+
+
+.binders-console-status {
+  width: 250px !important; }
+
+/* end console */
+.massEditMain .massEditTable {
+  padding: 5px 5px 10px;
+  margin: 15px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  width: 95%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: separate; }
+  .massEditMain .massEditTable .viewSectionTitle {
+    color: #5d9adf;
+    font-weight: normal;
+    font-size: 1rem;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background: transparent; }
+.massEditMain .editTableColumn > table > tbody > tr > td {
+  border: none; }
+  .massEditMain .editTableColumn > table > tbody > tr > td:last-of-type {
+    border: none; }
+.massEditMain .massEditTable table {
+  width: 100%; }
+  .massEditMain .massEditTable table td.viewFieldNameProfile, .massEditMain .massEditTable table td.massEditFieldNameProfile {
+    width: 180px;
+    min-width: 180px;
+    color: #807e7e;
+    background-color: transparent;
+    font-size: 0.9rem; }
+  .massEditMain .massEditTable table td.viewFieldValueProfile {
+    background-color: #f7f7f7;
+    padding-right: 30px; }
+
+td.massEditFieldValueProfile {
+  background-color: #f7f7f7;
+  padding-right: 30px; }
+  td.massEditFieldValueProfile td {
+    font-size: 0.9rem; }
+
+.massEditTable .editTableColumn td:first-child {
+  min-width: 25px;
+  padding-left: 7px; }
+
+.massEditTable .editTableColumn .viewFieldNameProfile {
+  padding: 2px 5px 2px 5px; }
+
+.massEditRendererContainer #dynamicViewRenderer_templateContainer {
+  padding-left: 10px;
+  padding-right: 10px; }
+
+.massEditTable .viewSectionTitle {
+  padding-left: 10px; }
+
+.massEditRendererContainer + .popupArtifactActionBar {
+  display: none; }
+
+/*MASS PRODUCE*/
+.massProduceContainer td.itemListHead + th {
+  border-right: 1px solid #c1c1c1 !important; }
+
+/*MASS REPLACE*/
+.massReplacePopup .artifactPopupActionBarFull {
+  border-bottom: 1px solid #c1c1c1;
+  border-top: 0; }
+
+.massReplacePopup .fieldTable {
+  margin-bottom: 5px !important; }
+
+.massReplacePopup .editTable {
+  border: solid 1px #c1c1c1 !important; }
+
+.contentAnalyst #_nameWrapper, .contentAnalyst #_clusterWrapper, .contentAnalyst #_indexWrapper {
+  margin-left: 1px; }
+
+/*login*/
+.login-container {
+  background: #f7f7f7;
+  margin: 20px 0 10px;
+  border: thin solid #c1c1c1;
+  -ms-border-radius: 3px;
+  border-radius: 3px;
+  overflow: hidden; }
+  .login-container .cardLabel, .login-container .cardRequiredLabel, .login-container td .editFieldNameRequired, td .login-container .editFieldNameRequired, .login-container td .dynamicEditFieldNameRequired, td .login-container .dynamicEditFieldNameRequired, .login-container td .dynamicFieldRequired, td .login-container .dynamicFieldRequired, .login-container td .editFieldNameRequiredProfile, td .login-container .editFieldNameRequiredProfile, .login-container .editFieldNameRequired, .login-container .dynamicEditFieldNameRequired, .login-container .editFieldNameRequiredProfile, .login-container .dynamicFieldRequired, .login-container .cardNotRequiredLabel, .login-container td .editFieldName, td .login-container .editFieldName, .login-container td .dynamicEditFieldName, td .login-container .dynamicEditFieldName, .login-container td .dynamicField, td .login-container .dynamicField, .login-container td.editFieldNameNarrow, .login-container td .editFieldNameProfile, td .login-container .editFieldNameProfile, .login-container .editFieldName, .login-container .dynamicEditFieldName, .login-container .editFieldNameNarrow, .login-container .editFieldNameProfile, .login-container .dynamicField, .login-container td.viewFieldName[id^="_editTemplate"], .login-container .fieldblock .fieldheader, .fieldblock .login-container .fieldheader, .login-container .custom-filter-table .custom-filter-hr-table > tbody > tr > td:first-child, .custom-filter-table .custom-filter-hr-table > tbody > tr > .login-container td:first-child, .login-container #_main #_licenseInfoContainer .viewTableColumn .fieldTable > tbody > tr > td .viewFieldName, #_main #_licenseInfoContainer .viewTableColumn .fieldTable > tbody > tr > td .login-container .viewFieldName, .login-container td.viewFieldName, .login-container td.editFieldName, .login-container td.viewFieldNameProfile, .login-container td.editFieldNameProfile, .login-container td.editFieldNameRequired, .login-container td.dynamicViewFieldName, .login-container td.dynamicEditFieldName, .login-container td.dynamicEditFieldNameRequired, .login-container td.dynamicField, .login-container td.dynamicFieldRequired, .login-container .dynamicField, .login-container .editFieldNameRequired, .login-container .dynamicEditFieldNameRequired, .login-container .editFieldNameRequiredProfile, .login-container .dynamicFieldRequired, .login-container .twoListSelectBoxTitle {
+    font-size: 0.9rem !important; }
+  .login-container td.right {
+    width: 180px;
+    color: #807e7e;
+    background-color: transparent; }
+  .login-container > tbody > tr:first-child > td {
+    padding-top: 30px; }
+  .login-container > tbody > tr:last-child > td {
+    padding-bottom: 30px; }
+  .login-container > tbody > tr > td {
+    padding-left: 30px;
+    padding-right: 30px; }
+
+.login-body {
+  background: #173b71; }
+
+/* Tabstrip work */
+/* Main Tab Strip */
+#tabstrip-wrapper {
+  padding-top: 1px;
+  height: 30px;
+  margin-top: 1px; }
+
+.tabstrip {
+  height: 30px; }
+
+.tabstrip a, .subtabstrip a {
+  text-decoration: none !important; }
+.tabstrip a:focus, .subtabstrip a:focus {
+  outline-style: none; }
+
+.tsItemSelected {
+  vertical-align: top !important; }
+  .tsItemSelected:focus span, .tsItemSelected:active span {
+    background-color: #315085; }
+
+.cssTabStrip_Link_LevelOne.cssTabStrip_On:focus span > span, .cssTabStrip_Link_LevelOne.cssTabStrip_On:active span > span {
+  background-color: #315085; }
+
+.tsCenterCellSelected {
+  color: white;
+  background-color: #1b55ab;
+  height: 26px !important;
+  padding-top: 4px !important; }
+  .tsCenterCellSelected .cssParentDropArrow {
+    margin-top: -1px; }
+
+.tabstrip a.tsCenterCellSelected:focus, .tabstrip a.tsCenterCellSelected:active {
+  background-color: #315085 !important; }
+  .tabstrip a.tsCenterCellSelected:focus > span, .tabstrip a.tsCenterCellSelected:active > span {
+    background-color: #315085 !important; }
+
+.tsItem, .tsItemFirst, .parentTabStyleFixed, .tsItemPostSelected {
+  margin-top: 2px !important;
+  padding-top: 0px !important;
+  padding-bottom: 5px;
+  height: 22px !important;
+  background-color: #173b71; }
+  .tsItem:hover, .tsItem:focus, .tsItem:active, .tsItemFirst:hover, .tsItemFirst:focus, .tsItemFirst:active, .parentTabStyleFixed:hover, .parentTabStyleFixed:focus, .parentTabStyleFixed:active, .tsItemPostSelected:hover, .tsItemPostSelected:focus, .tsItemPostSelected:active {
+    color: white !important;
+    background-color: #315085 !important; }
+    .tsItem:hover .tsCenterCell, .tsItem:hover .tsCenterCellFirst, .tsItem:focus .tsCenterCell, .tsItem:focus .tsCenterCellFirst, .tsItem:active .tsCenterCell, .tsItem:active .tsCenterCellFirst, .tsItemFirst:hover .tsCenterCell, .tsItemFirst:hover .tsCenterCellFirst, .tsItemFirst:focus .tsCenterCell, .tsItemFirst:focus .tsCenterCellFirst, .tsItemFirst:active .tsCenterCell, .tsItemFirst:active .tsCenterCellFirst, .parentTabStyleFixed:hover .tsCenterCell, .parentTabStyleFixed:hover .tsCenterCellFirst, .parentTabStyleFixed:focus .tsCenterCell, .parentTabStyleFixed:focus .tsCenterCellFirst, .parentTabStyleFixed:active .tsCenterCell, .parentTabStyleFixed:active .tsCenterCellFirst, .tsItemPostSelected:hover .tsCenterCell, .tsItemPostSelected:hover .tsCenterCellFirst, .tsItemPostSelected:focus .tsCenterCell, .tsItemPostSelected:focus .tsCenterCellFirst, .tsItemPostSelected:active .tsCenterCell, .tsItemPostSelected:active .tsCenterCellFirst {
+      color: white !important;
+      background-color: #315085 !important;
+      border-top-color: #315085 !important; }
+
+.parentTabStyleFixed.cssTabStrip_On {
+  vertical-align: top;
+  margin-top: 0 !important; }
+
+.cssTabStrip_Link_LevelOne:hover .tsCenterCell, .cssTabStrip_Link_LevelOne:focus .tsCenterCell, .cssTabStrip_Link_LevelOne:active .tsCenterCell, .cssTabStrip_Link_LevelOne:hover .tsFirstTabCenter, .cssTabStrip_Link_LevelOne:focus .tsFirstTabCenter, .cssTabStrip_Link_LevelOne:active .tsFirstTabCenter {
+  background: #315085 !important;
+  color: white; }
+
+.tabstrip .tsCenterCell, .tabstrip .tsCenterCellSelected, .tabstrip .tsCenterCellFirst {
+  padding-left: 12px;
+  padding-right: 12px; }
+
+.tabstrip > a, .tabstrip > span, .tabstrip .tsItem, .tabstrip .tsItemPostSelected, .tabstrip .cssTabStrip_Link_LevelOne {
+  margin: 0 -0px 0 0; }
+
+.parentTabStyleFixed {
+  vertical-algin: top !important; }
+
+.tsCenterCell, .tsCenterCellFirst {
+  padding-top: 7px !important; }
+
+.tsCenterCell, .tsCenterCellFirst, .cssTabStrip_Link_LevelOne {
+  color: #c9ddf4;
+  background-color: #173b71;
+  vertical-align: top !important; }
+  .tsCenterCell:hover, .tsCenterCell:focus, .tsCenterCell:active, .tsCenterCellFirst:hover, .tsCenterCellFirst:focus, .tsCenterCellFirst:active, .cssTabStrip_Link_LevelOne:hover, .cssTabStrip_Link_LevelOne:focus, .cssTabStrip_Link_LevelOne:active {
+    color: white !important;
+    background-color: #315085 !important;
+    border-top-color: #315085 !important; }
+    .tsCenterCell:hover .parentTabStyleFixed, .tsCenterCell:focus .parentTabStyleFixed, .tsCenterCell:active .parentTabStyleFixed, .tsCenterCellFirst:hover .parentTabStyleFixed, .tsCenterCellFirst:focus .parentTabStyleFixed, .tsCenterCellFirst:active .parentTabStyleFixed, .cssTabStrip_Link_LevelOne:hover .parentTabStyleFixed, .cssTabStrip_Link_LevelOne:focus .parentTabStyleFixed, .cssTabStrip_Link_LevelOne:active .parentTabStyleFixed {
+      color: white !important;
+      background-color: #315085 !important;
+      border-top-color: #315085 !important; }
+
+.cssTabStrip_On > .cssTabStrip_Link_LevelOne {
+  font-weight: 400; }
+
+.tsCenterCell, .tsCenterCellFirst {
+  border-top-color: #173b71;
+  padding-bottom: 7px !important; }
+
+.headerOuterTableMainCell {
+  /* bottom border of main tab strip */
+  border-bottom: 1px solid #1b55ab; }
+
+/* Scroll Arrows */
+#tabstrip-wrapper > .leftAlignedSpecial, #tabstrip-wrapper > .rightAligned {
+  margin-top: 0px !important;
+  background-color: #173b71 !important;
+  height: 20px !important; }
+
+#tabstrip-wrapper > .leftAlignedSpecial, #tabstrip-wrapper > .rightAligned {
+  border-top: 2px solid white; }
+
+.tabstripScrollButton {
+  padding-top: 3px !important; }
+
+.headerOuterTableMainCell .rightAligned {
+  left: -29px;
+  width: 25px; }
+
+
+.tabstrip .tsCenterCell, .tabstrip .tsCenterCellFirst {
+  height: 13px;
+  line-height: 13px; }
+
+/* Tab Flyouts */
+.cssTabStrip_Link_LevelTwo {
+  color: white;
+  background-color: #315085; }
+  .cssTabStrip_Link_LevelTwo:hover, .cssTabStrip_Link_LevelTwo:focus, .cssTabStrip_Link_LevelTwo:active {
+    color: white !important;
+    background-color: #4371ad !important;
+    text-decoration: none; }
+
+.cssTabStrip_Flyout > ul li, .cssTabStrip_Link_LevelTwo.cssTabStrip_On {
+  border-color: #315085;
+  background-color: #315085;
+  color: white; }
+  .cssTabStrip_Flyout > ul li:hover .cssTabStrip_Link_LevelTwo, .cssTabStrip_Flyout > ul li:focus .cssTabStrip_Link_LevelTwo, .cssTabStrip_Flyout > ul li:active .cssTabStrip_Link_LevelTwo, .cssTabStrip_Link_LevelTwo.cssTabStrip_On:hover .cssTabStrip_Link_LevelTwo, .cssTabStrip_Link_LevelTwo.cssTabStrip_On:focus .cssTabStrip_Link_LevelTwo, .cssTabStrip_Link_LevelTwo.cssTabStrip_On:active .cssTabStrip_Link_LevelTwo {
+    color: white !important;
+    background-color: #4371ad !important; }
+
+.cssTabStrip_Link_LevelTwo.cssTabStrip_On {
+  font-weight: 600; }
+
+.cssTabStrip_Flyout {
+  border-color: #315085;
+  box-shadow: 1px 1px 10px 3px rgba(0, 0, 0, 0.25); }
+
+.tabstrip span.cssTabStrip_Flyout {
+  margin: 18px 0 0; }
+
+/* Sub Tab Strip */
+#kCuraSubTabStrip_subTabList {
+  background-color: #1b55ab; }
+  #kCuraSubTabStrip_subTabList li {
+    vertical-align: top;
+    padding-top: 0px;
+    height: 26px; }
+    #kCuraSubTabStrip_subTabList li a {
+      border-left: none;
+      padding-top: 4px; }
+
+.subtabstrip ul li.divider a, .subTab {
+  border-left: 1px solid #1b55ab; }
+
+.subtabstrip ul li.divider a.subTabSelected, .subtabstrip ul li a.subTabSelected {
+  color: white;
+  background-color: #2169c0;
+  text-shadow: 0 0 white; }
+  .subtabstrip ul li.divider a.subTabSelected:hover, .subtabstrip ul li a.subTabSelected:hover {
+    color: white !important;
+    background-color: #2169c0 !important; }
+  .subtabstrip ul li.divider a.subTabSelected:focus, .subtabstrip ul li.divider a.subTabSelected:active, .subtabstrip ul li a.subTabSelected:focus, .subtabstrip ul li a.subTabSelected:active {
+    color: white !important;
+    background-color: #315085 !important; }
+
+.subtabstrip ul li.divider a, .subtabstrip ul li a.subTab {
+  background-color: #1b55ab;
+  margin-left: -1px;
+  height: 25px; }
+  .subtabstrip ul li.divider a:hover, .subtabstrip ul li.divider a:focus, .subtabstrip ul li.divider a:active, .subtabstrip ul li a.subTab:hover, .subtabstrip ul li a.subTab:focus, .subtabstrip ul li a.subTab:active {
+    color: white !important;
+    background-color: #2169c0 !important; }
+
+.subtabstrip ul li.divider, .subtabstrip ul li {
+  margin-top: 0px; }
+
+.subtabstrip ul li a {
+  color: #d2d2d2;
+  font-weight: 400;
+  height: 25px; }
+
+.subtabstrip ul li, .subTab {
+  vertical-align: top !important; }
+
+/*artifact template header start*/
+.buttermilk-actionbar, .actionbartop, .actionbar, .ArtifactsViewTemplateHeader, .artifactActionBar, .artifactPopupActionBar, .genericArtifactTopActionBar, .genericArtifactTopActionBar .documentNavigatorNonButtonCell, .genericArtifactTopActionBar .documentNavigatorButtonCell, .dynamicActionBarTop, .popupArtifactActionBar, .singlePopupArtifactActionBar, .regularTitle {
+  background-color: #f7f7f7;
+  border-bottom-color: #c1c1c1; }
+
+.actionbar {
+  height: 24px;
+  padding-bottom: 3px; }
+
+.LicenseScreenErrorMessage {
+  background-color: #f7b558;
+  color: black; }
+
+.popupArtifactActionBar {
+  padding-top: 3px;
+  padding-bottom: 3px; }
+
+.regularTitle {
+  padding-top: 7px;
+  color: #102d4f;
+  font-weight: 600;
+  border-bottom: 1px solid #c1c1c1; }
+
+.artifactActionBarTopBorder, .singlePopupArtifactActionBar {
+  border-top-color: #c1c1c1; }
+
+.dynamicTemplateErrorMessageWidth100, .editTemplateErrorMessage, .newErrorMessage, .viewTemplateErrorMessage {
+  background-color: #f7f7f7; }
+
+/*
+.artifactActionBar .PersonalDropdownPositioning:not(.PersonalDropdownPositioningNotAbsolute){
+	position: absolute;
+	left: 5px;	
+}
+*/
+.PersonalDropdownPositioning {
+  margin-right: -15%; }
+
+.PersonalDropdownPositioning select {
+  max-width: 220px !important; }
+
+/*artifact template header end*/
+/* Header */
+/* 
+    Restyles link bar (Alerts, Favorites, User Greeting, QuickNav) and workspace title
+*/
+/* Workspace Title */
+.CaseTitleHeaderTextClass {
+  color: #102d4f;
+  font-weight: 400; }
+
+.headerOuterTableMainCell .headerContainer {
+  margin-right: 20px; }
+
+/* Link bar */
+.userGreetingAnchor span[title="Favorites Dropdown Menu"] > span, .userGreetingAnchor span[title="User Dropdown Menu"] > span {
+  color: #1b5695;
+  font-weight: 600; }
+  .userGreetingAnchor span[title="Favorites Dropdown Menu"] > span:hover, .userGreetingAnchor span[title="User Dropdown Menu"] > span:hover {
+    color: #102d4f; }
+
+.RelativityHeaderAlertWithHand {
+  color: #da1a17;
+  font-weight: 600;
+  text-transform: lowercase; }
+  .RelativityHeaderAlertWithHand::first-letter {
+    text-transform: uppercase; }
+  .RelativityHeaderAlertWithHand:after {
+    content: "s"; }
+  .RelativityHeaderAlertWithHand:hover {
+    color: #da1a17; }
+
+.filters-row input[type="button"] {
+  height: 24px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 3px;
+  color: #102d4f;
+  background-color: white !important;
+  border-color: #c1c1c1; }
+
+.filters-row input[type="button"].blueFilterButton {
+  height: 22px !important;
+  padding-top: 2px !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important; }
+
+.multiListFilterHeader {
+  border: none !important; }
+
+.multiListFilter > tbody > tr > td {
+  padding: 0 !important; }
+
+.multilistFilterChoices {
+  padding: 2px 8px; }
+
+.locked-header {
+  overflow: visible; }
+
+.multiListFilter .multiListFilterHeaderContainer .multiListFilterHeader {
+  padding: 4px 5px !important; }
+
+a.userGreetingAnchor span, .RelativityHeaderAlertWithHand {
+  text-decoration: none; }
+  a.userGreetingAnchor span:hover, .RelativityHeaderAlertWithHand:hover {
+    text-decoration: underline; }
+
+/*Buttons*/
+/*basic button*/
+.buttermilk-button, .buttermilk-button-positive, .filters-row input[type="button"].blueFilterButton, .fieldRendererHeaderButton, .actionButtonSmall, .ActionButton, .actionButtonBasicSearch, .actionButtonLogin .reviewActionBarActionButton, .inlineFieldButton, .pickerDotDotButton, .pickerButton, .pickButton, .editTableColumn .pickButton, .childViewSectionTitleButton, .consoleButtonEnabled, .reviewActionBarActionButton, .leftDynamicTemplateCell .ActionButton, .centerDynamicTemplateCell .ActionButton, .rightDynamicTemplateCell .ActionButton, .ArtifactsViewTemplateView .ActionButton, .ArtifactsViewTemplateHeader .ActionButton, .artifactActionBar .ActionButton, .viewTableColumn .ActionButton, .ViewTabelColumn .ActionButton, .popupArtifactActionBar .ActionButton, .ArtifactsViewTemplateView .actionButtonSmall, .ArtifactsViewTemplateHeader .actionButtonSmall, .viewListButton, .ownerMeButton, .ActionButtonSmall, .ActionButton, .actionButton, .actionButtonLogin, .actionButtonNoMargin, .editFieldValue > input[type='button'], .dynamicEditFieldValue > input[type='button'], .fixedWidthButton1, .fixedWidthButton2, .ownerMeButton, .viewCriteriaInputButton, .custom-filter-table input[type='submit'], .dynamicActionBarButton, #_contextualHelp_clear, #_nameValue_clear, #clearFileButton, .mapControlButton, #insDetManageSecurityBut, #insDetGroupPermRptBtn, #insDetEditMotdBut, .grey-header .actionButton, .artifactActionBar .actionButtonSmall, .artifactActionBar .ActionButton, .artifactActionBar .reviewActionBarActionButton, .artifactActionBar .inlineFieldButton, .artifactActionBar .pickerDotDotButton, .artifactActionBar .childViewSectionTitleButton, .artifactActionBar .ownerMeButton, .quickSearchCriteriaTable .criteriaConditionsValueCell input[type="button"][value="..."][id$="_DateTimeValue_button"], #libraryAppSelectBtn, .criteriaConditionsValueCell input[type="button"][value="..."][id$="_DateTimeValue_button"], .dynamicEditFieldValue #pathPicker[value="Browse..."], .ui-button, .buttermilk-button-disabled, .cssActionButtonDisabled, .actionButtonSmallDisabled, .ActionButtonDisabled, .reviewActionBarActionButtonDisabled, .inlineFieldButtonDisabled, .pickerDotDotButtonDisabled, .childViewSectionTitleButtonDisabled, .ownerMeButtonDisabled, .consoleButtonDisabled, .pickerButtonDisabled, .pickButtonDisabled, .reviewActionBarActionButtonDisabled, .leftDynamicTemplateCell .ActionButtonDisabled, .centerDynamicTemplateCell .ActionButtonDisabled, .rightDynamicTemplateCell .ActionButtonDisabled, .ArtifactsViewTemplateView .ActionButtonDisabled, .ArtifactsViewTemplateHeader .ActionButtonDisabled, .artifactActionBar .ActionButtonDisabled, .viewTableColumn .ActionButtonDisabled, .ViewTabelColumn .ActionButtonDisabled, .popupArtifactActionBar .ActionButtonDisabled, .ArtifactsViewTemplateView .actionButtonSmallDisabled, .ArtifactsViewTemplateHeader .actionButtonSmallDisabled, .viewListButtonDisabled, .ownerMeButtonDisabled, .ActionButtonSmallDisabled, .ActionButtonDisabled, .actionButtonLoginDisabled, .actionButtonNoMarginDisabled, .disabledDynamicActionBarButton, .editTableColumn .pickButtonDisabled, .actionButtonDisabled, .mapControlButton:disabled, .artifactActionBar .actionButtonSmallDisabled, .artifactActionBar .ActionButtonDisabled, .artifactActionBar .reviewActionBarActionButtonDisabled, .artifactActionBar .inlineFieldButtonDisabled, .artifactActionBar .pickerDotDotButtonDisabled, .artifactActionBar .childViewSectionTitleButtonDisabled, .artifactActionBar .consoleButtonDisabled, .artifactActionBar .ownerMeButtonDisabled, .buttermilk-button-destructive, .consoleButtonDestructive {
+  text-decoration: none;
+  background-color: #2357a6 !important;
+  background: linear-gradient(#0063af, #1b5695);
+  border-color: #194c87;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 3px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 8px;
+  padding-right: 8px;
+  vertical-align: middle;
+  height: 16px;
+  line-height: 16px;
+  font-size: 11px;
+  font-weight: normal;
+  box-sizing: content-box;
+  color: white !important; }
+  .buttermilk-button:hover, .buttermilk-button-positive:hover, .filters-row input[type="button"].blueFilterButton:hover, .fieldRendererHeaderButton:hover, .actionButtonSmall:hover, .ActionButton:hover, .actionButtonBasicSearch:hover, .actionButtonLogin .reviewActionBarActionButton:hover, .inlineFieldButton:hover, .pickerDotDotButton:hover, .pickerButton:hover, .pickButton:hover, .editTableColumn .pickButton:hover, .childViewSectionTitleButton:hover, .consoleButtonEnabled:hover, .reviewActionBarActionButton:hover, .leftDynamicTemplateCell .ActionButton:hover, .centerDynamicTemplateCell .ActionButton:hover, .rightDynamicTemplateCell .ActionButton:hover, .ArtifactsViewTemplateView .ActionButton:hover, .ArtifactsViewTemplateHeader .ActionButton:hover, .artifactActionBar .ActionButton:hover, .viewTableColumn .ActionButton:hover, .ViewTabelColumn .ActionButton:hover, .popupArtifactActionBar .ActionButton:hover, .ArtifactsViewTemplateView .actionButtonSmall:hover, .ArtifactsViewTemplateHeader .actionButtonSmall:hover, .viewListButton:hover, .ownerMeButton:hover, .ActionButtonSmall:hover, .ActionButton:hover, .actionButton:hover, .actionButtonLogin:hover, .actionButtonNoMargin:hover, .editFieldValue > input[type='button']:hover, .dynamicEditFieldValue > input[type='button']:hover, .fixedWidthButton1:hover, .fixedWidthButton2:hover, .ownerMeButton:hover, .viewCriteriaInputButton:hover, .custom-filter-table input[type='submit']:hover, .dynamicActionBarButton:hover, #_contextualHelp_clear:hover, #_nameValue_clear:hover, #clearFileButton:hover, .mapControlButton:hover, #insDetManageSecurityBut:hover, #insDetGroupPermRptBtn:hover, #insDetEditMotdBut:hover, .grey-header .actionButton:hover, .artifactActionBar .actionButtonSmall:hover, .artifactActionBar .ActionButton:hover, .artifactActionBar .reviewActionBarActionButton:hover, .artifactActionBar .inlineFieldButton:hover, .artifactActionBar .pickerDotDotButton:hover, .artifactActionBar .childViewSectionTitleButton:hover, .artifactActionBar .ownerMeButton:hover, .quickSearchCriteriaTable .criteriaConditionsValueCell input[type="button"][value="..."][id$="_DateTimeValue_button"]:hover, #libraryAppSelectBtn:hover, .criteriaConditionsValueCell input[type="button"][value="..."][id$="_DateTimeValue_button"]:hover, .dynamicEditFieldValue #pathPicker[value="Browse..."]:hover, .ui-button:hover, .buttermilk-button-disabled:hover, .cssActionButtonDisabled:hover, .actionButtonSmallDisabled:hover, .ActionButtonDisabled:hover, .reviewActionBarActionButtonDisabled:hover, .inlineFieldButtonDisabled:hover, .pickerDotDotButtonDisabled:hover, .childViewSectionTitleButtonDisabled:hover, .ownerMeButtonDisabled:hover, .consoleButtonDisabled:hover, .pickerButtonDisabled:hover, .pickButtonDisabled:hover, .reviewActionBarActionButtonDisabled:hover, .leftDynamicTemplateCell .ActionButtonDisabled:hover, .centerDynamicTemplateCell .ActionButtonDisabled:hover, .rightDynamicTemplateCell .ActionButtonDisabled:hover, .ArtifactsViewTemplateView .ActionButtonDisabled:hover, .ArtifactsViewTemplateHeader .ActionButtonDisabled:hover, .artifactActionBar .ActionButtonDisabled:hover, .viewTableColumn .ActionButtonDisabled:hover, .ViewTabelColumn .ActionButtonDisabled:hover, .popupArtifactActionBar .ActionButtonDisabled:hover, .ArtifactsViewTemplateView .actionButtonSmallDisabled:hover, .ArtifactsViewTemplateHeader .actionButtonSmallDisabled:hover, .viewListButtonDisabled:hover, .ownerMeButtonDisabled:hover, .ActionButtonSmallDisabled:hover, .ActionButtonDisabled:hover, .actionButtonLoginDisabled:hover, .actionButtonNoMarginDisabled:hover, .disabledDynamicActionBarButton:hover, .editTableColumn .pickButtonDisabled:hover, .actionButtonDisabled:hover, .mapControlButton:hover:disabled, .artifactActionBar .actionButtonSmallDisabled:hover, .artifactActionBar .ActionButtonDisabled:hover, .artifactActionBar .reviewActionBarActionButtonDisabled:hover, .artifactActionBar .inlineFieldButtonDisabled:hover, .artifactActionBar .pickerDotDotButtonDisabled:hover, .artifactActionBar .childViewSectionTitleButtonDisabled:hover, .artifactActionBar .consoleButtonDisabled:hover, .artifactActionBar .ownerMeButtonDisabled:hover, .buttermilk-button-destructive:hover, .consoleButtonDestructive:hover {
+    border-style: solid;
+    border-width: 1px;
+    color: white;
+    background-color: #0066ae !important;
+    background: linear-gradient(#0081c6, #0066ae);
+    border-color: #0066ae !important;
+    text-decoration: none !important; }
+
+.buttermilk-button-disabled, .cssActionButtonDisabled, .actionButtonSmallDisabled, .ActionButtonDisabled, .reviewActionBarActionButtonDisabled, .inlineFieldButtonDisabled, .pickerDotDotButtonDisabled, .childViewSectionTitleButtonDisabled, .ownerMeButtonDisabled, .consoleButtonDisabled, .pickerButtonDisabled, .pickButtonDisabled, .reviewActionBarActionButtonDisabled, .leftDynamicTemplateCell .ActionButtonDisabled, .centerDynamicTemplateCell .ActionButtonDisabled, .rightDynamicTemplateCell .ActionButtonDisabled, .ArtifactsViewTemplateView .ActionButtonDisabled, .ArtifactsViewTemplateHeader .ActionButtonDisabled, .artifactActionBar .ActionButtonDisabled, .viewTableColumn .ActionButtonDisabled, .ViewTabelColumn .ActionButtonDisabled, .popupArtifactActionBar .ActionButtonDisabled, .ArtifactsViewTemplateView .actionButtonSmallDisabled, .ArtifactsViewTemplateHeader .actionButtonSmallDisabled, .viewListButtonDisabled, .ownerMeButtonDisabled, .ActionButtonSmallDisabled, .ActionButtonDisabled, .actionButtonLoginDisabled, .actionButtonNoMarginDisabled, .disabledDynamicActionBarButton, .editTableColumn .pickButtonDisabled, .actionButtonDisabled, .mapControlButton:disabled, .artifactActionBar .actionButtonSmallDisabled, .artifactActionBar .ActionButtonDisabled, .artifactActionBar .reviewActionBarActionButtonDisabled, .artifactActionBar .inlineFieldButtonDisabled, .artifactActionBar .pickerDotDotButtonDisabled, .artifactActionBar .childViewSectionTitleButtonDisabled, .artifactActionBar .consoleButtonDisabled, .artifactActionBar .ownerMeButtonDisabled {
+  background-color: #dadada !important;
+  background: linear-gradient(#dadada, #dadada);
+  border-color: #dadada !important;
+  color: #9e9e9e !important; }
+  .buttermilk-button-disabled:hover, .cssActionButtonDisabled:hover, .actionButtonSmallDisabled:hover, .ActionButtonDisabled:hover, .reviewActionBarActionButtonDisabled:hover, .inlineFieldButtonDisabled:hover, .pickerDotDotButtonDisabled:hover, .childViewSectionTitleButtonDisabled:hover, .ownerMeButtonDisabled:hover, .consoleButtonDisabled:hover, .pickerButtonDisabled:hover, .pickButtonDisabled:hover, .reviewActionBarActionButtonDisabled:hover, .leftDynamicTemplateCell .ActionButtonDisabled:hover, .centerDynamicTemplateCell .ActionButtonDisabled:hover, .rightDynamicTemplateCell .ActionButtonDisabled:hover, .ArtifactsViewTemplateView .ActionButtonDisabled:hover, .ArtifactsViewTemplateHeader .ActionButtonDisabled:hover, .artifactActionBar .ActionButtonDisabled:hover, .viewTableColumn .ActionButtonDisabled:hover, .ViewTabelColumn .ActionButtonDisabled:hover, .popupArtifactActionBar .ActionButtonDisabled:hover, .ArtifactsViewTemplateView .actionButtonSmallDisabled:hover, .ArtifactsViewTemplateHeader .actionButtonSmallDisabled:hover, .viewListButtonDisabled:hover, .ownerMeButtonDisabled:hover, .ActionButtonSmallDisabled:hover, .ActionButtonDisabled:hover, .actionButtonLoginDisabled:hover, .actionButtonNoMarginDisabled:hover, .disabledDynamicActionBarButton:hover, .editTableColumn .pickButtonDisabled:hover, .actionButtonDisabled:hover, .mapControlButton:hover:disabled, .artifactActionBar .actionButtonSmallDisabled:hover, .artifactActionBar .ActionButtonDisabled:hover, .artifactActionBar .reviewActionBarActionButtonDisabled:hover, .artifactActionBar .inlineFieldButtonDisabled:hover, .artifactActionBar .pickerDotDotButtonDisabled:hover, .artifactActionBar .childViewSectionTitleButtonDisabled:hover, .artifactActionBar .consoleButtonDisabled:hover, .artifactActionBar .ownerMeButtonDisabled:hover {
+    background-color: #dadada !important;
+    background: linear-gradient(#dadada, #dadada);
+    border-color: #dadada !important;
+    color: #9e9e9e; }
+
+.buttermilk-button-destructive, .consoleButtonDestructive {
+  background-color: #90040b;
+  background: linear-gradient(#980000, #8d0000);
+  border-color: #871313; }
+  .buttermilk-button-destructive:hover, .consoleButtonDestructive:hover {
+    background-color: #90040b;
+    background: linear-gradient(#dc0000, #b40000);
+    border-color: #871313 !important; }
+
+.buttermilk-button-console, .consoleButtonEnabled, .consoleButtonDisabled, .consoleButtonDestructive, .artifactActionBar .consoleButtonDisabled {
+  height: 22px;
+  line-height: 22px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-left: 10px;
+  margin-right: 10px; }
+  .buttermilk-button-console:hover, .consoleButtonEnabled:hover, .consoleButtonDisabled:hover, .consoleButtonDestructive:hover, .artifactActionBar .consoleButtonDisabled:hover {
+    text-decoration: none; }
+
+.actionButtonLogin, .actionButtonLoginDisabled {
+  height: 30px;
+  width: 306px;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  box-sizing: border-box; }
+
+#insDetManageSecurityBut, #insDetGroupPermRptBtn, #insDetEditMotdBut {
+  height: auto; }
+
+.layoutViewTable .fieldRendererHeaderButton:hover {
+  border-color: #0066ae !important;
+  background-color: #0066ae !important; }
+
+.mapControlButton {
+  line-height: 6px !important; }
+
+#_contextualHelp_clear, #_nameValue_clear {
+  margin-left: 2px;
+  padding-top: 2px;
+  height: 21px; }
+
+.pickerDotDotButton, .pickButton, .viewCriteriaInputButton {
+  box-sizing: border-box !important;
+  line-height: 6px !important;
+  height: 21px !important;
+  padding-bottom: 8px !important; }
+  .pickerDotDotButton:disabled, .pickButton:disabled, .viewCriteriaInputButton:disabled {
+    background-color: #dadada !important;
+    background: linear-gradient(#dadada, #dadada);
+    border-color: #dadada !important;
+    color: #9e9e9e !important; }
+    .pickerDotDotButton:disabled:hover, .pickButton:disabled:hover, .viewCriteriaInputButton:disabled:hover {
+      background-color: #dadada !important;
+      background: linear-gradient(#dadada, #dadada);
+      border-color: #dadada !important;
+      color: #9e9e9e; }
+
+.viewCriteriaPickerTable input {
+  min-width: 20px; }
+
+.quickSearchCriteriaTable .criteriaConditionsValueCell input[type="button"][value="..."][id$="_DateTimeValue_button"] {
+  box-sizing: border-box;
+  line-height: 6px !important;
+  height: 24px !important;
+  padding-bottom: 9px !important;
+  margin-left: 3px;
+  margin-top: -4px; }
+
+#libraryAppSelectBtn {
+  line-height: 6px !important;
+  height: 21px !important;
+  padding-bottom: 8px !important;
+  margin-left: 3px;
+  width: 30px; }
+
+.criteriaConditionsValueCell input[type="button"][value="..."][id$="_DateTimeValue_button"] {
+  box-sizing: border-box;
+  line-height: 6px !important;
+  height: 21px !important;
+  padding-bottom: 8px !important;
+  margin-left: 3px; }
+
+.editFieldValue input[type="button"][value="..."][id$="_dateTimePicker_button"], .dynamicEditFieldValue input[type="button"][value="..."][id$="_dateTimePicker_button"] {
+  box-sizing: border-box;
+  line-height: 6px !important;
+  height: 21px !important;
+  padding-bottom: 8px !important;
+  margin-left: 3px; }
+
+.editFieldValueProfile input[type="button"][value="..."] {
+  line-height: 6px !important;
+  height: 21px !important;
+  padding: 3px 7px;
+  padding-bottom: 9px !important;
+  color: white;
+  background-color: #2357a6 !important;
+  background: linear-gradient(#0063af, #1b54ab);
+  border-color: #194c87;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 3px;
+  margin-left: 2px;
+  font-size: 10px; }
+
+.dynamicEditFieldValue #pathPicker[value="Browse..."] {
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-left: 5px; }
+
+/* Console Buttons */
+/* two list buttons */
+a[id$="_twoList_MoveAllTheWayUp_anchor"], a[id$="_twoList_MoveUp_anchor"], a[id$="_twoList_MoveDown_anchor"], a[id$="_twoList_MoveAllTheWayDown_anchor"] {
+  border: none;
+  padding: 0;
+  margin-left: 8px;
+  background: none !important; }
+  a[id$="_twoList_MoveAllTheWayUp_anchor"]:hover, a[id$="_twoList_MoveUp_anchor"]:hover, a[id$="_twoList_MoveDown_anchor"]:hover, a[id$="_twoList_MoveAllTheWayDown_anchor"]:hover {
+    border: none;
+    background: none !important; }
+
+a[id$="_twoList_MoveAllToTwo_anchor"], a[id$="_twoList_MoveSelectedToTwo_anchor"], a[id$="_twoList_MoveSelectedToOne_anchor"], a[id$="_twoList_MoveAllToOne_anchor"] {
+  border: none;
+  padding: 0;
+  background: none !important; }
+  a[id$="_twoList_MoveAllToTwo_anchor"]:hover, a[id$="_twoList_MoveSelectedToTwo_anchor"]:hover, a[id$="_twoList_MoveSelectedToOne_anchor"]:hover, a[id$="_twoList_MoveAllToOne_anchor"]:hover {
+    border: none;
+    background: none !important; }
+
+/*a.childViewSectionTitleButton,
+a.childViewSectionTitleButtonDisabled,
+a.viewListButton,
+a.viewListButtonDisabled,
+a.ActionButton,
+a.actionButtonDisabled,
+a.pickerButton,
+a.pickerButtonDisabled,
+a.actionButtonSmall {
+	&:hover {
+		text-decoration:none !important;
+	}
+}*/
+/* popups */
+.buttermilk-popup-header, .popupTitle, .massEditPopupTitle, .ajaxPopup .popUpSpanHeader, .ajaxPopup #popUpSpanHeader, #ReportTitleDiv {
+  background: #1b55ab;
+  color: white;
+  font-weight: 600; }
+
+.cssConfirmBackground {
+  background: #f7f7f7 !important; }
+
+.artifactPopupActionBarFull {
+  background: #f7f7f7;
+  border-top: 1px solid #c1c1c1; }
+
+.popupTitle {
+  font-size: 16px;
+  padding: 8px 10px 7px 12px;
+  border-bottom: thin solid #c1c1c1; }
+
+.objectsPickerActionBar {
+  border-color: #c1c1c1; }
+
+.popupArtifcactActionBar {
+  bottom-top: 1px solid #c1c1c1; }
+
+.objectsPickerActionBar, .objectsPickerListTitle {
+  margin-top: 0px;
+  padding: 5px; }
+
+.massActionBar {
+  height: 34px; }
+
+.ajaxPopup .popUpSpanHeader, .ajaxPopup #popUpSpanHeader, #ReportTitleDiv {
+  border-bottom: 1px solid #c1c1c1;
+  font-size: 16px;
+  padding: 8px 10px 7px 12px;
+  border-bottom: thin solid #c1c1c1; }
+
+.ajaxPopup {
+  background-color: #f7f7f7 !important; }
+
+.ajaxPopup > div {
+  margin: 10px !important;
+  border: solid thin #c1c1c1;
+  border-radius: 5px;
+  height: 165px !important; }
+
+#_productionFilesReportList_itemList_tableDiv {
+  margin-left: 1px;
+  width: auto !important; }
+
+.keyboard-shortcut-info {
+  background: #f7f7f7; }
+  .keyboard-shortcut-info .popupArtifactActionBar {
+    border-style: none; }
+
+.swapIndexPopup .fieldTable td {
+  border: none; }
+
+.FolderPicker {
+  background-color: #f7f7f7; }
+
+#fileBrowserUpperDiv {
+  margin-top: 4px; }
+
+.dtSearchFieldTable, .dtSearchEditFieldName, .dtSearchEditFieldValue {
+  background-color: #f7f7f7;
+  border: 0 !important; }
+
+/* end popups */
+/*Controls*/
+.graphicCheckbox {
+  width: 13px;
+  height: 13px;
+  background: url(/Relativity/Images/ToggleControls/Unchecked_Box.png) no-repeat;
+  display: inline-block;
+  position: relative;
+  top: 2px; }
+  .graphicCheckbox.on {
+    background: url(/Relativity/Images/ToggleControls/Checked_Box.png) no-repeat; }
+
+.graphicRadio {
+  width: 14px;
+  height: 14px;
+  background: url(/Relativity/Images/ToggleControls/Radio_Off.png) no-repeat;
+  display: inline-block;
+  position: relative;
+  top: 2px; }
+  .graphicRadio.on {
+    background: url(/Relativity/Images/ToggleControls/Radio_On.png) no-repeat; }
+
+.defaultInput, .editFieldValueProfile span[id*='_editTemplate__kCuraScrollingDiv'], .editFieldValueProfile textarea, .editFieldValue span[id*='_editTemplate__kCuraScrollingDiv'], .editFieldValue textarea, .dynamicEditFieldValue span[id*='_editTemplate__kCuraScrollingDiv'], .dynamicEditFieldValue textarea, .editFieldValueProfile span[id*='_editTemplate__kCuraScrollingDiv'], .editFieldValueProfile textarea, input[type="text"], input[type="password"], textarea {
+  border: 1px solid #c1c1c1;
+  border-radius: 3px;
+  color: #102d4f;
+  padding: 2px 2px 2px 4px;
+  line-height: 1rem;
+  font-family: OpenSans, sans-serif;
+  font-size: 12px;
+  min-height: 20px; }
+  .defaultInput:disabled, .editFieldValueProfile span[id*='_editTemplate__kCuraScrollingDiv']:disabled, .editFieldValueProfile textarea:disabled, .editFieldValue span[id*='_editTemplate__kCuraScrollingDiv']:disabled, .editFieldValue textarea:disabled, .dynamicEditFieldValue span[id*='_editTemplate__kCuraScrollingDiv']:disabled, .dynamicEditFieldValue textarea:disabled, .editFieldValueProfile span[id*='_editTemplate__kCuraScrollingDiv']:disabled, .editFieldValueProfile textarea:disabled, input[type="text"]:disabled, input[type="password"]:disabled, textarea:disabled {
+    background-color: #e8e8e8;
+    border-color: #b2b2b2; }
+  .defaultInput:focus, .editFieldValueProfile span[id*='_editTemplate__kCuraScrollingDiv']:focus, .editFieldValueProfile textarea:focus, .editFieldValue span[id*='_editTemplate__kCuraScrollingDiv']:focus, .editFieldValue textarea:focus, .dynamicEditFieldValue span[id*='_editTemplate__kCuraScrollingDiv']:focus, .dynamicEditFieldValue textarea:focus, .editFieldValueProfile span[id*='_editTemplate__kCuraScrollingDiv']:focus, .editFieldValueProfile textarea:focus, input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
+    border-color: #1b54ab;
+    outline: none; }
+
+.textualPaginationControls input[type="text"], .textualPaginationControls input[type="password"], .textualPaginationControls textarea {
+  padding: 0; }
+tr.filters-row input[type="text"], tr.filters-row input[type="password"], tr.filters-row textarea {
+  min-height: 24px; }
+
+select {
+  vertical-align: middle;
+  border-radius: 3px;
+  border: 1px solid #c1c1c1;
+  font-family: OpenSans, sans-serif;
+  background-color: #fff; }
+  select:focus {
+    border-color: #1b54ab;
+    outline: none; }
+
+
+
+.helpIconLink {
+  background: url(/Relativity/images/help_icon.png) no-repeat;
+  width: 16px;
+  height: 16px;
+  border: 0px none transparent; }
+
+.dynamicEditFieldValue span[id$="_description"], .editFieldValue span[id$="_description"], .dynamicEditFieldValue .artifact-picker-description, .editFieldValue .artifact-picker-description, .dynamicEditFieldValue .PopupPickerDescriptionSpan, .editFieldValue .PopupPickerDescriptionSpan {
+  background-color: #f7f7f7 !important;
+  border: none !important;
+  border-radius: 0px !important;
+  border-bottom: 1px solid #c1c1c1 !important;
+  padding-right: 10px !important;
+  margin-right: 10px !important; }
+
+.viewCriteriaPickerTable .description, #displayLibraryApplicationId {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0px !important;
+  border-bottom: 1px solid #c1c1c1 !important;
+  padding-right: 10px !important;
+  margin-right: 10px !important; }
+
+.PopupPickerDescriptionSpan {
+  background-color: #f7f7f7 !important; }
+
+.dxeButtonEdit input {
+  padding: 0; }
+
+.jstree-classic.jstree-focused {
+  background: #f7f7f7 !important; }
+
+.dynamicEditFieldValue span[id$="_description"]:empty:before, .editFieldValue span[id$="_description"]:empty:before, .dynamicEditFieldValue .artifact-picker-description:empty:before, .editFieldValue .artifact-picker-description:empty:before, .dynamicEditFieldValue .PopupPickerDescriptionSpan:empty:before, .editFieldValue .PopupPickerDescriptionSpan:empty:before, .singleObjectPickerDisplayEmpty:before {
+  content: "Select...";
+  color: #1b5695; }
+
+.buttermilkTwoListSelect table {
+  width: auto !important; }
+
+.twoListSelectBoxTitle {
+  font-weight: normal; }
+
+/* Quick Search start */
+.pivotmessagebar[id$="_quicksearchmessagebar"] {
+  background-color: #f7b558;
+  color: black;
+  margin-left: 1px; }
+
+.quickSearchContainer, .quickSearchContainer > table {
+  background-color: #f7f7f7;
+  padding-bottom: 5px; }
+
+.quickSearchContainer {
+  border-top: 1px solid #c1c1c1;
+  padding-left: 3px; }
+  .quickSearchContainer input[type="button"] {
+    height: 22px; }
+
+.quickSearchCriteriaFieldsHeader {
+  display: none; }
+
+.quickSearchContainer .criteriaConditionsValueCell {
+  width: 100%; }
+
+.quickSearchCriteriaTable {
+  border: 1px solid #c1c1c1 !important;
+  background-clip: padding-box;
+  background-color: white; }
+  .quickSearchCriteriaTable tr {
+    border-right-color: #c1c1c1;
+    border-left-color: #c1c1c1;
+    border-top-color: #c1c1c1;
+    border-top-width: 1px; }
+  .quickSearchCriteriaTable td {
+    border-color: #c1c1c1; }
+  .quickSearchCriteriaTable textarea, .quickSearchCriteriaTable select:enabled, .quickSearchCriteriaTable input[type="text"], .quickSearchCriteriaTable div[id$="_Description"] {
+    color: #102d4f; }
+  .quickSearchCriteriaTable .quickSearchCriteriaFields:nth-child(3) select {
+    width: 145px; }
+  .quickSearchCriteriaTable input[type="text"] {
+    padding: 1px;
+    height: 19px; }
+
+.quickSearchCriteriaFields select[id$="_OpenParensField"] {
+  margin-left: 8px;
+  margin-right: 8px;
+  min-width: 50px; }
+.quickSearchCriteriaFields select[id$="_CriteriaField"] {
+  margin-right: 8px; }
+.quickSearchCriteriaFields select[id$="Operator"] {
+  margin-right: 8px; }
+.quickSearchCriteriaFields select[id$="_CloseParensField"] {
+  margin-left: 8px;
+  margin-right: 8px;
+  min-width: 50px; }
+.quickSearchCriteriaFields select[id$="_AndOrListField"] {
+  margin-right: 8px;
+  min-width: 60px; }
+.quickSearchCriteriaFields a[id*="_ClearLink"] {
+  margin-right: 8px; }
+.quickSearchCriteriaFields div[id$="_Description"] {
+  border: 1px solid #c1c1c1;
+  border-radius: 3px;
+  padding: 1px;
+  height: 18px; }
+
+.quickSearchCriteriaFields.criteriaConditionsValueCell div {
+  margin-right: 8px; }
+
+.quickSearchContainer .SearchTable > tbody > tr > td:nth-child(3) {
+  padding-top: 8px !important;
+  padding-right: 25px !important; }
+
+.SearchTableNoBorder .SearchTable > tbody > tr > td:nth-child(2), .SearchTable .SearchTable > tbody > tr > td:nth-child(2) {
+  padding-right: 16px !important; }
+
+.caBasicName {
+  width: 92px;
+  padding-top: 3px; }
+
+table.SearchTableNoBorder > tbody > tr > td {
+  padding: 0; }
+
+.caBasicName {
+  font-weight: 600; }
+
+td[id$="_searchCell"] > .SearchTable {
+  border-top: 1px solid #c1c1c1; }
+
+/* Quick Search end */
+/* Sampling start */
+.pivotmessagebar[id$="_samplingmessagebar"], .pivotmessagebar .message {
+  background-color: #f7b558;
+  color: black !important; }
+
+.samplingContainer span[id$="samplingTypeLabel"] {
+  color: #010000;
+  font-weight: 600;
+  padding-right: 8px;
+  margin-left: 10px;
+  font-size: 13px;
+  height: 28px;
+  line-height: 28px; }
+
+.samplingContainer select[id$="_confidenceLevelDropDown"], .samplingContainer select[id$="_marginOfErrorDropDown"] {
+  margin-top: -3px;
+  height: 26px !important; }
+
+.samplingContainer span.fixedSizeSpan, .samplingContainer span.percentSpan, .samplingContainer span.confidenceSpan {
+  margin-left: 0 !important; }
+  .samplingContainer span.fixedSizeSpan:before, .samplingContainer span.percentSpan:before, .samplingContainer span.confidenceSpan:before {
+    content: "";
+    border-left: 1px solid grey;
+    height: 22px;
+    margin-left: 15px;
+    margin-right: 18px; }
+
+.samplingContainer {
+  background: #f7f7f7;
+  border-top: 0px solid #c1c1c1;
+  border-bottom: 0.75px solid #c1c1c1; }
+  .samplingContainer > table {
+    border-top-color: #c1c1c1 !important; }
+
+.samplingContainer label {
+  color: #010000;
+  font-weight: 400; }
+
+.samplingContainer td {
+  padding-top: 2px; }
+
+.samplingButtonCell {
+  margin-top: 4px;
+  margin-right: 20px; }
+
+/* Sampling end */
+/*Search criteria*/
+.SearchTable {
+  background: #f7f7f7; }
+
+.criteriaFieldsHeader, .criteriaFields {
+  background: #f7f7f7; }
+
+a.childViewSectionTitleButton[id$='addCriteria_button'] {
+  margin-left: 14px; }
+
+div[id$='stepThree'].cardSection table[id$='criteriaGroup_CriteriaTable'], div[id$='stepThree'].cardSection div[id$='stepThree'].fieldblock, div[id$='stepThree'].cardSection div[id$='stepThree']#_headerFooterDiv {
+  border-left: 11px solid #f7f7f7;
+  border-right: 13px solid #f7f7f7;
+  margin-top: 5px; }
+
+div[id$='stepFour'].cardSection select, div[id$='stepFour'].cardSection div[id$='stepFour'].fieldblock, div[id$='stepFour'].cardSection div[id$='stepFour']#_headerFooterDiv {
+  margin-left: 14px;
+  margin-bottom: 5px; }
+
+div[id$='stepFour'].cardSection select + select, div[id$='stepFour'].cardSection select + div[id$='stepFour'].fieldblock, div[id$='stepFour'].cardSection select + div[id$='stepFour']#_headerFooterDiv {
+  margin-left: 5px; }
+
+/*End search criteria*/
+.upDownButtonsTable td {
+  padding-top: 0;
+  padding-bottom: 3px; }
+.upDownButtonsTable .fixedWidthButton2 {
+  background: none;
+  width: 16px;
+  height: 16px; }
+  .upDownButtonsTable .fixedWidthButton2 a:hover, .upDownButtonsTable .fixedWidthButton2:hover {
+    background: none; }
+  .upDownButtonsTable .fixedWidthButton2 span {
+    width: 16px;
+    height: 16px; }
+
+
+.buttermilkTwoListSelect .fixedWidthButton1 {
+  width: 16px;
+  margin-left: 8px;
+  margin-right: 8px;
+  margin-bottom: 8px; }
+  .buttermilkTwoListSelect .fixedWidthButton1 span {
+    width: 16px;
+    height: 16px; }
+
+.artifact-picker-description {
+  border-radius: 4px;
+  height: 20px; }
+
+/* Viewer */
+.reviewContainerTable .links {
+  background: #1b55ab;
+  border-bottom-color: #c1c1c1; }
+
+.returnText {
+  color: white;
+  font-weight: 600;
+  text-decoration: none; }
+  .returnText:hover {
+    text-decoration: underline; }
+
+.documentIdentifierRow, .documentNavigatorTable, .reviewActionBarTop, .reviewActionBarBottom, .reviewIconRowTable, .reviewPaneTable {
+  background: #f7f7f7; }
+
+.documentIdentifierRow {
+  border-bottom-color: #c1c1c1; }
+
+.documentNavigatorTable tr td {
+  padding: 1px 1px 1px 1px; }
+
+.reviewActionBarGroup {
+  margin: 2px 0 1px 0; }
+
+.viewer-selector {
+  padding: 2px 0 1px 4px;
+  height: 25px;
+  background-color: #f7f7f7; }
+
+td.documentNavigatorNonButtonCell input[type="text"] {
+  padding: 0;
+  width: 30px; }
+
+.document-review-drag-handle {
+  margin-left: 0 !important;
+  margin-right: 0 !important; }
+
+.reviewActionBarTop, .reviewActionBarBottom {
+  min-height: 26px;
+  padding-bottom: 1px;
+  border-color: #c1c1c1; }
+
+.dynamicActionBarTop {
+  min-height: 28px; }
+  .dynamicActionBarTop .dynamicActionBarButtonGroup {
+    margin: 2px 4px 2px 0; }
+    .dynamicActionBarTop .dynamicActionBarButtonGroup #_documentProfileEditor_copyBtn_button[disabled] {
+      padding: 4px 8px 4px 8px; }
+
+.document-review-drag-handle {
+  background: url(/relativity/Images/drag-handle.png) no-repeat left center !important;
+  min-width: 10px !important;
+  max-width: 10px !important;
+  width: 10px !important;
+  border-left: 1px solid #8b94a5;
+  border-right: 1px solid #8b94a5; }
+
+.documentNavigatorTable, .reviewIconRowTable {
+  border-color: #c1c1c1; }
+
+#_moveablePaneCollectionRow td {
+  border-top: #c1c1c1 1px solid; }
+
+span#_documentViewer .document-identifier {
+  border-bottom-color: #c1c1c1; }
+
+#_documentIdentifier_ReviewLabel {
+  margin-left: 6px; }
+
+#_documentIdentifier_FileIconLink {
+  margin-left: 2px; }
+
+.massEditBarContainer {
+  background-color: #f7f7f7; }
+
+/* End Viewer */
+#_informationTable .fieldTable, #_searchTextTable .fieldTable, #_conditionsTable .fieldTable {
+  max-width: 100%; }
+
+#_sortTable select {
+  margin: 2px; }
+
+#_searchTextText, #_conditionsText, #_fieldsText, #_sortText {
+  display: inline; }
+
+#_searchTextText + img, #_conditionsText + img, #_fieldsText + img, #_sortText + img {
+  margin-top: 2px; }
+
+#_viewCriteriaCollectionField .criteriaFields {
+  background-color: #f7f7f7; }
+
+#_viewCriteriaCollectionField_viewCriteriaCollection_CriteriaTable {
+  table-layout: auto; }
+  #_viewCriteriaCollectionField_viewCriteriaCollection_CriteriaTable .criteriaFields:nth-child(3) select {
+    width: 145px; }
+  #_viewCriteriaCollectionField_viewCriteriaCollection_CriteriaTable .criteriaConditionsValueCell {
+    width: 100%; }
+
+.manualReloadMessage {
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #c1c1c1; }
+
+.cardSectionHeader#_searchTextDiv, .fieldblock #_searchTextDiv.sectionHeader, .custom-filter-table > tbody > tr > td#_searchTextDiv, #_main #_editTemplate__kCuraScrollingDiv h2#_searchTextDiv, #_main #_view__wizardTemplate__kCuraScrollingDiv h2#_searchTextDiv, #_main #_edit__wizardTemplate__kCuraScrollingDiv h2#_searchTextDiv, #_main #_viewTemplate__kCuraScrollingDiv h2#_searchTextDiv, #_main #_dynamicTemplate__kCuraScrollingDiv h2#_searchTextDiv, #_main #_kCuraScrollingDiv h2#_searchTextDiv, #_main #_licenseInfoContainer td h2#_searchTextDiv, #_main .documentProfileTemplateContainer h2#_searchTextDiv, #_main .viewTable #_searchTextDiv.viewSectionTitle, #_main .viewTable #_searchTextDiv.editSectionTitle, #_main .viewTable #_searchTextDiv.editCategory, #_main .editTable #_searchTextDiv.viewSectionTitle, #_main .editTable #_searchTextDiv.editSectionTitle, #_main .editTable #_searchTextDiv.editCategory, #_main .cardContainer .cardSection #_searchTextDiv.editSectionTitle, .fieldblock, #_headerFooterDiv, #_main .cardContainer .cardSection #_searchTextDiv.viewSectionTitle, .fieldblock, #_headerFooterDiv, #_main .cardContainer .cardSection h2#_searchTextDiv, .fieldblock, #_headerFooterDiv, #_searchTextDiv.objectsPickerActionBar, #_searchTextDiv.objectsPickerListTitle, .cardSectionHeader#_conditionsDiv, .fieldblock #_conditionsDiv.sectionHeader, .custom-filter-table > tbody > tr > td#_conditionsDiv, #_main #_editTemplate__kCuraScrollingDiv h2#_conditionsDiv, #_main #_view__wizardTemplate__kCuraScrollingDiv h2#_conditionsDiv, #_main #_edit__wizardTemplate__kCuraScrollingDiv h2#_conditionsDiv, #_main #_viewTemplate__kCuraScrollingDiv h2#_conditionsDiv, #_main #_dynamicTemplate__kCuraScrollingDiv h2#_conditionsDiv, #_main #_kCuraScrollingDiv h2#_conditionsDiv, #_main #_licenseInfoContainer td h2#_conditionsDiv, #_main .documentProfileTemplateContainer h2#_conditionsDiv, #_main .viewTable #_conditionsDiv.viewSectionTitle, #_main .viewTable #_conditionsDiv.editSectionTitle, #_main .viewTable #_conditionsDiv.editCategory, #_main .editTable #_conditionsDiv.viewSectionTitle, #_main .editTable #_conditionsDiv.editSectionTitle, #_main .editTable #_conditionsDiv.editCategory, #_main .cardContainer .cardSection #_conditionsDiv.editSectionTitle, .fieldblock, #_headerFooterDiv, #_main .cardContainer .cardSection #_conditionsDiv.viewSectionTitle, .fieldblock, #_headerFooterDiv, #_main .cardContainer .cardSection h2#_conditionsDiv, .fieldblock, #_headerFooterDiv, #_conditionsDiv.objectsPickerActionBar, #_conditionsDiv.objectsPickerListTitle {
+  padding-left: 0; }
+
+#_othersDiv .editTable {
+  margin: 0; }
+
+#_othersDiv .editTable .editFieldValue {
+  padding-left: 9px !important; }
+
+.searchErrorMessage {
+  background-color: #f7f7f7 !important; }
+
+#_conditionsTable .editFieldValue {
+  padding-left: 8px;
+  padding-right: 8px; }
+
+#_sortTable {
+  margin-left: 11px; }
+
+.criteriaFieldsHeader {
+  font-weight: 600; }
+
+#_searchTextTable #_searchProviderDropdown #_searchProviderDropdown_nameCell {
+  border-right: 0px; }
+
+/* Modals begin */
+.ui-widget-header {
+  background: #f7f7f7;
+  color: #5d9adf;
+  font-weight: 600; }
+
+.ui-dialog .ui-dialog-title {
+  padding-top: 8px; }
+
+.ui-widget-content {
+  background: #f7f7f7;
+  border-width: 0; }
+
+.ui-dialog .ui-dialog-buttonpane {
+  border-top-width: 0; }
+
+.ui-button {
+  height: 24px !important;
+  background-color: #2357a6 !important;
+  background: linear-gradient(#0063af, #1b5695) !important;
+  border-color: #194c87;
+  border-width: 1px !important; }
+  .ui-button:hover {
+    background-color: #0066ae !important;
+    background: linear-gradient(#0081c6, #0066ae) !important;
+    border-color: #0066ae !important;
+    border-width: 1px !important; }
+
+.helpTooltip {
+  background: #596066;
+  color: white;
+  border-color: #596066;
+  -webkit-box-shadow: 2px 2px 1px #d0d0d0;
+  -ms-box-shadow: 2px 2px 1px #d0d0d0;
+  box-shadow: 2px 2px 1px #d0d0d0;
+  -ms-border-radius: 3px;
+  border-radius: 3px; }
+
+.ui-datepicker .ui-datepicker-header {
+  background: #1b55ab !important; }
+
+.ui-datepicker-calendar td:first-child .ui-state-active {
+  width: auto !important; }
+
+.ui-datepicker-calendar .ui-state-active, .ui-datepicker-calendar .ui-datepicker-today .ui-state-active {
+  background: #1b55ab !important; }
+
+.dialogArtifactActionBar {
+  background-color: #f7f7f7 !important; }
+
+.ui-widget-header {
+  background: #f7f7f7 !important; }
+
+.floatingDivHeader {
+  background-color: #1b55ab !important;
+  color: white;
+  font-weight: 600; }
+
+.ui-widget-content a {
+  color: #1b5695; }
+
+.ui-widget-header .ui-dialog-titlebar-close .ui-icon {
+  background-image: url(/Relativity/images/Modal_Close.png);
+  background-position: 0 0;
+  top: 0px;
+  right: -10px; }
+
+.ui-widget-header .ui-dialog-titlebar-close {
+  top: 0px;
+  right: -10px; }
+
+.ui-widget-header .ui-dialog-titlebar-close {
+  background: transparent !important; }
+
+.ui-dialog.ui-widget-content {
+  overflow: visible; }
+
+.ui-dialog-titlebar.ui-widget-header, .ui-dialog.ui-widget-content {
+  border-radius: 3px; }
+
+/* Modals end */
+.consoleLinkSelected {
+  text-decoration: underline;
+  margin: 0;
+  background-color: #dfebf9;
+  color: #1b5695; }
+
+.progressAndStatusPane #popUpImage {
+  margin-right: 20px !important; }
+
+.chvronProgressBar .ui-progressbar-value {
+  background-color: #1b5695; }
+
+#productionSortCard select {
+  margin: 2px; }
+
+#productionHeaderFooterCard span {
+  margin-left: 154px; }
+
+.dxXtraReports_BtnFirstPage, .dxXtraReports_BtnFirstPageDisabled, .dxXtraReports_BtnLastPage, .dxXtraReports_BtnLastPageDisabled, .dxXtraReports_BtnNextPage, .dxXtraReports_BtnNextPageDisabled, .dxXtraReports_BtnPrevPage, .dxXtraReports_BtnPrevPageDisabled, .dxXtraReports_BtnPrint, .dxXtraReports_BtnPrintDisabled, .dxXtraReports_BtnPrintPage, .dxXtraReports_BtnPrintPageDisabled, .dxXtraReports_BtnSave, .dxXtraReports_BtnSaveDisabled, .dxXtraReports_BtnSaveWindow, .dxXtraReports_BtnSaveWindowDisabled, .dxXtraReports_BtnSearch, .dxXtraReports_BtnSearchDisabled {
+  background-image: url('../Images/dev_express_sprites.png') !important; }
+
+.dxmMenu, .dxmVerticalMenu {
+  background-color: #f7f7f7; }
+
+#fileBrowserUpperDiv #_panelActionBar {
+  background-color: #f7f7f7;
+  border-bottom-color: #c1c1c1;
+  border-bottom: solid 1px #c1c1c1;
+  border-top: solid 1px #c1c1c1; }
+
+#processingSetStatusContainer {
+  border: none !important;
+  text-align: left !important; }
+
