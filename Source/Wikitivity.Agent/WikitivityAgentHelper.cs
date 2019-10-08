@@ -18,6 +18,8 @@ namespace Wikitivity.Agent
 
 		public bool DeleteUploadedRequestsFromRelativity(IRSAPIClient proxy, int workspaceID, List<WikitivityUploadsAgent.SingleRequestObject> listOfCompletedUploads)
 		{
+			proxy.APIOptions.WorkspaceID = workspaceID;
+
 			bool success = false;
 			try
 			{
@@ -35,16 +37,15 @@ namespace Wikitivity.Agent
 			}
 			catch (Exception ex)
 			{
-				//That guy
+				// Should i pass in an agentbase so I can raise message? An IAPI logger so I Can log? :shrug:
 			}
-			proxy.APIOptions.WorkspaceID = workspaceID;
 
 			return success;
 		}
 		public List<WikitivityUploadsAgent.DataObtainedSingleRequestObject> PopulateArticleData(List<WikitivityUploadsAgent.SingleRequestObject> singleRequestObjects, AgentBase agentBase)
 		{
 			List<WikitivityUploadsAgent.DataObtainedSingleRequestObject> ListForUpload = new List<WikitivityUploadsAgent.DataObtainedSingleRequestObject>();
-			agentBase.RaiseMessage("Testing this message", 1);
+			agentBase.RaiseMessage("Populating Article Data...", 1);
 
 			try
 			{
@@ -57,7 +58,7 @@ namespace Wikitivity.Agent
 					// DEBUG
 
 
-					agentBase.RaiseMessage("Working on this Stuff: " + newTitleURL, 1);
+					agentBase.RaiseMessage("Working on: " + singlePage.PageTitle, 1);
 
 					//
 					try
@@ -65,13 +66,10 @@ namespace Wikitivity.Agent
 
 						var response2 = client.DownloadString(newTitleURL);
 
-						agentBase.RaiseMessage("Here's the stuff!" + response2.ToString(), 1);
 						var response2Json = JsonConvert.DeserializeObject<WikiCategoryRequest2>(response2);
 
 						foreach (var singleArticleWithInfo in response2Json.Query.pages.Values)
 						{
-
-							agentBase.RaiseMessage("Working on this Stuff: " + singleArticleWithInfo.title + "|||" + singlePage.ControlNumVal, 1);
 							try
 							{
 								ListForUpload.Add(new WikitivityUploadsAgent.DataObtainedSingleRequestObject
@@ -79,100 +77,33 @@ namespace Wikitivity.Agent
 									extractedText = singleArticleWithInfo.extract,
 									PageTitle = singleArticleWithInfo.title,
 									ControlNumVal = singlePage.ControlNumVal
-
-
 								});
-
 							}
 							catch (Exception e)
 							{
 								agentBase.RaiseMessage(e.ToString(), 1);
 							}
-
 						}
-						string showTitles = "";
-						foreach (var test in ListForUpload)
-						{
-							showTitles += test.PageTitle;
-						}
-						agentBase.RaiseMessage(showTitles, 1);
+						//string showTitles = "";
+						//foreach (var test in ListForUpload)
+						//{
+						//	showTitles += test.PageTitle;
+						//}
+						//agentBase.RaiseMessage(showTitles, 1);
 					}
 					catch (Exception e)
 					{
 						agentBase.RaiseMessage(e.ToString(), 1);
 					}
-
 				}
 				return ListForUpload;
-
 			}
 			catch (Exception e)
 			{
 				agentBase.RaiseMessage(e.ToString(), 1);
 				return ListForUpload;
-
 			}
-
 		}
-
-
-
-		//public List<WikitivityUploadsAgent.DataObtainedSingleRequestObject> PopulateArticleData(List<WikitivityUploadsAgent.SingleRequestObject> singleRequestObjects, AgentBase agentBase)
-		//{
-		//	List<WikitivityUploadsAgent.DataObtainedSingleRequestObject> ListForUpload = new List<WikitivityUploadsAgent.DataObtainedSingleRequestObject>();
-		//	agentBase.RaiseMessage("Testing this message", 1);
-
-		//	try
-		//	{
-		//		foreach (var singlePage in singleRequestObjects)
-		//		{
-		//			var client = new WebClient();
-
-		//			string newTitleURL = singlePage.RequestUrl;
-
-		//			// DEBUG
-
-
-		//			agentBase.RaiseMessage("Working on this Stuff: " + newTitleURL, 1);
-
-		//			//
-		//			try
-		//			{
-
-		//			}
-		//			catch (Exception e)
-		//			{
-		//				agentBase.RaiseMessage(e.ToString(), 1);
-		//			}
-		//			var response2 = client.DownloadString(newTitleURL);
-
-		//			agentBase.RaiseMessage("Here's the stuff!" + response2.ToString(), 1);
-		//			var response2Json = JsonConvert.DeserializeObject<WikiCategoryRequest2>(response2);
-
-		//			foreach (var singleArticleWithInfo in response2Json.Query.pages.Values)
-		//			{
-
-		//				agentBase.RaiseMessage("Working on this Stuff: " + singleArticleWithInfo.title + "|||" + singleArticleWithInfo.controlNumVal, 1);
-
-		//				ListForUpload.Add(new WikitivityUploadsAgent.DataObtainedSingleRequestObject
-		//				{
-		//					extractedText = singleArticleWithInfo.extract,
-		//					PageTitle = singleArticleWithInfo.title,
-		//					ControlNumVal = singlePage.ControlNumVal
-		//				});
-		//			}
-		//		}
-		//		return ListForUpload;
-
-		//	}
-		//	catch (Exception e)
-		//	{
-		//		agentBase.RaiseMessage(e.ToString(), 1);
-		//		return ListForUpload;
-
-		//	}
-
-		//}
 
 		public static string GetInstanceUrl(IAgentHelper helper, AgentBase aB)
 		{
@@ -205,27 +136,25 @@ namespace Wikitivity.Agent
 
 			Int32 workspaceArtifactID = workspaceID;
 			Int32 identifyFieldArtifactID = 1003667;    // 'Control Number' Field
-			aB.RaiseMessage("Getting webAPI URL -- Inside ImportDocument - WAHelper-" + workspaceID, 1);
 			String relativityWebAPIUrl = GetWebApiUrl(helper, aB);
-			aB.RaiseMessage(relativityWebAPIUrl, 1);
+			aB.RaiseMessage("Obtained RelativityWebAPI: " + relativityWebAPIUrl, 1);
 			String relativityFolderName = "Name of the Destination Folder";
 			var url = relativityWebAPIUrl;
+			aB.RaiseMessage("This thing " + workspaceArtifactID, 1);
 			ImportAPI iapi = ImportAPI.CreateByRsaBearerToken(url);
 
 			try
 			{
 				var importJob = iapi.NewNativeDocumentImportJob();
-
 				importJob.OnMessage += ImportJobOnMessage;
-
 				importJob.OnComplete += ImportJobOnComplete;
 				importJob.OnFatalException += ImportJobOnFatalException;
 				importJob.Settings.CaseArtifactId = workspaceArtifactID;
 				importJob.Settings.ExtractedTextFieldContainsFilePath = false;
 
-				//Leave in case we want to do natives
-				//importJob.Settings.DisableNativeLocationValidation = true; Use these two lines for disabling native import & validation.
-				//importJob.Settings.DisableNativeValidation = true;
+				// Utilize these fields to set up native import
+				// importJob.Settings.DisableNativeLocationValidation = true; Use these two lines for disabling native import & validation.
+				// importJob.Settings.DisableNativeValidation = true;
 				// importJob.Settings.NativeFilePathSourceFieldName = "Original Folder Path";
 				importJob.Settings.NativeFileCopyMode = NativeFileCopyModeEnum.DoNotImportNativeFiles; // NativeFileCopyModeEnum.CopyFiles; NativeFileCopyModeEnum.DoNotImportNativeFiles
 				importJob.Settings.OverwriteMode = OverwriteModeEnum.Append;
@@ -235,7 +164,6 @@ namespace Wikitivity.Agent
 				importJob.Execute();
 
 				success = true;
-
 			}
 			catch (Exception ex)
 			{
@@ -276,23 +204,9 @@ namespace Wikitivity.Agent
 			IAPIMessages += jobReport.ToString();
 		}
 
-		//public void UploadBatchSetToRelativity(IRSAPIClient proxy, IEnumerable batchedArticles)
-		//{
-		//    List<Document> listOfArticlesasDocs = new List<Document>();
-		//    foreach (var singleArticle in batchedArticles)
-		//    {
-		//     Document articleAsDocument = new Document();
-		//        articleAsDocument.
-		//    }
-		//    var uploadArticleResultSet = proxy.Repositories.Document.C
-		//}
-
-
 		public List<int> GetCasesWithWikitivity(IRSAPIClient proxy)
 		{
 			List<int> CasesWithWikitivity = new List<int>();
-
-			#region Obtain a full list of Case IDs where Wikitivity is installed (CasesWithWikitivity)
 
 			Query<Workspace> getCaseIDs = new Query<Workspace>();
 			getCaseIDs.Condition = new WholeNumberCondition("Artifact ID", NumericConditionEnum.IsSet);
@@ -327,6 +241,8 @@ namespace Wikitivity.Agent
 					}
 					catch (Exception e)
 					{
+						// Should I pass in an agentbase to raisemessage on exception? Whats the best practice
+
 					}
 					if (QueryForWikitivity.TotalCount > 0)
 					{
@@ -335,7 +251,6 @@ namespace Wikitivity.Agent
 				}
 			}
 			return CasesWithWikitivity;
-			#endregion
 		}
 
 		#region classes
@@ -396,8 +311,6 @@ namespace Wikitivity.Agent
 			public string title { get; set; }
 			public string extract { get; set; }
 			public string controlNumVal { get; set; }
-
-			//I need to add the control number val in here
 		}
 
 		public class WikiEntry
@@ -413,7 +326,6 @@ namespace Wikitivity.Agent
 			public string WorkspaceID { get; set; }
 			public string RequestURL { get; set; }
 			public string Status { get; set; }
-
 		}
 		#endregion
 	}

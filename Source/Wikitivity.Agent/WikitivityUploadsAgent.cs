@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Wikitivity.Agent
 {
-	[kCura.Agent.CustomAttributes.Name("Wikitivity Uploads Agent")]
+	[kCura.Agent.CustomAttributes.Name("Wikitivity Upload Agent")]
 	[System.Runtime.InteropServices.Guid("fb87a077-88ae-4c7b-aed7-d4abdf692b74")]
 	public class WikitivityUploadsAgent : AgentBase
 	{
@@ -70,8 +70,6 @@ namespace Wikitivity.Agent
 						// Set the workspaceID to this workspace for reuse
 						int workspaceID = CasesWithWikitivity[0];
 						proxy.APIOptions.WorkspaceID = workspaceID;
-
-						RaiseMessage("Getting initial job - initial workspaceID is " + workspaceID, 1);
 
 						var getInitialJobResultSet = proxy.Repositories.RDO.Query(getInitialJobQuery);
 
@@ -140,26 +138,21 @@ namespace Wikitivity.Agent
 								try
 								{
 									//Steps:
-									//1. I need to create my batch set (batchedRequestList)
+									// 1. I need to create my batch set (batchedRequestList)
 									batchedRequestList = completeListByRequestID.Take(50).ToList();
 									RaiseMessage("Batched list count: " + batchedRequestList.Count, 1);
 
-
-									//2. I then need to perform the actual uploads to Relativity for the batchedRequestList || I actually need to get the page content
-
+									// 2. Perform the actual uploads to Relativity for the batchedRequestList 
 									var fullyPopulatedArticleList = wAHelper.PopulateArticleData(batchedRequestList, agentBase: this);
 
-									RaiseMessage(fullyPopulatedArticleList[0].PageTitle.ToString(), 1);
-
-
-									//This should kick off the  import job with a list of articles with full text
+									// This kicks off the import job with a list of articles with full text
 									var importSuccess = wAHelper.ImportDocument(this.Helper, workspaceID, fullyPopulatedArticleList, this);
 
 									if (importSuccess)
 									{
 										RaiseMessage("Import successful", 1);
-										//AT THIS POINT EVERYTHING IN THE BATCH SHOULD BE UPLOADED TO RELATIVITY
-										//3. I then need to delete the articles in the batch set from the RDO in the workspace
+										// AT THIS POINT EVERYTHING IN THE BATCH SHOULD BE UPLOADED TO RELATIVITY
+										// 3. Delete the articles in the batch set from the RDO in the workspace
 
 										var deletionSuccess =
 											wAHelper.DeleteUploadedRequestsFromRelativity(proxy, workspaceID,
@@ -167,11 +160,7 @@ namespace Wikitivity.Agent
 
 										if (deletionSuccess)
 										{
-											//4. I need to then remove the entries put into the batch set from the master list *This should actually happen down here due to the fact I'm using 
-											// a while loop. Otherwise the condition to break the loop is met before I ever get a chance to upload the last set. May need to add logic for if
-											// if(completeListByRequestID.Empty){batchedRequestList.Clear();}
-
-											//5. I then need to clear out the batch set
+											// 4. Remove the entries put into the batch set from the master list & clear out the batch set
 											if (completeListByRequestID.Any())
 											{
 												completeListByRequestID.RemoveAll(item => batchedRequestList.Contains(item));
@@ -181,15 +170,14 @@ namespace Wikitivity.Agent
 										}
 									}
 
-									//6. I then need to repopulate the batchset and repeat the process til the master list is empty. HANDLED BY THE WHILE LOOP
+									// 6. Repopulate the batchset and repeat the process til the master list is empty. HANDLED BY THE WHILE LOOP
 
 								}
 								catch (Exception ex)
 								{
-									RaiseError("HEYYOOOO1 " + ex.StackTrace.ToString() + ex.InnerException + " " + ex.Message, "HEYYOOOO " + ex.StackTrace.ToString() + ex.InnerException + " " + ex.Message);
+									RaiseError("Agent failed in execution: " + ex.ToString(), ex.ToString());
 								}
 							}
-
 						}
 						else
 						{
@@ -204,10 +192,9 @@ namespace Wikitivity.Agent
 			}
 			catch (Exception ex)
 			{
-				RaiseError("HEYYOOOO2 " + ex.StackTrace.ToString() + ex.InnerException + " " + ex.Message, "HEYYOOOO " + ex.StackTrace.ToString() + ex.InnerException + " " + ex.Message);
+				RaiseError("Agent failed in execution: " + ex.ToString(), ex.ToString());
 			}
 		}
-
 
 		/// <summary>
 		/// Returns the name of agent
@@ -216,7 +203,7 @@ namespace Wikitivity.Agent
 		{
 			get
 			{
-				return "Wikitivity Uploads Agent";
+				return "Wikitivity Upload Agent";
 			}
 		}
 	}
