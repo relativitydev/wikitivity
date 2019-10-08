@@ -77,6 +77,7 @@ namespace Wikitivity.EventHandler
 				AvailableInViewer = false,
 				AllowHTML = false,
 				Width = "123",
+				FilterType = "TextBox",
 				ObjectType = new ObjectType
 				{
 					DescriptorArtifactTypeID = 10
