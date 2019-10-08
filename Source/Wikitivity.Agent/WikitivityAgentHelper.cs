@@ -84,12 +84,6 @@ namespace Wikitivity.Agent
 								agentBase.RaiseMessage(e.ToString(), 1);
 							}
 						}
-						//string showTitles = "";
-						//foreach (var test in ListForUpload)
-						//{
-						//	showTitles += test.PageTitle;
-						//}
-						//agentBase.RaiseMessage(showTitles, 1);
 					}
 					catch (Exception e)
 					{
@@ -140,7 +134,6 @@ namespace Wikitivity.Agent
 			aB.RaiseMessage("Obtained RelativityWebAPI: " + relativityWebAPIUrl, 1);
 			String relativityFolderName = "Name of the Destination Folder";
 			var url = relativityWebAPIUrl;
-			aB.RaiseMessage("This thing " + workspaceArtifactID, 1);
 			ImportAPI iapi = ImportAPI.CreateByRsaBearerToken(url);
 
 			try
@@ -184,7 +177,6 @@ namespace Wikitivity.Agent
 
 			foreach (var singleArticle in batchedArticleEnum)
 			{
-				aB.RaiseMessage(singleArticle.ControlNumVal + " | " + singleArticle.extractedText + " | " + singleArticle.PageTitle, 1); // do we want to have this raised as a message? Can be removed, was for debugging purposes
 				table.Rows.Add(singleArticle.ControlNumVal, singleArticle.extractedText, singleArticle.PageTitle);
 			}
 			return table;
