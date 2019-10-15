@@ -77,7 +77,7 @@ namespace Wikitivity.EventHandler
 				AvailableInViewer = false,
 				AllowHTML = false,
 				Width = "123",
-				FilterType = "TextBox",
+				// FilterType = "TextBox", Currently this breaks the field creation.
 				ObjectType = new ObjectType
 				{
 					DescriptorArtifactTypeID = 10
