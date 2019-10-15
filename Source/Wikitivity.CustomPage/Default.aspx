@@ -13,7 +13,7 @@
 <form id="form1" runat="server">
 		<div id="_mainBody" class="login-container" style="text-align: center; margin: 100px;">
 				<div style="margin: 50px;">
-						<img src="Wikitivity_2a.png" alt="Wikitivity_logo" style="width: 375px; height: 175px;"/>
+						<img src="Wikitivity_2a.png" alt="Wikitivity_logo" style="width: 682px; height: 284px;"/>
 						<p>Use the field below to add the names of any Wikipedia categories you’d like to import articles from.  <br />Use a semicolon ( ; ) as the delimiter between multiple category names.  When finished, click the <b>Preview Request</b> button.</p>
 				 
 						<p><b>Please note:</b> Category names are case sensitive. For example, <i>Star Wars</i> will return results, but <i>star wars</i> or <i>Star wars</i> will not. <br/>
