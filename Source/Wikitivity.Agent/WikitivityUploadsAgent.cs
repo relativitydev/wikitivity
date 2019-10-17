@@ -68,9 +68,6 @@ namespace Wikitivity.Agent
 						getInitialJobQuery.ArtifactTypeGuid = WikitivityRDOGUID;
 
 
-						// Should this be stuffed into a foreach from here to hit all the workspaces?
-
-
 						foreach (int singleWorkspace in CasesWithWikitivity)
 						{
 
