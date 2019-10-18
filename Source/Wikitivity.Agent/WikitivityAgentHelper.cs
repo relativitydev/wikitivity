@@ -37,7 +37,7 @@ namespace Wikitivity.Agent
 			}
 			catch (Exception ex)
 			{
-				// Should i pass in an agentbase so I can raise message? An IAPI logger so I Can log? :shrug:
+				throw new Exception("An error an occurred when deleting completed requests", ex);
 			}
 
 			return success;
@@ -211,6 +211,8 @@ namespace Wikitivity.Agent
 			}
 			catch (Exception ex)
 			{
+				throw new Exception("An error occurred when querying for workspaces", ex);
+
 			}
 			if (CaseQueryResults.Success)
 			{
@@ -233,7 +235,7 @@ namespace Wikitivity.Agent
 					}
 					catch (Exception e)
 					{
-						// Should I pass in an agentbase to raisemessage on exception? Whats the best practice
+						throw new Exception("An error an occurred when getting cases with GetCasesWithWikitivity", e);
 
 					}
 					if (QueryForWikitivity.TotalCount > 0)
