@@ -101,28 +101,41 @@ namespace Wikitivity.Agent
 
 		public static string GetInstanceUrl(IAgentHelper helper, AgentBase aB)
 		{
-			string instanceUrl = "";
 			try
 			{
 				aB.RaiseMessage("Attempting to get URL...", 1);
-				instanceUrl = helper.GetInstanceSettingBundle().GetString("Relativity.Core", "KeplerServicesUri");
+				//instanceUrl = helper.GetInstanceSettingBundle().GetString("Relativity.Core", "KeplerServicesUri");
+				string instanceUrl = helper.GetInstanceSettingBundle().GetStringAsync("Relativity.Wikitivity", "WikitivityWebApi").Result;
+
 				aB.RaiseMessage("Acquired URL: " + instanceUrl, 1);
+				return instanceUrl;
 			}
 			catch (Exception e)
 			{
-				aB.RaiseMessage(e.ToString(), 1);
+				aB.RaiseMessage("Failed obtaining the webAPI value:\r\n " + e.ToString(), 1);
+				throw;
 			}
 
 
-			return instanceUrl;
+
 		}
 
 		public static string GetWebApiUrl(IAgentHelper helper, AgentBase aB)
 		{
-			string baseUrl = GetInstanceUrl(helper, aB);
-			baseUrl = baseUrl.ToLower();
-			baseUrl = baseUrl.Replace(".rest/api/", "webapi/");
-			return baseUrl;
+			try
+			{
+				string baseUrl = GetInstanceUrl(helper, aB);
+				baseUrl = baseUrl.ToLower();
+				//baseUrl = baseUrl.Replace(".rest/api/", "webapi/");
+				return baseUrl;
+			}
+			catch (Exception e)
+			{
+
+				aB.RaiseMessage("Failed obtaining the webAPI value:\r\n " + e.ToString(), 1);
+				throw;
+			}
+
 		}
 		public bool ImportDocument(IAgentHelper helper, int workspaceID, List<WikitivityUploadsAgent.DataObtainedSingleRequestObject> batchedArticleList, AgentBase aB)
 		{
@@ -225,7 +238,7 @@ namespace Wikitivity.Agent
 
 					Query<ObjectType> checkForWikitivity = new Query<ObjectType>();
 					checkForWikitivity.Condition =
-						new TextCondition("Name", TextConditionEnum.EqualTo, "Wikitivity Job Progress"); //this feels le jank
+						new TextCondition("Name", TextConditionEnum.EqualTo, "Wikitivity Job Progress");
 					checkForWikitivity.Fields = FieldValue.AllFields;
 
 					QueryResultSet<ObjectType> QueryForWikitivity = new QueryResultSet<ObjectType>();

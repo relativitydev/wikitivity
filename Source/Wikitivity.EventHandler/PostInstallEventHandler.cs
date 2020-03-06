@@ -99,5 +99,21 @@ namespace Wikitivity.EventHandler
 			return results.TotalCount;
 
 		}
+
+		public static int QueryForAdminLevel(IRSAPIClient proxy, int workspaceId)
+		{
+			Query<Field> queryForArticleTitle = new Query<Field>
+			{
+				ArtifactTypeName = "Field",
+				Condition = new TextCondition("Name", TextConditionEnum.EqualTo, "Article Title"),
+				Fields = FieldValue.AllFields
+			};
+			proxy.APIOptions.WorkspaceID = workspaceId;
+			var results = proxy.Repositories.Field.Query(queryForArticleTitle, 0);
+			return results.TotalCount;
+
+		}
+
+
 	}
 }
