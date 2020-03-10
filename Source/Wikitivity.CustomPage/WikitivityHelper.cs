@@ -137,9 +137,7 @@ namespace Wikitivity.CustomPage
 		public async Task UpdateRequestHistoryOM(IObjectManager proxy, string requestID, string requestUser, int articleCount, int workspaceID, string requestedCategories, string prefix)
 		{
 
-			//TODO: Refactor to OM
 			CreateRequest createRequestHistory = new CreateRequest();
-
 
 			var RequestIDField = new FieldRefValuePair()
 			{
@@ -159,7 +157,6 @@ namespace Wikitivity.CustomPage
 				Value = DateTime.Today.ToShortDateString()
 
 			};
-
 			var ArticleCountField = new FieldRefValuePair()
 			{
 				Field = new FieldRef() { Name = "Article Count" },
@@ -171,13 +168,17 @@ namespace Wikitivity.CustomPage
 				Field = new FieldRef() { Name = "Requested Categories" },
 				Value = requestedCategories
 			};
-			var PrefixField = new FieldRefValuePair() { Field = new FieldRef() { Name = "Prefix" }, Value = prefix };
+			var PrefixField = new FieldRefValuePair()
+			{
+				Field = new FieldRef() { Name = "Prefix" },
+				Value = prefix
+
+			};
 
 			IEnumerable<FieldRefValuePair> FullFieldListWithValues = new List<FieldRefValuePair>()
-					{
-						RequestIDField, RequestUserField, RequestDateField, ArticleCountField, RequestedCategoriesField, PrefixField
-
-					};
+			{
+				RequestIDField, RequestUserField, RequestDateField, ArticleCountField, RequestedCategoriesField, PrefixField
+			};
 
 			createRequestHistory.FieldValues = FullFieldListWithValues;
 			createRequestHistory.ObjectType = new ObjectTypeRef() { Guid = WikitivityRequestHistoryRDOGuid };
@@ -252,11 +253,8 @@ namespace Wikitivity.CustomPage
 
 		public async Task WriteToTableOM(List<WikiConstants.WikiRequest> ListofRequests)
 		{
-			//Now I need to construct the individual values to be added in the masscreate call?
 			var proxy = ListofRequests.FirstOrDefault().Proxy;
 			var workspaceID = ListofRequests.FirstOrDefault().workspaceID;
-			//TODO: Refactor to OM
-			//	proxy.APIOptions.WorkspaceID = workspaceID;
 
 			var massCreateRequest = new MassCreateRequest();
 			massCreateRequest.ObjectType = new ObjectTypeRef() { Guid = WikitivityRDOGuid };
@@ -276,22 +274,7 @@ namespace Wikitivity.CustomPage
 			List<FieldRef> fieldList = new List<FieldRef>() { RequestID, RequestUrl, RequestName, PageTitle };
 			massCreateRequest.Fields = fieldList;
 
-			// Individual operations now?
-
-
-
-
-			//Construct the values THESE MUST BE IN ORDER?
-
-
-			//	List<object> FieldVals = new List<object>();
-
-			//	List<FieldRef> test = new List<FieldRef>();
-
-
 			var preppedlistofRequests = new List<List<object>> { };
-
-
 
 			foreach (var singleReq in ListofRequests)
 			{
@@ -314,28 +297,10 @@ namespace Wikitivity.CustomPage
 						singleReq.Page
 				 });
 
-
-				//var singleRequestList = new List<List<object>>() { new List<object>() { singleReq.RequestIDGuid, requestUrl, singleReq.Page.ToString(), docID } };
-				//FieldVals.Add(singleRequestList);
 			}
-			//IReadOnlyList<IReadOnlyList<object>> FieldValues = new List<IReadOnlyList<object>>() { FieldVals };
+
 			massCreateRequest.ValueLists = preppedlistofRequests;
 
-
-			//List<Guid> guidList = new List<Guid>();
-			//guidList.Add(WikitivityRDOGuid);
-			//wikitivityRequestRDO.ArtifactTypeGuids = guidList;
-			//test.Add(new FieldRef() { Name = "Request ID", Value = requestID });
-			//test.Add(new FieldValue() { Name = "Request Url", Value = requestUrl });
-
-			//if (prefix == String.Empty)
-			//{
-			//	prefix = "WIKI";
-			//}
-			////string docID = prefix + count.ToString("D7");
-
-			//wikitivityRequestRDO.Fields.Add(new FieldValue() { Name = "Name", Value = docID });
-			//wikitivityRequestRDO.Fields.Add(new FieldValue() { Name = "Page Title", Value = pageTitle });
 			try
 			{
 				await proxy.CreateAsync(workspaceID, massCreateRequest);

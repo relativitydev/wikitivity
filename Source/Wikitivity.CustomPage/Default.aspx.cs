@@ -121,8 +121,6 @@ namespace Wikitivity.CustomPage
 
 			try
 			{
-//Moved the porxy to outside this scope to be reused************************************************
-				//IObjectManager proxy = ConnectionHelper.Helper().GetServicesManager().CreateProxy<IObjectManager>(ExecutionIdentity.System);
 				int workspaceID = ConnectionHelper.Helper().GetActiveCaseID();
 				string requestIDGuid = Guid.NewGuid().ToString();
 				int count = 000001;
@@ -143,7 +141,7 @@ namespace Wikitivity.CustomPage
 
 					CreateRequestList.Add(singleWikiRequest);
 					count++;
-				} // at this point this will create a full list of the objects I need from the preview pane. I'll then need to push these to the request method. 
+				} 
 
 				try
 				{
@@ -160,19 +158,7 @@ namespace Wikitivity.CustomPage
 				{
 					countLabel.Text = (ex.ToString());
 				}
-				//	IReadOnlyList<object> ListOfRequestsToCreate = new List<object>() { requestIDGuid, page.ToString(), proxy, workspaceID, prefixText.Text, count };
-
-				//try
-				//{
-				//	wHelper.WriteToTable(requestIDGuid, page.ToString(), proxy, workspaceID, prefixText.Text, count);
-				//	//count++;
-				//}
-				//catch (Exception ex)
-				//{
-				//	countLabel.Text = (ex.ToString());
-				//}
-			//	IObjectManager proxy = ConnectionHelper.Helper().GetServicesManager().CreateProxy<IObjectManager>(ExecutionIdentity.System);
-
+				
 				requestLabel.Text = "Successfully submitted job!";
 			}
 			catch (Exception ex)
@@ -180,44 +166,7 @@ namespace Wikitivity.CustomPage
 				requestLabel.Text = ex.ToString();
 			}
 		}
-		//		protected void submitJobButton_Click(object sender, EventArgs e)
-		//		{
-		//			requestLabel.Text = "Submitting request...";
-
-		//			if (submitJobButton.Visible == true)
-		//			{
-		//				submitJobButton.Visible = false;
-		//			}
-		//			previewPane.Visible = true;
-
-		//			try
-		//			{
-		//				IRSAPIClient proxy = ConnectionHelper.Helper().GetServicesManager().CreateProxy<IRSAPIClient>(ExecutionIdentity.System);
-		//				int workspaceID = ConnectionHelper.Helper().GetActiveCaseID();
-		//				string requestIDGuid = Guid.NewGuid().ToString();
-		//				int count = 000001;
-		////TODO: Can I turn this into a mass op using OM?
-		//				foreach (object page in previewPane.Items)
-		//				{
-		//					try
-		//					{
-		//						wHelper.WriteToTable(requestIDGuid, page.ToString(), proxy, workspaceID, prefixText.Text, count);
-		//						count++;
-		//					}
-		//					catch (Exception ex)
-		//					{
-		//						countLabel.Text = (ex.ToString());
-		//					}
-		//				}
-		//				wHelper.UpdateRequestHistory(proxy, requestIDGuid, ConnectionHelper.Helper().GetAuthenticationManager().UserInfo.FullName, previewPane.Items.Count, workspaceID, pageRequestText.Text, prefixText.Text);
-		//				requestLabel.Text = "Successfully submitted job!";
-		//			}
-		//			catch (Exception ex)
-		//			{
-		//				requestLabel.Text = ex.ToString();
-		//			}
-		//		}
-		protected void viewCategoriesButton_Click(object sender, EventArgs e)
+	protected void viewCategoriesButton_Click(object sender, EventArgs e)
 		{
 		}
 	}
