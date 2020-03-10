@@ -5,43 +5,156 @@ using kCura.Relativity.DataReaderClient;
 using kCura.Relativity.ImportAPI;
 using Newtonsoft.Json;
 using Relativity.API;
+using Relativity.Services.Objects;
+using Relativity.Services.Objects.DataContracts;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Net;
+using System.Threading.Tasks;
+using ObjectType = kCura.Relativity.Client.DTOs.ObjectType;
 
 namespace Wikitivity.Agent
 {
 	class WikitivityAgentHelper
 	{
 		public static string IAPIMessages = "";
-
-		public bool DeleteUploadedRequestsFromRelativity(IRSAPIClient proxy, int workspaceID, List<WikitivityUploadsAgent.SingleRequestObject> listOfCompletedUploads)
+		public static Guid WikitivityRDOGuid = new Guid("C6196733-E2A6-48F4-9443-37990972EBA3");
+		
+		public bool DeleteUploadedRequestsFromRelativityOM(IObjectManager proxy, int workspaceID, List<WikitivityUploadsAgent.SingleRequestObject> listOfCompletedUploads)
 		{
-			proxy.APIOptions.WorkspaceID = workspaceID;
-
 			bool success = false;
 			try
 			{
-				List<Document> DocsToDelete = new List<Document>();
+				List<RelativityObjectRef> listofObjectstoDelete = new List<RelativityObjectRef>();
 				foreach (var singleDoc in listOfCompletedUploads)
 				{
-					DocsToDelete.Add(new Document(singleDoc.ArtifactID));
+					listofObjectstoDelete.Add(new RelativityObjectRef() { ArtifactID = singleDoc.ArtifactID });
 				}
 
-				var DeleteResultSet = proxy.Repositories.Document.Delete(DocsToDelete);
-				if (DeleteResultSet.Success)
-				{
-					success = true;
-				}
+				var deleteRequest = new MassDeleteByObjectIdentifiersRequest();
+				// Represents a list of RelativityObjects to be deleted.
+				deleteRequest.Objects = listofObjectstoDelete;
+				Task.Run(async () =>
+					{
+						await proxy.DeleteAsync(workspaceID, deleteRequest);
+					}).Wait();
+				return success = true;
 			}
 			catch (Exception ex)
 			{
 				throw new Exception("An error an occurred when deleting completed requests", ex);
 			}
-
-			return success;
 		}
+
+		public static async Task<List<int>> FindWikitivityCasesOM(IObjectManager proxy, int workspaceID)
+		{
+			QueryResultSlim test = new QueryResultSlim();
+			List<int> CasesWithWikitivity = new List<int>();
+
+			QueryRequest omGetInitialJobQuery = new QueryRequest()
+			{
+				ObjectType = new ObjectTypeRef() { Guid = WikitivityRDOGuid },
+				Condition = "('Request Url' ISSET)",
+				IncludeIDWindow = false,
+				RelationalField = null, 
+				SampleParameters = null,
+				SearchProviderCondition = null,
+				Sorts = null,
+				Fields = new List<FieldRef>()
+				{
+					new FieldRef() {Name = "Request Url"},
+					new FieldRef() {Name = "Request ID"},
+					new FieldRef() {Name = "Page Title"}
+
+				}
+			};
+			try
+			{
+				test = await proxy.QuerySlimAsync(workspaceID, omGetInitialJobQuery, 1, 10000);
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+				throw;
+			}
+
+			foreach (var singleWorkspace in test.Objects)
+			{
+				CasesWithWikitivity.Add(singleWorkspace.ArtifactID);
+			}
+			return CasesWithWikitivity;
+		}
+		
+		public static async Task<QueryResultSlim> FindAllWikiCases(IObjectManager proxy, int workspaceID)
+		{
+
+
+			QueryRequest omGetInitialJobQuery = new QueryRequest()
+			{
+				ObjectType = new ObjectTypeRef() { Guid = WikitivityRDOGuid },
+				Condition = "('Request Url' ISSET)",
+				IncludeIDWindow = false,
+				RelationalField = null, //name of relational field to expand query results to related objects
+				SampleParameters = null,
+				SearchProviderCondition = null,
+				Sorts = null,
+				Fields = new List<FieldRef>()
+				{
+					new FieldRef() {Name = "Request Url"},
+					new FieldRef() {Name = "Request ID"},
+					new FieldRef() {Name = "Page Title"}
+				}
+			};
+
+			try
+			{
+				QueryResultSlim queryResults = await proxy.QuerySlimAsync(workspaceID, omGetInitialJobQuery, 1, 10000);
+				return queryResults;
+			}
+			catch (Exception ex)
+			{
+				return new QueryResultSlim();
+			}
+		}
+
+		public static async Task<QueryResultSlim> FindAllRequestsbyID(IObjectManager proxy, int workspaceID, string requestGuid)
+		{
+
+			QueryRequest findAllRequestsbyIDQuery = new QueryRequest()
+			{
+				ObjectType = new ObjectTypeRef() { Guid = WikitivityRDOGuid },
+				Condition = "('Request ID' IN ['"+requestGuid+"'])",
+				IncludeIDWindow = false,
+				RelationalField = null, //name of relational field to expand query results to related objects
+				SampleParameters = null,
+				SearchProviderCondition = null,
+				Sorts = null,
+				Fields = new List<FieldRef>()
+				{
+					new FieldRef() {Name = "Request Url"},
+					new FieldRef() {Name = "Request ID"},
+					new FieldRef() {Name = "Page Title"},
+					new FieldRef() {Name = "Name"}
+				}
+			};
+
+			try
+			{
+				QueryResultSlim queryResults = await proxy.QuerySlimAsync(workspaceID, findAllRequestsbyIDQuery, 1, 10000);
+				return queryResults;
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
+		/// <summary>
+		/// No RSAPI code
+		/// </summary>
+		/// <param name="singleRequestObjects"></param>
+		/// <param name="agentBase"></param>
+		/// <returns></returns>
 		public List<WikitivityUploadsAgent.DataObtainedSingleRequestObject> PopulateArticleData(List<WikitivityUploadsAgent.SingleRequestObject> singleRequestObjects, AgentBase agentBase)
 		{
 			List<WikitivityUploadsAgent.DataObtainedSingleRequestObject> ListForUpload = new List<WikitivityUploadsAgent.DataObtainedSingleRequestObject>();
@@ -209,55 +322,42 @@ namespace Wikitivity.Agent
 			IAPIMessages += jobReport.ToString();
 		}
 
-		public List<int> GetCasesWithWikitivity(IRSAPIClient proxy)
+		
+
+		public async Task<List<int>> GetCasesWithWikitivityOM(IObjectManager proxy)
 		{
+			//TODO: Refactor to OM
 			List<int> CasesWithWikitivity = new List<int>();
 
-			Query<Workspace> getCaseIDs = new Query<Workspace>();
-			getCaseIDs.Condition = new WholeNumberCondition("Artifact ID", NumericConditionEnum.IsSet);
-			getCaseIDs.Fields = FieldValue.AllFields;
-			QueryResultSet<Workspace> CaseQueryResults = new QueryResultSet<Workspace>();
-			proxy.APIOptions.WorkspaceID = -1;
+			QueryRequest getWorkspaceList = new QueryRequest()
+			{
+				ObjectType = new ObjectTypeRef() { Name = "Workspace" },
+				Condition = "('ArtifactID' ISSET)",
+				IncludeIDWindow = false,
+				RelationalField = null, 
+				SampleParameters = null,
+				SearchProviderCondition = null,
+				Sorts = null,
+				Fields = new List<FieldRef>()
+				{
+					new FieldRef() {Name = "ArtifactID"},
+				}
+			};
+
 			try
 			{
-				CaseQueryResults = proxy.Repositories.Workspace.Query(getCaseIDs, 0);
+				Relativity.Services.Objects.DataContracts.QueryResult queryResults = await proxy.QueryAsync(-1, getWorkspaceList, 0, 10000);
+				foreach (var singleWorkspace in queryResults.Objects)
+				{
+					CasesWithWikitivity.Add(singleWorkspace.ArtifactID);
+				}
+				return CasesWithWikitivity;
 			}
 			catch (Exception ex)
 			{
-				throw new Exception("An error occurred when querying for workspaces", ex);
+				throw ex;
 
 			}
-			if (CaseQueryResults.Success)
-			{
-
-				foreach (var caseID in CaseQueryResults.Results)
-				{
-					var singleWorkSpace = caseID.Artifact.ArtifactID;
-
-					proxy.APIOptions.WorkspaceID = singleWorkSpace;
-
-					Query<ObjectType> checkForWikitivity = new Query<ObjectType>();
-					checkForWikitivity.Condition =
-						new TextCondition("Name", TextConditionEnum.EqualTo, "Wikitivity Job Progress");
-					checkForWikitivity.Fields = FieldValue.AllFields;
-
-					QueryResultSet<ObjectType> QueryForWikitivity = new QueryResultSet<ObjectType>();
-					try
-					{
-						QueryForWikitivity = proxy.Repositories.ObjectType.Query(checkForWikitivity, 0);
-					}
-					catch (Exception e)
-					{
-						throw new Exception("An error an occurred when getting cases with GetCasesWithWikitivity", e);
-
-					}
-					if (QueryForWikitivity.TotalCount > 0)
-					{
-						CasesWithWikitivity.Add(singleWorkSpace);
-					}
-				}
-			}
-			return CasesWithWikitivity;
 		}
 
 		#region classes
