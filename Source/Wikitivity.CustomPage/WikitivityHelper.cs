@@ -3,7 +3,11 @@ using kCura.Relativity.Client.DTOs;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
+using Relativity.Services.Objects;
+using Relativity.Services.Objects.DataContracts;
 
 namespace Wikitivity.CustomPage
 {
@@ -128,8 +132,38 @@ namespace Wikitivity.CustomPage
 				}
 			}
 		}
+
+
+		public void UpdateRequestHistoryOM(IRSAPIClient proxy, string requestID, string requestUser, int articleCount, int workspaceID, string requestedCategories, string prefix)
+		{
+
+			//TODO: Refactor to OM
+			proxy.APIOptions.WorkspaceID = workspaceID;
+			RDO wikitivityRequestHistoryRDO = new RDO(WikitivityRequestHistoryRDOGuid);
+			List<Guid> guidList = new List<Guid>();
+			guidList.Add(WikitivityRequestHistoryRDOGuid);
+			wikitivityRequestHistoryRDO.ArtifactTypeGuids = guidList;
+			wikitivityRequestHistoryRDO.Fields.Add(new FieldValue() { Name = "Request ID", Value = requestID });
+			wikitivityRequestHistoryRDO.Fields.Add(new FieldValue() { Name = "Request User", Value = requestUser });
+			wikitivityRequestHistoryRDO.Fields.Add(new FieldValue() { Name = "Request Date", Value = DateTime.Today.ToShortDateString() });
+			wikitivityRequestHistoryRDO.Fields.Add(new FieldValue() { Name = "Article Count", Value = articleCount });
+			wikitivityRequestHistoryRDO.Fields.Add(new FieldValue() { Name = "Requested Categories", Value = requestedCategories });
+			wikitivityRequestHistoryRDO.Fields.Add(new FieldValue() { Name = "Prefix", Value = prefix });
+
+			try
+			{
+				WriteResultSet<RDO> writeResultSet = proxy.Repositories.RDO.Create(wikitivityRequestHistoryRDO);
+
+			}
+			catch (Exception ex)
+			{
+
+			}
+		}
 		public void UpdateRequestHistory(IRSAPIClient proxy, string requestID, string requestUser, int articleCount, int workspaceID, string requestedCategories, string prefix)
 		{
+
+			//TODO: Refactor to OM
 			proxy.APIOptions.WorkspaceID = workspaceID;
 			RDO wikitivityRequestHistoryRDO = new RDO(WikitivityRequestHistoryRDOGuid);
 			List<Guid> guidList = new List<Guid>();
@@ -155,7 +189,7 @@ namespace Wikitivity.CustomPage
 		public void WriteToTable(string requestID, string pageTitle, IRSAPIClient proxy, int workspaceID, string prefix, int count)
 		{
 			string requestUrl = $"https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exlimit=max&explaintext&titles={pageTitle}&redirects=";
-
+			//TODO: Refactor to OM
 			proxy.APIOptions.WorkspaceID = workspaceID;
 			RDO wikitivityRequestRDO = new RDO(WikitivityRDOGuid);
 
@@ -177,6 +211,103 @@ namespace Wikitivity.CustomPage
 			try
 			{
 				WriteResultSet<RDO> writeResultSet = proxy.Repositories.RDO.Create(wikitivityRequestRDO);
+			}
+			catch (Exception ex)
+			{
+
+			}
+		}
+
+
+		public async Task WriteToTableOM(List<WikiConstants.WikiRequest> ListofRequests)
+		{
+			//Now I need to construct the individual values to be added in the masscreate call?
+			var proxy = ListofRequests.FirstOrDefault().Proxy;
+			var workspaceID = ListofRequests.FirstOrDefault().workspaceID;
+			//TODO: Refactor to OM
+			//	proxy.APIOptions.WorkspaceID = workspaceID;
+
+			var massCreateRequest = new MassCreateRequest();
+			massCreateRequest.ObjectType = new ObjectTypeRef() { Guid = WikitivityRDOGuid };
+
+			//Construct the fields
+			FieldRef RequestID = new FieldRef();
+			//field1.Guid = DocumentCountFieldGuid;
+			RequestID.Name = "Request ID";
+			FieldRef RequestUrl = new FieldRef();
+			//field2.Guid = UserCountFieldGuid;
+			RequestUrl.Name = "Request Url";
+			FieldRef PageTitle = new FieldRef();
+			PageTitle.Name = "Page Title";
+			//field3.ArtifactID = 1084090;
+			FieldRef RequestName = new FieldRef();
+			RequestName.Name = "Name";
+			List<FieldRef> fieldList = new List<FieldRef>() { RequestID, RequestUrl, RequestName, PageTitle };
+			massCreateRequest.Fields = fieldList;
+
+			// Individual operations now?
+
+
+
+
+			//Construct the values THESE MUST BE IN ORDER?
+
+
+		//	List<object> FieldVals = new List<object>();
+
+			//	List<FieldRef> test = new List<FieldRef>();
+
+
+			var preppedlistofRequests = new List<List<object>> { };
+
+
+
+			foreach (var singleReq in ListofRequests)
+			{
+
+				string requestUrl = $"https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exlimit=max&explaintext&titles={singleReq.Page}&redirects=";
+
+				if (singleReq.prefixText == String.Empty)
+				{
+					singleReq.prefixText = "WIKI";
+				}
+
+				string docID = singleReq.prefixText + singleReq.count.ToString("D7");
+
+				preppedlistofRequests.Add(new List<object>()
+				{
+
+						singleReq.RequestIDGuid,
+						requestUrl,
+						docID,
+						singleReq.Page
+		     	});
+  
+
+				//var singleRequestList = new List<List<object>>() { new List<object>() { singleReq.RequestIDGuid, requestUrl, singleReq.Page.ToString(), docID } };
+				//FieldVals.Add(singleRequestList);
+			}
+			//IReadOnlyList<IReadOnlyList<object>> FieldValues = new List<IReadOnlyList<object>>() { FieldVals };
+			massCreateRequest.ValueLists = preppedlistofRequests;
+
+
+			//List<Guid> guidList = new List<Guid>();
+			//guidList.Add(WikitivityRDOGuid);
+			//wikitivityRequestRDO.ArtifactTypeGuids = guidList;
+			//test.Add(new FieldRef() { Name = "Request ID", Value = requestID });
+			//test.Add(new FieldValue() { Name = "Request Url", Value = requestUrl });
+
+			//if (prefix == String.Empty)
+			//{
+			//	prefix = "WIKI";
+			//}
+			////string docID = prefix + count.ToString("D7");
+
+			//wikitivityRequestRDO.Fields.Add(new FieldValue() { Name = "Name", Value = docID });
+			//wikitivityRequestRDO.Fields.Add(new FieldValue() { Name = "Page Title", Value = pageTitle });
+			try
+			{
+				await proxy.CreateAsync(workspaceID, massCreateRequest);
 			}
 			catch (Exception ex)
 			{

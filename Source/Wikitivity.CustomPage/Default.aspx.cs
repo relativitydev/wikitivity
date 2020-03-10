@@ -4,6 +4,8 @@ using Relativity.CustomPages;
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Threading.Tasks;
+using Relativity.Services.Objects;
 
 namespace Wikitivity.CustomPage
 {
@@ -17,6 +19,8 @@ namespace Wikitivity.CustomPage
 		public static string RequestPagesURL;
 		public static string FullRequestURL;
 		public static int totalCount;
+		public static List<WikiConstants.WikiRequest> CreateRequestList = new List<WikiConstants.WikiRequest>();
+
 		protected void Page_Load(object sender, EventArgs e)
 		{
 		}
@@ -102,6 +106,7 @@ namespace Wikitivity.CustomPage
 			}
 		}
 
+
 		protected void submitJobButton_Click(object sender, EventArgs e)
 		{
 			requestLabel.Text = "Submitting request...";
@@ -114,24 +119,56 @@ namespace Wikitivity.CustomPage
 
 			try
 			{
-				IRSAPIClient proxy = ConnectionHelper.Helper().GetServicesManager().CreateProxy<IRSAPIClient>(ExecutionIdentity.System);
+				IObjectManager proxy = ConnectionHelper.Helper().GetServicesManager().CreateProxy<IObjectManager>(ExecutionIdentity.System);
 				int workspaceID = ConnectionHelper.Helper().GetActiveCaseID();
 				string requestIDGuid = Guid.NewGuid().ToString();
 				int count = 000001;
-
+				//TODO: Can I turn this into a mass op using OM?
 				foreach (object page in previewPane.Items)
 				{
-					try
+
+					WikiConstants.WikiRequest singleWikiRequest = new WikiConstants.WikiRequest()
 					{
-						wHelper.WriteToTable(requestIDGuid, page.ToString(), proxy, workspaceID, prefixText.Text, count);
-						count++;
-					}
-					catch (Exception ex)
+						prefixText = prefixText.Text,
+						count = count,
+						Page = page.ToString(),
+						Proxy = proxy,
+						RequestIDGuid = requestIDGuid,
+						workspaceID = workspaceID
+					};
+
+
+					CreateRequestList.Add(singleWikiRequest);
+					count++;
+				} // at this point this will create a full list of the objects I need from the preview pane. I'll then need to push these to the request method. 
+
+				try
+				{
+					Task.Run(async () =>
 					{
-						countLabel.Text = (ex.ToString());
-					}
+
+						await wHelper.WriteToTableOM(CreateRequestList);
+
+					});
+
 				}
-				wHelper.UpdateRequestHistory(proxy, requestIDGuid, ConnectionHelper.Helper().GetAuthenticationManager().UserInfo.FullName, previewPane.Items.Count, workspaceID, pageRequestText.Text, prefixText.Text);
+				catch (Exception ex)
+				{
+					countLabel.Text = (ex.ToString());
+				}
+			//	IReadOnlyList<object> ListOfRequestsToCreate = new List<object>() { requestIDGuid, page.ToString(), proxy, workspaceID, prefixText.Text, count };
+
+					//try
+					//{
+					//	wHelper.WriteToTable(requestIDGuid, page.ToString(), proxy, workspaceID, prefixText.Text, count);
+					//	//count++;
+					//}
+					//catch (Exception ex)
+					//{
+					//	countLabel.Text = (ex.ToString());
+					//}
+				
+				//wHelper.UpdateRequestHistory(proxy, requestIDGuid, ConnectionHelper.Helper().GetAuthenticationManager().UserInfo.FullName, previewPane.Items.Count, workspaceID, pageRequestText.Text, prefixText.Text);
 				requestLabel.Text = "Successfully submitted job!";
 			}
 			catch (Exception ex)
@@ -139,6 +176,43 @@ namespace Wikitivity.CustomPage
 				requestLabel.Text = ex.ToString();
 			}
 		}
+		//		protected void submitJobButton_Click(object sender, EventArgs e)
+		//		{
+		//			requestLabel.Text = "Submitting request...";
+
+		//			if (submitJobButton.Visible == true)
+		//			{
+		//				submitJobButton.Visible = false;
+		//			}
+		//			previewPane.Visible = true;
+
+		//			try
+		//			{
+		//				IRSAPIClient proxy = ConnectionHelper.Helper().GetServicesManager().CreateProxy<IRSAPIClient>(ExecutionIdentity.System);
+		//				int workspaceID = ConnectionHelper.Helper().GetActiveCaseID();
+		//				string requestIDGuid = Guid.NewGuid().ToString();
+		//				int count = 000001;
+		////TODO: Can I turn this into a mass op using OM?
+		//				foreach (object page in previewPane.Items)
+		//				{
+		//					try
+		//					{
+		//						wHelper.WriteToTable(requestIDGuid, page.ToString(), proxy, workspaceID, prefixText.Text, count);
+		//						count++;
+		//					}
+		//					catch (Exception ex)
+		//					{
+		//						countLabel.Text = (ex.ToString());
+		//					}
+		//				}
+		//				wHelper.UpdateRequestHistory(proxy, requestIDGuid, ConnectionHelper.Helper().GetAuthenticationManager().UserInfo.FullName, previewPane.Items.Count, workspaceID, pageRequestText.Text, prefixText.Text);
+		//				requestLabel.Text = "Successfully submitted job!";
+		//			}
+		//			catch (Exception ex)
+		//			{
+		//				requestLabel.Text = ex.ToString();
+		//			}
+		//		}
 		protected void viewCategoriesButton_Click(object sender, EventArgs e)
 		{
 		}

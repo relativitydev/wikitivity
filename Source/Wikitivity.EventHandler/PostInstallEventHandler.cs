@@ -20,6 +20,7 @@ namespace Wikitivity.EventHandler
 	{
 		public override Response Execute()
 		{
+			//TODO: Refactor to OM
 			IAPILog logger = Helper.GetLoggerFactory().GetLogger();
 			logger.LogVerbose("Log information throughout execution.");
 

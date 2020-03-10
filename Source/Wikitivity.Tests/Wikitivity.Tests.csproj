@@ -176,6 +176,12 @@
     <Content Include="oi\unmanaged\sccut-R1.dll" />
     <Content Include="oi\unmanaged\wvcore-R1.dll" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Wikitivity.CustomPage\Wikitivity.CustomPage.csproj">
+      <Project>{87E84FD5-093D-4922-83B2-E9AFD012F984}</Project>
+      <Name>Wikitivity.CustomPage</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
