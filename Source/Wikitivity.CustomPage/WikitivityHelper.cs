@@ -134,36 +134,67 @@ namespace Wikitivity.CustomPage
 		}
 
 
-		public void UpdateRequestHistoryOM(IRSAPIClient proxy, string requestID, string requestUser, int articleCount, int workspaceID, string requestedCategories, string prefix)
+		public async Task UpdateRequestHistoryOM(IObjectManager proxy, string requestID, string requestUser, int articleCount, int workspaceID, string requestedCategories, string prefix)
 		{
 
 			//TODO: Refactor to OM
-			proxy.APIOptions.WorkspaceID = workspaceID;
-			RDO wikitivityRequestHistoryRDO = new RDO(WikitivityRequestHistoryRDOGuid);
-			List<Guid> guidList = new List<Guid>();
-			guidList.Add(WikitivityRequestHistoryRDOGuid);
-			wikitivityRequestHistoryRDO.ArtifactTypeGuids = guidList;
-			wikitivityRequestHistoryRDO.Fields.Add(new FieldValue() { Name = "Request ID", Value = requestID });
-			wikitivityRequestHistoryRDO.Fields.Add(new FieldValue() { Name = "Request User", Value = requestUser });
-			wikitivityRequestHistoryRDO.Fields.Add(new FieldValue() { Name = "Request Date", Value = DateTime.Today.ToShortDateString() });
-			wikitivityRequestHistoryRDO.Fields.Add(new FieldValue() { Name = "Article Count", Value = articleCount });
-			wikitivityRequestHistoryRDO.Fields.Add(new FieldValue() { Name = "Requested Categories", Value = requestedCategories });
-			wikitivityRequestHistoryRDO.Fields.Add(new FieldValue() { Name = "Prefix", Value = prefix });
+			CreateRequest createRequestHistory = new CreateRequest();
+
+
+			var RequestIDField = new FieldRefValuePair()
+			{
+				Field = new FieldRef() { Name = "Request ID" },
+				Value = requestID
+
+			};
+			var RequestUserField = new FieldRefValuePair()
+			{
+				Field = new FieldRef() { Name = "Request User" },
+				Value = requestUser
+
+			};
+			var RequestDateField = new FieldRefValuePair()
+			{
+				Field = new FieldRef() { Name = "Request Date" },
+				Value = DateTime.Today.ToShortDateString()
+
+			};
+
+			var ArticleCountField = new FieldRefValuePair()
+			{
+				Field = new FieldRef() { Name = "Article Count" },
+				Value = articleCount
+
+			};
+			var RequestedCategoriesField = new FieldRefValuePair()
+			{
+				Field = new FieldRef() { Name = "Requested Categories" },
+				Value = requestedCategories
+			};
+			var PrefixField = new FieldRefValuePair() { Field = new FieldRef() { Name = "Prefix" }, Value = prefix };
+
+			IEnumerable<FieldRefValuePair> FullFieldListWithValues = new List<FieldRefValuePair>()
+					{
+						RequestIDField, RequestUserField, RequestDateField, ArticleCountField, RequestedCategoriesField, PrefixField
+
+					};
+
+			createRequestHistory.FieldValues = FullFieldListWithValues;
+			createRequestHistory.ObjectType = new ObjectTypeRef() { Guid = WikitivityRequestHistoryRDOGuid };
 
 			try
 			{
-				WriteResultSet<RDO> writeResultSet = proxy.Repositories.RDO.Create(wikitivityRequestHistoryRDO);
-
+				await proxy.CreateAsync(workspaceID, createRequestHistory);
 			}
 			catch (Exception ex)
 			{
+				throw ex;
 
 			}
 		}
 		public void UpdateRequestHistory(IRSAPIClient proxy, string requestID, string requestUser, int articleCount, int workspaceID, string requestedCategories, string prefix)
 		{
 
-			//TODO: Refactor to OM
 			proxy.APIOptions.WorkspaceID = workspaceID;
 			RDO wikitivityRequestHistoryRDO = new RDO(WikitivityRequestHistoryRDOGuid);
 			List<Guid> guidList = new List<Guid>();
@@ -253,7 +284,7 @@ namespace Wikitivity.CustomPage
 			//Construct the values THESE MUST BE IN ORDER?
 
 
-		//	List<object> FieldVals = new List<object>();
+			//	List<object> FieldVals = new List<object>();
 
 			//	List<FieldRef> test = new List<FieldRef>();
 
@@ -281,8 +312,8 @@ namespace Wikitivity.CustomPage
 						requestUrl,
 						docID,
 						singleReq.Page
-		     	});
-  
+				 });
+
 
 				//var singleRequestList = new List<List<object>>() { new List<object>() { singleReq.RequestIDGuid, requestUrl, singleReq.Page.ToString(), docID } };
 				//FieldVals.Add(singleRequestList);
@@ -311,7 +342,7 @@ namespace Wikitivity.CustomPage
 			}
 			catch (Exception ex)
 			{
-
+				throw ex;
 			}
 		}
 	}

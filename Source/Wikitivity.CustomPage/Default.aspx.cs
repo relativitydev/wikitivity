@@ -11,6 +11,8 @@ namespace Wikitivity.CustomPage
 {
 	public partial class Default : System.Web.UI.Page
 	{
+		IObjectManager proxy = ConnectionHelper.Helper().GetServicesManager().CreateProxy<IObjectManager>(ExecutionIdentity.System);
+
 		public string urlTest;
 		public static List<string> PreviewPaneList = new List<string>();
 		public static WikitivityHelper wHelper = new WikitivityHelper();
@@ -119,7 +121,8 @@ namespace Wikitivity.CustomPage
 
 			try
 			{
-				IObjectManager proxy = ConnectionHelper.Helper().GetServicesManager().CreateProxy<IObjectManager>(ExecutionIdentity.System);
+//Moved the porxy to outside this scope to be reused************************************************
+				//IObjectManager proxy = ConnectionHelper.Helper().GetServicesManager().CreateProxy<IObjectManager>(ExecutionIdentity.System);
 				int workspaceID = ConnectionHelper.Helper().GetActiveCaseID();
 				string requestIDGuid = Guid.NewGuid().ToString();
 				int count = 000001;
@@ -148,6 +151,7 @@ namespace Wikitivity.CustomPage
 					{
 
 						await wHelper.WriteToTableOM(CreateRequestList);
+						await wHelper.UpdateRequestHistoryOM(proxy, requestIDGuid, ConnectionHelper.Helper().GetAuthenticationManager().UserInfo.FullName, previewPane.Items.Count, workspaceID, pageRequestText.Text, prefixText.Text);
 
 					});
 
@@ -156,19 +160,19 @@ namespace Wikitivity.CustomPage
 				{
 					countLabel.Text = (ex.ToString());
 				}
-			//	IReadOnlyList<object> ListOfRequestsToCreate = new List<object>() { requestIDGuid, page.ToString(), proxy, workspaceID, prefixText.Text, count };
+				//	IReadOnlyList<object> ListOfRequestsToCreate = new List<object>() { requestIDGuid, page.ToString(), proxy, workspaceID, prefixText.Text, count };
 
-					//try
-					//{
-					//	wHelper.WriteToTable(requestIDGuid, page.ToString(), proxy, workspaceID, prefixText.Text, count);
-					//	//count++;
-					//}
-					//catch (Exception ex)
-					//{
-					//	countLabel.Text = (ex.ToString());
-					//}
-				
-				//wHelper.UpdateRequestHistory(proxy, requestIDGuid, ConnectionHelper.Helper().GetAuthenticationManager().UserInfo.FullName, previewPane.Items.Count, workspaceID, pageRequestText.Text, prefixText.Text);
+				//try
+				//{
+				//	wHelper.WriteToTable(requestIDGuid, page.ToString(), proxy, workspaceID, prefixText.Text, count);
+				//	//count++;
+				//}
+				//catch (Exception ex)
+				//{
+				//	countLabel.Text = (ex.ToString());
+				//}
+			//	IObjectManager proxy = ConnectionHelper.Helper().GetServicesManager().CreateProxy<IObjectManager>(ExecutionIdentity.System);
+
 				requestLabel.Text = "Successfully submitted job!";
 			}
 			catch (Exception ex)
