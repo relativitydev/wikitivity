@@ -4,11 +4,14 @@ using kCura.Relativity.Client;
 using kCura.Relativity.Client.DTOs;
 using Relativity.API;
 using System;
+using System.Collections.Generic;
 using System.Net;
-using Field = kCura.Relativity.Client.DTOs.Field;
-using FieldType = kCura.Relativity.Client.FieldType;
-using FieldValue = kCura.Relativity.Client.DTOs.FieldValue;
-using ObjectType = kCura.Relativity.Client.DTOs.ObjectType;
+using System.Threading.Tasks;
+using Relativity.Services.Interfaces.Field.Models;
+using Relativity.Services.Interfaces.Shared.Models;
+using Relativity.Services.Interfaces.Field;
+using Relativity.Services.Objects;
+using Relativity.Services.Objects.DataContracts;
 
 namespace Wikitivity.EventHandler
 {
@@ -23,7 +26,7 @@ namespace Wikitivity.EventHandler
 			//TODO: Refactor to OM
 			IAPILog logger = Helper.GetLoggerFactory().GetLogger();
 			logger.LogVerbose("Log information throughout execution.");
-
+            IFieldManager proxyFM = Helper.GetServicesManager().CreateProxy<IFieldManager>(ExecutionIdentity.System);
 			ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
 
 			Response retVal = new Response();
@@ -33,15 +36,14 @@ namespace Wikitivity.EventHandler
 			{
 				Int32 currentWorkspaceArtifactID = this.Helper.GetActiveCaseID();
 
-				using (IRSAPIClient proxy = Helper.GetServicesManager().CreateProxy<IRSAPIClient>(ExecutionIdentity.System))
+				using (IObjectManager proxyOM = Helper.GetServicesManager().CreateProxy<IObjectManager>(ExecutionIdentity.System))
 				{
-					proxy.APIOptions.WorkspaceID = currentWorkspaceArtifactID;
 					//Add code for working with RSAPIClient
-					int fieldMatchCount = QueryForArticleTitleField(proxy, currentWorkspaceArtifactID);
-					if (fieldMatchCount < 1)
+					var fieldMatchCount = QueryForArticleTitleField(proxyOM, currentWorkspaceArtifactID).Result;
+					if (fieldMatchCount.TotalCount < 1)
 					{
-						int createSuccess = CreateDocumentFieldArticleTitle(proxy, currentWorkspaceArtifactID);
-						if (createSuccess <= 0)
+						bool createSuccess = CreateLongText_Async(proxyFM,FieldNamesList, currentWorkspaceArtifactID).Result;
+						if (!createSuccess)
 						{
 							retVal.Success = false;
 							retVal.Message = "Failed to create the field!";
@@ -59,62 +61,69 @@ namespace Wikitivity.EventHandler
 			return retVal;
 		}
 
-		public static int CreateDocumentFieldArticleTitle(IRSAPIClient proxy, int workspaceId)
-		{
-			Field createField = new Field()
+
+        public static async Task<QueryResultSlim> QueryForArticleTitleField(IObjectManager proxy, int workspaceID)
+        {
+            QueryRequest omGetInitialJobQuery = new QueryRequest()
+            {
+                ObjectType = new ObjectTypeRef() { Name = "Field"},
+                Condition = "('Name == 'Article Title')",
+                IncludeIDWindow = false,
+                RelationalField = null,
+                SampleParameters = null,
+                SearchProviderCondition = null,
+                Sorts = null,
+                Fields = new List<FieldRef>()
+                {
+                    new FieldRef() {Name = "Name"}
+                }
+            };
+
+            try
+            {
+                QueryResultSlim queryResults = await proxy.QuerySlimAsync(workspaceID, omGetInitialJobQuery, 1, 1);
+                return queryResults;
+            }
+            catch (Exception ex)
+            {
+                return new QueryResultSlim();
+            }
+        }
+		public static async Task<bool> CreateLongText_Async(IFieldManager proxy, List<String> fieldNames, int workspaceId)
+        {
+            bool success = false;
+			foreach (var item in fieldNames)
 			{
-				Name = "Article Title",
-				FieldTypeID = FieldType.LongText,
-				IsRequired = false,
-				Unicode = true,
-				OpenToAssociations = true,
-				Linked = false,
-				AllowSortTally = true,
-				Wrapping = true,
-				AllowGroupBy = true,
-				AllowPivot = true,
-				IgnoreWarnings = true,
-				IncludeInTextIndex = false,
-				AvailableInViewer = false,
-				AllowHTML = false,
-				Width = "123",
-				ObjectType = new ObjectType
+				try
 				{
-					DescriptorArtifactTypeID = 10
+					LongTextFieldRequest request = new LongTextFieldRequest();
+					request.ObjectType = new ObjectTypeIdentifier() { ArtifactTypeID = 10 };
+					request.Name = item;
+					request.AllowHtml = false;
+					request.ALT = false;
+					request.AvailableInViewer = false;
+					request.CTRL = false;
+					request.EnableDataGrid = false;
+					request.HasUnicode = true;
+					request.IncludeInTextIndex = false;
+					request.OpenToAssociations = false;
+					request.SHIFT = false;
+					request.Wrapping = false;
+
+					int newFieldArtifactId = await proxy.CreateLongTextFieldAsync(workspaceId, request);
+					//string info = string.Format("Created Long text field with Artifact ID {0}", newFieldArtifactId);
+                    
+                }
+				catch (Exception ex)
+				{
+					throw ex;
 				}
-			};
-			proxy.APIOptions.WorkspaceID = workspaceId;
-			int artifactIdCreatedField = proxy.Repositories.Field.CreateSingle(createField);
-			return artifactIdCreatedField;
-		}
-		public static int QueryForArticleTitleField(IRSAPIClient proxy, int workspaceId)
-		{
-			Query<Field> queryForArticleTitle = new Query<Field>
-			{
-				ArtifactTypeName = "Field",
-				Condition = new TextCondition("Name", TextConditionEnum.EqualTo, "Article Title"),
-				Fields = FieldValue.AllFields
-			};
-			proxy.APIOptions.WorkspaceID = workspaceId;
-			var results = proxy.Repositories.Field.Query(queryForArticleTitle, 0);
-			return results.TotalCount;
+			}
 
-		}
-
-		public static int QueryForAdminLevel(IRSAPIClient proxy, int workspaceId)
-		{
-			Query<Field> queryForArticleTitle = new Query<Field>
-			{
-				ArtifactTypeName = "Field",
-				Condition = new TextCondition("Name", TextConditionEnum.EqualTo, "Article Title"),
-				Fields = FieldValue.AllFields
-			};
-			proxy.APIOptions.WorkspaceID = workspaceId;
-			var results = proxy.Repositories.Field.Query(queryForArticleTitle, 0);
-			return results.TotalCount;
-
-		}
-
-
-	}
+            success = true;
+            return success;
+        }
+		// add any number of string field names here. These fields are created on the object created prior when the post-install executes.  
+		public static List<string> FieldNamesList = new List<string> { "Article Title" };
+    }
 }

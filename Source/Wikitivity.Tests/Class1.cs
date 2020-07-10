@@ -53,7 +53,26 @@ Console.WriteLine(instanceUrl);Debug.WriteLine(instanceUrl);
 
 	    }
 
-	    public static Guid WikitivityRDOGuid = new Guid("C6196733-E2A6-48F4-9443-37990972EBA3");
+		[Test]
+		public void ReadSetting()
+		{
+			try
+			{
+				string instanceUrl = Helper.GetInstanceSettingBundle().GetString("appSettings", "Password");
+				Console.WriteLine(instanceUrl); Debug.WriteLine(instanceUrl);
+				Assert.That(!instanceUrl.IsNullOrEmpty());
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+
+			}
+
+
+
+		}
+
+		public static Guid WikitivityRDOGuid = new Guid("C6196733-E2A6-48F4-9443-37990972EBA3");
 
 
 		[Test]
