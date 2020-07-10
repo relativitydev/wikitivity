@@ -192,65 +192,7 @@ namespace Wikitivity.CustomPage
 				throw ex;
 
 			}
-		}
-		public void UpdateRequestHistory(IRSAPIClient proxy, string requestID, string requestUser, int articleCount, int workspaceID, string requestedCategories, string prefix)
-		{
-
-			proxy.APIOptions.WorkspaceID = workspaceID;
-			RDO wikitivityRequestHistoryRDO = new RDO(WikitivityRequestHistoryRDOGuid);
-			List<Guid> guidList = new List<Guid>();
-			guidList.Add(WikitivityRequestHistoryRDOGuid);
-			wikitivityRequestHistoryRDO.ArtifactTypeGuids = guidList;
-			wikitivityRequestHistoryRDO.Fields.Add(new FieldValue() { Name = "Request ID", Value = requestID });
-			wikitivityRequestHistoryRDO.Fields.Add(new FieldValue() { Name = "Request User", Value = requestUser });
-			wikitivityRequestHistoryRDO.Fields.Add(new FieldValue() { Name = "Request Date", Value = DateTime.Today.ToShortDateString() });
-			wikitivityRequestHistoryRDO.Fields.Add(new FieldValue() { Name = "Article Count", Value = articleCount });
-			wikitivityRequestHistoryRDO.Fields.Add(new FieldValue() { Name = "Requested Categories", Value = requestedCategories });
-			wikitivityRequestHistoryRDO.Fields.Add(new FieldValue() { Name = "Prefix", Value = prefix });
-
-			try
-			{
-				WriteResultSet<RDO> writeResultSet = proxy.Repositories.RDO.Create(wikitivityRequestHistoryRDO);
-
-			}
-			catch (Exception ex)
-			{
-
-			}
-		}
-		public void WriteToTable(string requestID, string pageTitle, IRSAPIClient proxy, int workspaceID, string prefix, int count)
-		{
-			string requestUrl = $"https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exlimit=max&explaintext&titles={pageTitle}&redirects=";
-			//TODO: Refactor to OM
-			proxy.APIOptions.WorkspaceID = workspaceID;
-			RDO wikitivityRequestRDO = new RDO(WikitivityRDOGuid);
-
-			List<Guid> guidList = new List<Guid>();
-			guidList.Add(WikitivityRDOGuid);
-			wikitivityRequestRDO.ArtifactTypeGuids = guidList;
-			wikitivityRequestRDO.Fields.Add(new FieldValue() { Name = "Request ID", Value = requestID });
-			wikitivityRequestRDO.Fields.Add(new FieldValue() { Name = "Request Url", Value = requestUrl });
-
-			if (prefix == String.Empty)
-			{
-				prefix = "WIKI";
-			}
-			string docID = prefix + count.ToString("D7");
-
-			wikitivityRequestRDO.Fields.Add(new FieldValue() { Name = "Name", Value = docID });
-			wikitivityRequestRDO.Fields.Add(new FieldValue() { Name = "Page Title", Value = pageTitle });
-
-			try
-			{
-				WriteResultSet<RDO> writeResultSet = proxy.Repositories.RDO.Create(wikitivityRequestRDO);
-			}
-			catch (Exception ex)
-			{
-
-			}
-		}
-
-
+		}	
 		public async Task WriteToTableOM(List<WikiConstants.WikiRequest> ListofRequests)
 		{
 			var proxy = ListofRequests.FirstOrDefault().Proxy;
