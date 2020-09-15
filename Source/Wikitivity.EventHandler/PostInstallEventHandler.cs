@@ -16,7 +16,7 @@ using Relativity.Services.Objects.DataContracts;
 namespace Wikitivity.EventHandler
 {
 	[RunOnce(true)]
-	[RunTarget(kCura.EventHandler.Helper.RunTargets.Workspace)]
+	[RunTarget(kCura.EventHandler.Helper.RunTargets.Instance)]
 	[kCura.EventHandler.CustomAttributes.Description("Wikitivity_Post_Install")]
 	[System.Runtime.InteropServices.Guid("584fae0a-bc8b-4574-8c92-e55bc7c84251")]
 	public class PostInstallEventHandler : kCura.EventHandler.PostInstallEventHandler
@@ -27,7 +27,6 @@ namespace Wikitivity.EventHandler
 			IAPILog logger = Helper.GetLoggerFactory().GetLogger();
 			logger.LogVerbose("Log information throughout execution.");
             IFieldManager proxyFM = Helper.GetServicesManager().CreateProxy<IFieldManager>(ExecutionIdentity.System);
-			ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
 
 			Response retVal = new Response();
 			retVal.Success = true;
@@ -38,7 +37,6 @@ namespace Wikitivity.EventHandler
 
 				using (IObjectManager proxyOM = Helper.GetServicesManager().CreateProxy<IObjectManager>(ExecutionIdentity.System))
 				{
-					//Add code for working with RSAPIClient
 					var fieldMatchCount = QueryForArticleTitleField(proxyOM, currentWorkspaceArtifactID).Result;
 					if (fieldMatchCount.TotalCount < 1)
 					{
